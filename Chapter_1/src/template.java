@@ -2,7 +2,8 @@ import java.io.*;
 import java.util.*;
 
 public class template {
-
+	
+	//test
 	static Scanner in;
 	static PrintWriter out;
 	static String INFILE="template.in";
