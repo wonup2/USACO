@@ -3,12 +3,10 @@ import java.util.*;
 
 public class template {
 	
-	//test
 	static Scanner in;
 	static PrintWriter out;
 	static String INFILE="template.in";
 	static String OUTFILE="template.out";
-
 	
 	public static void main(String[] args) {
 		try {
