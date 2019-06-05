@@ -4,9 +4,31 @@ import java.io.*;
 
 public class ride {
 
+	static Scanner in;
+	static PrintWriter out;
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-dfsdfsdf
+
+		try {
+			
+			init();
+			solve();
+			
+		
+		
+		} 
+		catch(Exception e) {
+			System.out.println(e);
+		}		
+	}
+	
+
+	static void init(){
+		
+	}
+	
+	static String solve() {
+		return null;
 	}
 
 }
