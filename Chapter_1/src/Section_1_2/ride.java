@@ -18,7 +18,7 @@ public class ride {
 			out = new PrintWriter(new File("ride.out"));
 			
 			init();
-			result = solve();
+			solve();
 			
 			out.println(result);
 			
@@ -38,15 +38,15 @@ public class ride {
 		input[1] = in.nextLine();
 	}
 	
-	static String solve() {
+	static void solve() {
 		
 		//step 1 - convert input string to integer
 		int n1 = convert(input[0]);
 		int n2 = convert(input[1]);
 		
 		//step 2 - compare first input with input
-		if(n1==n2) return "GO";
-		else return "STAY";		
+		if(n1==n2) result = "GO";
+		else result = "STAY";		
 	}
 	
 	static int convert(String s) {
