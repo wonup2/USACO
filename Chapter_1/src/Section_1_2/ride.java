@@ -1,4 +1,9 @@
 package Section_1_2;
+/*
+ID: wonup21
+LANG: JAVA
+TASK: ride
+*/
 import java.util.*;
 import java.io.*;
 
