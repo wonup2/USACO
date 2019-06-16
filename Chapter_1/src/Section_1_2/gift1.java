@@ -19,8 +19,7 @@ public class gift1 {
 
 	public static void main(String[] args) {
 		
-		try {
-			
+		try {			
 			in = new Scanner(new File("gift1.in"));
 			out = new PrintWriter(new File("gift1.out"));
 			
@@ -32,7 +31,7 @@ public class gift1 {
 			
 			
 		}catch(Exception e){
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 	}

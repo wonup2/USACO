@@ -32,7 +32,7 @@ public class ride {
 		
 		} 
 		catch(Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}		
 	}
 	

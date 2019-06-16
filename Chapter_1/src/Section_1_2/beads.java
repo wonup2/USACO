@@ -29,7 +29,7 @@ public class beads {
 			in.close();
 			
 		}catch(Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		
 		

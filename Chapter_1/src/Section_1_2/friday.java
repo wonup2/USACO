@@ -33,7 +33,7 @@ public class friday {
 			out.close();
 			in.close();
 
-		} catch (Exception e) {	System.out.println(e); }
+		} catch (Exception e) {	e.printStackTrace(); }
 
 	}
 
