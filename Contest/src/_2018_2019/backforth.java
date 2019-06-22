@@ -37,8 +37,8 @@ public class backforth {
 
 				for(int k=0; k<10; k++){
 					for(int m=0; m<10; m++){
-						int milk = first + b[m] - a[k];						
-						set.add(milk);
+						int second = first + b[m] - a[k];			
+						set.add(second);
 					}
 				}
 				a = ka.clone();
