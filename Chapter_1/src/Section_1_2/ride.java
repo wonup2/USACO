@@ -12,7 +12,6 @@ public class ride {
 	static Scanner in;
 	static PrintWriter out;
 	static String input[];
-	
 	static String result; 
 	
 	public static void main(String[] args) {
@@ -23,9 +22,7 @@ public class ride {
 			out = new PrintWriter(new File("ride.out"));
 			
 			init();
-			solve();
-			
-			out.println(result);
+			out.println(solve());
 			
 			in.close();
 			out.close();
@@ -43,7 +40,7 @@ public class ride {
 		input[1] = in.nextLine();
 	}
 	
-	static void solve() {
+	static String solve() {
 		
 		//step 1 - convert input string to integer
 		int n1 = convert(input[0]);
@@ -51,7 +48,8 @@ public class ride {
 		
 		//step 2 - compare first input with input
 		if(n1==n2) result = "GO";
-		else result = "STAY";		
+		else result = "STAY";	
+		return result;
 	}
 	
 	static int convert(String s) {
