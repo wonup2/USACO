@@ -39,7 +39,7 @@ public class friday {
 
 	private static void init() {
 		N = in.nextInt() + 1900;
-		list = new int[7]; // MON - SUN
+		list = new int[7]; // SUN - SAT.
 	}
 
 	private static String solve() {
@@ -53,7 +53,8 @@ public class friday {
 				date += dates[j];					
 			}
 		}		
-		result = list[6]+" "+list[0]+" "+list[1]+" "+list[2]+" "+list[3]+" "+list[4] +" "+list[5];
+		result = ""+list[6];
+		for(int i=0; i<6; i++) result +=" "+list[i];
 		return result;
 	}
 
