@@ -12,7 +12,6 @@ public class ride {
 	static Scanner in;
 	static PrintWriter out;
 	static String input[];
-	static String result; 
 	
 	public static void main(String[] args) {
 
@@ -47,9 +46,8 @@ public class ride {
 		int n2 = convert(input[1]);
 		
 		//step 2 - compare first input with input
-		if(n1==n2) result = "GO";
-		else result = "STAY";	
-		return result;
+		if(n1==n2) return "GO";
+		else return "STAY";	
 	}
 	
 	static int convert(String s) {
