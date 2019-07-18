@@ -1,69 +1,73 @@
 package Section_1_3;
+
 /*
 ID: wonup21
 LANG: JAVA
 TASK: milk2
 */
 
-import java.io.*;
 import java.util.*;
+import java.io.*;
 public class milk2 {
-	
-	static BufferedReader in;
+
+	static Scanner in;
 	static PrintWriter out;
 	static int n;
-	static Set<Integer> set;
+	static pair[] a;
 	
 	public static void main(String[] args) {
 		try {
-			in=new BufferedReader(new FileReader("milk2.in"));
-			out=new PrintWriter(new BufferedWriter(new FileWriter("milk2.out")));
+			in = new Scanner(new File("milk2.in"));
+			out = new PrintWriter(new File("milk2.out"));
 			init();
 			out.println(solve());
 			in.close();
 			out.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}		
+	}
 
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	
-	}
-	static void init() {
-		try {
-			set = new HashSet<Integer>();
-			int n = Integer.parseInt(in.readLine());
-			StringTokenizer st;
-			for(int i=0; i<n; i++) {
-				st=new StringTokenizer(in.readLine());
-				int s=Integer.parseInt(st.nextToken());
-				int e=Integer.parseInt(st.nextToken());
-				for(int j=s; j<e; j++) set.add(j);
-			}			
-		}catch(Exception e) {
-			e.printStackTrace();
+	public static void init() {
+		n = in.nextInt();
+		a = new pair[n];
+		for(int i=0; i<n; i++) {
+			a[i] = new pair(in.nextInt(), in.nextInt());
 		}
 	}
-	static String solve() {
-		int milk=0, gap=0;
-		int max_milk=0, max_gap=0;
-		
-		ArrayList<Integer> a = new ArrayList<Integer>();
-		a.addAll(set);
-		Collections.sort(a);
-		
-		int cur=a.get(0);
-		for(int num:a) {
-			if(num-cur<=1) {
-				gap=0;
-				milk++;
+	public static String solve() {		
+		Arrays.sort(a);
+		int milking=0;
+		int gap=0;
+		int s=a[0].start, e=a[0].end;
+
+		for(int i=1; i<n; i++) {
+			int curStart = a[i].start;
+			int curEnd = a[i].end;
+			if(curStart > e) {
+				gap = Math.max(gap, curStart - e);
+				s = curStart;
+				e = curEnd;
 			}
-			else {
-				milk=0;
-				gap=num-cur-1;
+			else if(curEnd > e){
+				e = curEnd;
 			}
-			max_milk=Math.max(milk, max_milk);
-			max_gap=Math.max(max_gap, gap);
-			cur=num;
+			milking = Math.max(milking, e-s);
 		}
-		return max_milk+" "+max_gap;
+		return milking+" "+gap;
+	}
+}
+
+class pair implements Comparable<pair>{
+	int start;
+	int end;
+	pair(int s, int e){
+		start=s;
+		end=e;
+	}
+	@Override
+	public int compareTo(pair that) {
+		if(this.start==that.end) return this.end-that.end;
+		return this.start - that.end;
 	}
 }

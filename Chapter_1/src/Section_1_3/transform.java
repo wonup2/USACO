@@ -55,6 +55,7 @@ public class transform {
 		return res;
 	}
 
+	//[123, 456, 789]  --> [741, 852, 963]
 	static String[] _90(String[] s) {
 
 		String result[]=new String[n];

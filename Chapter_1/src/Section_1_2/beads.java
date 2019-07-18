@@ -8,22 +8,17 @@ public class beads {
 	static PrintWriter out;
 	static String result = "";
 	
-	static int N;
+	static int n;
 	static String b;
 	
 	public static void main(String[] args) {
 		
 		try {			
-			//Initialize in & out
 			in = new Scanner(new File("beads.in"));
 			out = new PrintWriter(new File("beads.out"));
 			
 			init();
-			result = solve();
-			
-			//Write out file
-			out.println(result);
-			System.out.println(result);
+			out.println(solve());
 			
 			out.close();
 			in.close();
@@ -31,82 +26,34 @@ public class beads {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-
 	}
 	
 	private static void init() {
-		//Get data 
-		//Initialize Input Variables
-		N = Integer.parseInt(in.nextLine());
-		b = in.nextLine();
-		
+		n = Integer.parseInt(in.nextLine());
+		b = in.nextLine();		
 	}
 
-
-	private static String solve() {
-		// Process and Output
-		
+	private static int solve() {
 		int max = 0;
 		b += b;
+		for(int i = 0; i < n; i++) {
+			int cur = i;
+			int key = b.charAt(cur);
+			int change = key=='w'? 0:1; 
+			int beads=0;
+			while(true) {
+				char c = b.charAt(cur);
 
-		
-		for(int i = 0; i < b.length()/2; i++) {
-			int c = 1;
-			char start = b.charAt(i);
-			
-			if(start == 'w') {
-				c = Math.max(recur(i, 'r'), recur(i, 'b'));
-			}else
-				c = recur(i, start);
-			
-
-			
-			if(max < c)
-				max = c;
-		
-			
-		}
-		
-		
-		result = ""+max;
-				
-		return result;
-		
-	}
-	
-	//Algorithm methods
-	private static int recur(int i, char c) {
-		boolean flag = false;
-		int idx = i+1;
-		int count = 2;
-		
-		while(count < b.length()/2) {
-			
-			char curr = b.charAt(idx);
-	
-			
-			if(!flag) {
-				if(curr == c || curr == 'w')
-					count++;
-				else
-					flag = true;
-			}else {
-				if(curr != c || curr == 'w')
-					count++;
-				else
-					break;
-				
+				if(c != 'w' && c != key) {				
+					change++;
+					key = c;
+				}
+				beads++;
+				cur++;
+				if(change>2 || cur>i+n-1) break;
 			}
-			idx++;
-		}
-
-		return count;
-		
-	}
-
-
-
-
+			max = Math.max(max, beads);						
+		}				
+		return max;		
+	}	
 }

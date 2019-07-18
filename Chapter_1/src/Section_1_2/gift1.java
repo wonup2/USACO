@@ -66,10 +66,15 @@ public class gift1 {
 			}
 		}
 		
+		
+		
+		StringBuilder sb = new StringBuilder();
 		for(String s: list.keySet()) {
-			result += s + " " + list.get(s) + "\n";
+			sb.append(s).append(" ").append(list.get(s)).append("\n");
 		}
 		
-		return result;
+		return sb.toString();
+		
+		
 	}
 }
