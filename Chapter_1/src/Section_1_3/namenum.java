@@ -12,7 +12,6 @@ public class namenum {
 
 	static BufferedReader in;
 	static PrintWriter out;
-    static int[] a = {2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9};
     static String input;
 	
 	public static void main(String[] args) {
@@ -24,7 +23,7 @@ public class namenum {
 			//init();
 			
 			out = new PrintWriter(new File("namenum.out"));
-			out.println(solve());
+			out.println();
 			in.close();
 			out.close();
 		}catch(Exception e) {
