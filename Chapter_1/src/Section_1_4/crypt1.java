@@ -53,7 +53,9 @@ public class crypt1 {
 				int p1=x[i]*(y[j]%10);
 				int p2=x[i]*(y[j]/10);
 				int p3=p1+p2*10;
+				
 				if((p1+"").length()!=3||(p2+"").length()!=3||(p3+"").length()!=4) continue;
+				
 				if(isValid(p1)&&isValid(p2)&&isValid(p3)) count++;
 			}
 		}
