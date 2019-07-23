@@ -1,4 +1,3 @@
-package Section_1_2;
 /*
 ID: raychun2
 LANG: JAVA

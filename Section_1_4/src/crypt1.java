@@ -1,9 +1,4 @@
-package Section_1_4;
-/*
-ID: wonup21
-LANG: JAVA
-TASK: crypt1
-*/
+
 
 import java.io.*;
 import java.util.*;

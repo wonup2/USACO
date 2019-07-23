@@ -1,4 +1,3 @@
-package Section_1_2;
 import java.util.*;
 import java.io.*;
 

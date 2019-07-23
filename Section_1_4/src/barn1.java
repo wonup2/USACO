@@ -4,7 +4,7 @@ LANG: JAVA
 TASK: barn1
 */
 
-package Section_1_4;
+
 
 import java.io.*;
 import java.util.*;

@@ -3,7 +3,6 @@ ID: wonup21
 LANG: JAVA
 TASK: ride
 */
-package Section_1_2;
 
 import java.util.*;
 import java.io.*;
