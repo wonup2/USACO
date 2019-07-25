@@ -1,3 +1,9 @@
+/*
+ID: wonup21
+LANG: JAVA
+TASK: 
+*/
+
 import java.io.*;
 import java.util.*;
 
@@ -5,7 +11,6 @@ public class template {
 	
 	static Scanner in;
 	static PrintWriter out;
-
 	
 	public static void main(String[] args) {
 		try {
@@ -22,7 +27,7 @@ public class template {
 	}
 	
 	static void init(){
-		
+
 	}
 	
 	static String solve() {
