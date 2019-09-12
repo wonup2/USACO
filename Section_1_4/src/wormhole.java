@@ -83,8 +83,8 @@ public class wormhole {
 	}
 
 	public static boolean isCycle() {
-		for(int i = 1; i<=n; i++)
-			System.out.println(i+" : "+pair[i]);
+//		for(int i = 1; i<=n; i++)
+//			System.out.println(i+" : "+pair[i]);
 
 		for(int start = 1; start <= n; start++) {
 			int pos = start;
@@ -93,8 +93,7 @@ public class wormhole {
 			}
 			
 			if(pos != 0) return true;
-		}
-		
+		}		
 		return false;
 	}
 }
