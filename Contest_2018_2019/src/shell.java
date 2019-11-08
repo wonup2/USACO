@@ -5,7 +5,7 @@ public class shell {
 
 	static Scanner in;
 	static PrintWriter out;
-	static int a[], b[], g[], n, i;
+	static int a[], b[], g[], n;
 	public static void main(String[] args) {
 		init();
 		solve();
@@ -20,12 +20,11 @@ public class shell {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		
 		n=in.nextInt();
-		a=new int[n];
-		b=new int[n];
-		g=new int[n];
-		i=-1;
-		while(++i<n) {
+		a=new int[n]; b=new int[n]; g=new int[n];
+		
+		for(int i=0;i<n;i++) {
 			a[i]=in.nextInt();
 			b[i]=in.nextInt();
 			g[i]=in.nextInt();
@@ -33,22 +32,18 @@ public class shell {
 	}
 
 	static void solve() {
-		int max = 0;
-		while(i-->0) {
-			max=Math.max(max,point(1));
-			max=Math.max(max,point(2));
-			max=Math.max(max,point(3));
-		}
+		int max = point(1);
+		max=Math.max(max,point(2));
+		max=Math.max(max,point(3));
 		out.println(max);
 	}
 	
 	static int point(int sh) {
 		int p=0;
-		int c=sh;
-		for(int i=0;i<n; i++) {
-			if(a[i]==c) c=b[i];
-			else if(b[i]==c) c=a[i];
-			p+= (c==g[i])?1:0;
+		for(int i=0;i<n;i++) {
+			if(a[i]==sh) sh=b[i];
+			else if(b[i]==sh) sh=a[i];
+			p+= (sh==g[i])?1:0;
 		}
 		return p;
 	}
