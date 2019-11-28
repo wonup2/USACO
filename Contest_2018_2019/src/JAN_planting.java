@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class planting {
+public class JAN_planting {
 	
 	public static void main(String[] args) throws IOException {
 

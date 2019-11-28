@@ -38,8 +38,6 @@ public class measurement_silever {
 		Arrays.sort(a);
 		board = new TreeMap<Integer, Integer>();
 		board.put(g, n);
-		//System.out.println(Arrays.toString(a));
-		//System.out.println(cow);
 	}
 	
 	private static void solve() {
@@ -49,8 +47,7 @@ public class measurement_silever {
 			id = a[i].id;
 			milk = cow.get(id);
 			measure = a[i].measure;
-			
-			
+						
 			if(board.containsKey(milk)) board.put(milk, board.get(milk)-1);
 			
 			milk += measure;

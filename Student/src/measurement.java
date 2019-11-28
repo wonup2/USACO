@@ -1,107 +1,100 @@
 import java.util.*;
 import java.io.*;
-
-class cows implements Comparable<cows> {
-	
-	int day;
-	int cow;
-	int milk;
-	
-	cows (int day, int cow, int milk) {
-		this.day = day;
-		this.cow = cow;
-		this.milk = milk;
-	}
-	
-	public int compareTo(cows that) {
-		if (this.day > that.day)
-			return 1;
-		else
-			return -1;
-	}
-	
-	public String toString() {
-		return this.day + " " + this.cow + " " + this.milk;
-	}
-}
-
 public class measurement {
-	
-	static int n, g, count, max;
-	static cows[] list;
-	static Map<Integer, Integer> a;
-	static TreeMap<Integer, Integer> b;
-	static BufferedReader in;
 	static PrintWriter out;
-
-	public static void main(String[] args) throws IOException{
-		in = new BufferedReader(new FileReader(new File("measurement.in")));
-		out = new PrintWriter(new BufferedWriter(new FileWriter("measurement.out")));
+	static Scanner in;
+	static cow rank[];
+	static int n;
+	static int[] amount;
+	static boolean[] board;
+	static int noc;
+	public static void main(String[] args) {
 		try {
 			init();
-			out.println(solve());
-			out.close();
+			solve();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		in.close();
+		out.close();
+	}
+	public static void init() {
+		try {
+			in = new Scanner(new File("measurement.in"));
+			out = new PrintWriter(new File("measurement.out"));
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	static void init() throws IOException {
-		StringTokenizer br = new StringTokenizer(in.readLine());
-		n = Integer.parseInt(br.nextToken());
-		g = Integer.parseInt(br.nextToken());
-		a = new HashMap<Integer, Integer>();
-		b = new TreeMap<Integer, Integer>();
-		b.put(g, n);
-		list = new cows[n];
-		for (int i = 0; i < n; i++) {
-			br = new StringTokenizer(in.readLine());
-			int d = Integer.parseInt(br.nextToken());
-			int c = Integer.parseInt(br.nextToken());
-			int m = Integer.parseInt(br.nextToken());
-			list[i] = new cows(d, c, m);
-			a.put(c, g);
+		n = in.nextInt();
+		rank = new cow[n];
+		for(int i = 0; i < n; i++) {
+			rank[i] = new cow(in.nextInt(), in.next(), in.nextInt());
 		}
-		Arrays.sort(list);
-		count = 0;
-		max = g;
-		in.close();
+		Arrays.sort(rank);
+		System.out.println(n);
+		amount = new int[3];
+		board = new boolean[3];
+		for(int i = 0; i < 3; i++) {
+			amount[i] = 7;
+		}
+		for(int i = 0; i < 3; i++) {
+			board[i] = true;
+		}
 	}
-	
-	static int solve() {
-		
-		int onBoardCount =n;
-		int onBoardMilk = g;
-		b.put(g, n);
-		
-		for (int i = 0; i < n; i++) {
-						
-			onBoardCount = b.lastEntry().getValue();  	
-
-			int currId = list[i].cow;
-			int currMilk = a.get(currId);			
-
-			if(b.get(currMilk) == 1) b.remove(currMilk);
-			else b.put(currMilk, b.get(currMilk)-1);
-			
-			if(currMilk == max) onBoardMilk = max + list[i].milk;
-
-			currMilk += list[i].milk;  
-			a.put(currId, currMilk);
-			
-			if(b.containsKey(currMilk))	b.put(currMilk, b.get(currMilk)+1);
-			else b.put(currMilk, 1);
-
-			max= b.lastKey();  			
-			
-			if(b.lastEntry().getValue() != onBoardCount || max!= onBoardMilk) {
-				count++; onBoardMilk = max;
+	public static void solve() {
+		//System.out.println(Arrays.toString(rank));
+      	boolean[] temp = new boolean[3];
+		for(int i = 0; i < n; i++) {
+			if(rank[i].name.equals("Mildred")) {
+				amount[0] = amount[0] + rank[i].change;
+			}else if(rank[i].name.equals("Elise")) {
+				amount[1] = amount[1] + rank[i].change;
+			}else if(rank[i].name.equals("Bessie")) {
+				amount[2] = amount[2] + rank[i].change;
 			}
-
+			int max = Math.max(Math.max(amount[0], amount[1]), amount[2]);
+          	temp = board.clone();
+            board = new boolean[3];
+			for(int j = 0; j < 3; j++) {
+				if(max == amount[j]) {
+					board[j] = true;
+				}
+			}
+            System.out.println(Arrays.toString(temp));
+            System.out.println(Arrays.toString(board));
+            
+			if(!Arrays.equals(temp, board)) {
+				noc++;
+			}
 		}
-		
-		return count;
+		out.println(noc);
 	}
-
+}
+class cow implements Comparable<cow>{
+	int day;
+	String name;
+	int change;
+	cow(int d, String a, int c){
+		day = d;
+		name = a;
+		change = c;
+	}
+	public String toString() {
+		return day + " " + name + " " + change;
+	}
+	public int compareTo(cow that) {
+		if(this.day > that.day) {
+			return 1;
+		}else if(this.day < that.day){
+			return -1;
+		}else {
+			if(this.change > that.change) {
+				return 1;
+			}else {
+				return -1;
+			}
+		}
+	}
 }

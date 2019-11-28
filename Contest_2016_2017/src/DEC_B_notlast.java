@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class _17D_notlast {
+public class DEC_B_notlast {
 
 	static Scanner in;
 	static PrintWriter out;
