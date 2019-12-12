@@ -52,7 +52,7 @@ public class JAN_perimeter {
 
 	
 	public static void countCells (int x, int y) {
-        if(!(y>=0&&n>y&&x>=0&&n>x)) {
+        if( ! ( y >= 0 && n > y && x >=0 && n > x)) {
             biggestp++;
             return;
         }
@@ -83,7 +83,5 @@ public class JAN_perimeter {
 		    }
 		    System.out.println();
 		}
-	}
-	
-	
+	}	
 }
