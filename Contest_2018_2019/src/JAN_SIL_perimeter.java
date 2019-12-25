@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class JAN_perimeter {
+public class JAN_SIL_perimeter {
 	
 	static int n;
 	static int result = 0;

@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class JAN_S_cowcode {
+public class JAN_SIL_cowcode {
 
 	static BufferedReader in;
 	static PrintWriter out;

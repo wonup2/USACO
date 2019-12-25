@@ -38,6 +38,8 @@ public class FEB_BR_revegetate {
 			a[Integer.parseInt(st.nextToken())].add(cow);
 			cow++;
 		}
+		System.out.println(Arrays.toString(a));
+
 		in.close();
 
 	}

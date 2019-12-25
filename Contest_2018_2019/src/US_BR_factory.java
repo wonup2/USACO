@@ -26,8 +26,8 @@ public class US_BR_factory {
 			b[Integer.parseInt(st.nextToken())]++;
 		}
 		
-//		System.out.println(Arrays.toString(a));
-//  	    System.out.println(Arrays.toString(b));
+		System.out.println(Arrays.toString(a));
+		System.out.println(Arrays.toString(b));
 
 	}
 	
@@ -36,8 +36,11 @@ public class US_BR_factory {
 		boolean ok = false;
 		int cnt=0;
 		for(int i = 1; i<=n; i++) {
-			if(a[i]==0 && b[i]>=1) {if(!ok) ans=i; ok = true; cnt++;}
-			
+			if(a[i]==0 && b[i]>=1) {
+				if(!ok) ans=i; 
+				ok = true; 
+				cnt++;
+			}			
 		}
 		out.println(cnt==1?ans:-1);
 	}
