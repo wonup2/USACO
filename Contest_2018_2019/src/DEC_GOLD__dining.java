@@ -3,7 +3,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Fine_Dining_Gold {
+public class DEC_GOLD__dining{
 	
 	static class pair implements Comparable<pair>{
 		int f,s;
