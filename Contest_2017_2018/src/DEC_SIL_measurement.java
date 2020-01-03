@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 //2017 December silver
 
-public class DEC_measurement_silver{
+public class DEC_SIL_measurement{
 	public static void main(String[] args) throws IOException{
 		BufferedReader in=new BufferedReader(new FileReader("measurement.in"));
 		PrintWriter pw=new PrintWriter(new BufferedWriter(new FileWriter("measurement.out")));

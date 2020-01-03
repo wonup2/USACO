@@ -1,5 +1,5 @@
 
-public class DEC_shuffle_silver {
+public class DEC_SIL_shuffle {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

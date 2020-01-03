@@ -1,5 +1,5 @@
 
-public class DEC_billboard_bronze {
+public class DEC_BR_billboard {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

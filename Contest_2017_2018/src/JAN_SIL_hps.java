@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-public class JAN_hps_silver {
+public class JAN_SIL_hps {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("hps.in"));
 		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("hps.out")));
