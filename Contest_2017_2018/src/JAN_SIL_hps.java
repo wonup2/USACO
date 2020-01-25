@@ -13,20 +13,20 @@ public class JAN_SIL_hps {
 			else if(s.equals("S")) l[i] = 2;
 			lReverse[l.length-1-i] = l[i];
 		}
-		System.out.println(Arrays.toString(l));
-		System.out.println(Arrays.toString(lReverse));
+		//System.out.println(Arrays.toString(l));
+		//System.out.println(Arrays.toString(lReverse));
 
 		int[][] matchPrefix = getMatch(l); print(matchPrefix);
 		int[][] matchSuffix = getMatch(lReverse);  print(matchSuffix);
-		//System.out.println(Arrays.deepToString(matchPrefix));
-		//System.out.println(Arrays.deepToString(matchSuffix));
+		System.out.println(Arrays.deepToString(matchPrefix));
+		System.out.println(Arrays.deepToString(matchSuffix));
 
 
 		int ret = 0;
 		for(int a = 0; a <= n; a++) {
 			for(int i = 0; i < 3; i++) {
 				for(int j = 0; j < 3; j++) {
-					//System.out.println(i+" "+ a+" "+ " "+j +" " + (n-a) +" : " + (matchPrefix[i][a] + matchSuffix[j][n-a]) );
+					System.out.println(i+" "+ a+" "+ " "+j +" " + (n-a) +" : " + (matchPrefix[i][a] + matchSuffix[j][n-a]) );
 					ret = Math.max(ret, matchPrefix[i][a] + matchSuffix[j][n-a]);
 				}
 			}

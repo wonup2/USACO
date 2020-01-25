@@ -34,49 +34,37 @@ public class DEC_SIL_milkvisits{
 			paths.get(Y).add(X);
 		}
 					
-		//run dfs for ranking
 		dfs(1,1);
 		
-		//System.out.println(Arrays.toString(T));
-		//System.out.println(Arrays.toString(p));
-
 		StringBuilder ans=new StringBuilder();
 		
-		//queries
 		for(int i=0;i<M;i++) {
-			//read queries
+			
 			st=new StringTokenizer(br.readLine());
 			int Ai=Integer.parseInt(st.nextToken());
 			int Bi=Integer.parseInt(st.nextToken());
 			char Ci=st.nextToken().charAt(0);
-			//solve queries
+
 			if(T[Ai]==T[Bi]&&T[Ai]!=Ci) {
-				if(p[Ai]==p[Bi])//if in same group
+				if(p[Ai]==p[Bi])	//if in same group
 					ans.append(0);
-				else//if in different groups
+				else				//if in different groups
 					ans.append(1);
 			}
 			else ans.append(1);
-		}
-		//no more reading needed
-		br.close();
-		
-		//print answer
-		pw.println(ans.toString());
-		
+		}		
+			
+		pw.println(ans.toString());		
 		pw.close();
+		br.close();	
 	}
 	
 	static void dfs(int parent,int cur) {
 		V[cur]=true;
-		if(T[cur]==T[parent])	//if same taste
-			p[cur]=parent;		//group together
-		else {					//if different taste
-			p[cur]=cur;			//start new group
-			parent=cur;			//make new parent
-		}
+		if(T[cur]!=T[parent])parent=cur;
+		p[cur]=parent;	
+		
 		for(int i:paths.get(cur))
-			if(!V[i])
-				dfs(parent,i);
+			if(!V[i]) dfs(parent,i);
 	}
 }

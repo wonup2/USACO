@@ -13,7 +13,7 @@ public class JAN_SIL_cowcode {
 		out = new PrintWriter(new BufferedWriter(new FileWriter("cowcode.out")));
 		try {
 			init();
-			out.println(solve());
+			System.out.println(solve());
 			in.close();
 			out.close();
 		}
