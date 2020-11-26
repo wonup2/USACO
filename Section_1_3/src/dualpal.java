@@ -1,58 +1,51 @@
 
-/*
-ID: wonup21
-LANG: JAVA
-TASK: dualpal
-*/
-import java.io.*;
 import java.util.*;
-
+import java.io.*;
 public class dualpal {
 	static Scanner in;
 	static PrintWriter out;
-	static int n,s;
+	static int N, S;
+	public static void main(String[] args) throws IOException {
+		in = new Scanner(new File("dualpal.in"));
+		out = new PrintWriter(new File("dualpal.out"));
+		
+		init();
+		solve();
+		
+		in.close();
+		out.close();
+		
+		
 
-	public static void main(String[] args) {
-		try {
-			in=new Scanner(new FileReader("dualpal.in"));
-			out=new PrintWriter(new BufferedWriter(new FileWriter("dualpal.out")));
-			init();
-			out.print(solve());
-			in.close();
-			out.close();
-
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	
 	}
 	static void init() {
-		n=in.nextInt();
-		s=in.nextInt();
+		N= in.nextInt();
+		S = in.nextInt()+1;
+		
 	}
-	
-	static String solve() {	
-		int i=s+1;
-		int len=0;
-
-		StringBuilder sb = new StringBuilder();
+	static void solve() {
+		int countN = 0;
+		int countbase = 0;
+		StringBuilder ans = new StringBuilder();
+		
 		while(true) {
-			int b=2;
-			int count=0;
-			while(b<=10) {
-				String s = Integer.toString(i, b);
-				if(s.equals(new StringBuilder(s).reverse().toString()))
-					count++;				
-				if(count==2) {
-					sb.append(i+"\n"); 
-					len++; 
+			for(int j=2; j<11; j++) {
+				String a = Integer.toString(S, j);				
+				String a1 = new StringBuilder(a).reverse().toString();
+				
+				if(a.equals(a1)) countbase++;
+				
+                if(countbase==2) {
+					ans.append(S).append("\n");
+					countN++;
 					break;
 				}
-				b++;
-			}
-
-			if(len==n) break;
-			i++;
-		}	
-		return sb.toString();
+			}			
+			if(countN==N) break;
+			countbase=0;
+			S++;
+		}
+		
+		out.print(ans.toString());		
 	}
 }

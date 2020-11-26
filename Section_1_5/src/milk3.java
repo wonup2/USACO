@@ -19,14 +19,12 @@ public class milk3 {
 		dfs(0,0,c);
 		System.out.println(Arrays.toString(amount));
 		for (int i = 0;i < c;i++) 
-			if (amount[i]) 
-				out.print(i + " ");
-			out.println(c);
+			if (amount[i]) out.print(i + " ");
+		
+		out.println(c);
+	}
 
-			System.exit(0);
- }
-
-  private static void dfs(int x, int y, int z){
+     private static void dfs(int x, int y, int z){
 	  if(searched[x][y]) return;
 	  
 	  searched[x][y] = true;

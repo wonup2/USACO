@@ -1,28 +1,60 @@
-
+import java.util.*;
+import java.io.*;
 public class DEC_BR_billboard {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-/*
-#include<stdio.h>
-int M[2121][2121];
-int main() {
-	int i, j, p, q;
-	for (i = 0; i < 3; i++) {
-		int x1, y1, x2, y2;
-		scanf("%d%d%d%d", &x1, &y1, &x2, &y2);
-		for (p = x1; p < x2;p++){
-			for (q = y1; q < y2;q++){
-				M[p + 1000][q + 1000] = i<2?1:0;
+	
+	static Scanner in;
+	static PrintWriter out;
+	
+	static boolean[][]array;	
+	static int cnt, x1, y1, x2, y2;
+	
+	public static void main(String[] args) throws IOException{
+		
+		in=new Scanner(new FileReader("billboard.in"));
+		out=new PrintWriter(new BufferedWriter(new FileWriter("billboard.out")));
+		
+		solve();
+		
+		in.close();
+		out.close();
+	}
+	
+	static void solve() throws IOException {
+		array=new boolean[2001][2001];
+		
+		cnt = 0;
+		for(int i=0; i<2; i++){
+			
+			x1=in.nextInt()+1000;
+			y1=in.nextInt()+1000;
+			x2=in.nextInt()+1000;
+			y2=in.nextInt()+1000;
+			
+			for(int j=x1; j<x2; j++){
+				for(int k=y1; k<y2; k++){		
+					if(!array[j][k]) {
+						array[j][k]=true;		
+						cnt++;
+					}									
+				}
 			}
 		}
-	}
-	int ans = 0;
-	for (i = 0; i < 2000; i++)for (j = 0; j < 2000; j++)ans += M[i][j];
-	printf("%d", ans);
-	return 0;
+		
+		x1=in.nextInt()+1000;
+		y1=in.nextInt()+1000;
+		x2=in.nextInt()+1000;
+		y2=in.nextInt()+1000;
+		
+		for(int j=x1; j<x2; j++){
+			for(int k=y1; k<y2; k++){		
+				if(array[j][k]) {
+					cnt--;
+				}									
+			}		
+		}
+		
+		out.println(cnt);
+	}	
 }
- */
-	}
 
-}
+

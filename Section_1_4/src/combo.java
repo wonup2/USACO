@@ -43,12 +43,12 @@ public class combo {
 		for (int n1=1; n1<=n; n1++)
 		for (int n2=1; n2<=n; n2++)
 		for (int n3=1; n3<=n; n3++)
-		  	if (close_enough(n1,n2,n3,f1,f2,f3) ||
-				close_enough(n1,n2,n3,m1,m2,m3))
+		  	if (isValid(n1,n2,n3,f1,f2,f3) ||
+		  			isValid(n1,n2,n3,m1,m2,m3))
 		    	total++;
 		return total;
 	}
-	static boolean close_enough(int n1, int n2, int n3, int c1, int c2, int c3)	{
+	static boolean isValid(int n1, int n2, int n3, int c1, int c2, int c3)	{
 		  return close(n1,c1) && close(n2,c2) && close(n3,c3);
 	}
 	

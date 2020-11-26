@@ -9,27 +9,25 @@ public class DEC_SIL_mooyomooyo {
 	static BufferedReader in;
 	static PrintWriter out;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		in = new BufferedReader(new FileReader("mooyomooyo.in"));
+		out = new PrintWriter(new File("mooyomooyo.out"));
 		init();
-		solve();		
+		solve();
+		in.close();
+		out.close();
 	}
 	
 	
-	public static void init() {		
-		try {
-			in = new BufferedReader(new FileReader("mooyomooyo.in"));
-			out = new PrintWriter(new File("mooyomooyo.out"));
-			StringTokenizer st = new StringTokenizer(in.readLine());
-			n = Integer.parseInt(st.nextToken());
-			k = Integer.parseInt(st.nextToken());
+	public static void init() throws IOException {		
+
+		StringTokenizer st = new StringTokenizer(in.readLine());
+		n = Integer.parseInt(st.nextToken());
+		k = Integer.parseInt(st.nextToken());
 			
-			a = new char[n][10];
-			for (int i = 0; i < n; i ++) 
-				a[i] = in.readLine().toCharArray();
-			in.close();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		a = new char[n][10];
+		for (int i = 0; i < n; i ++) 
+			a[i] = in.readLine().toCharArray();
 	}
 	
 	public static void solve() {
@@ -46,18 +44,12 @@ public class DEC_SIL_mooyomooyo {
 				} 			
 			}             
 			
-			for (int x = n - 1; x > 0; x--) {
-                for (int y = 0; y < 10; y++) {
-                	if (a[x][y] == '0') {
-                		applyGravity(x, y);
-                		}
-                	}
-                
-                }
-			} 		 		
+			for (int x = n - 1; x > 0; x--) 
+                for (int y = 0; y < 10; y++) 
+                	if (a[x][y] == '0') applyGravity(x, y);                
+		} 		 		
 		
 		for (char[] c : a) out.println(c);
-
 		out.close();
 	}
 	
@@ -77,8 +69,7 @@ public class DEC_SIL_mooyomooyo {
 		for(int i=0; i<4; i++) 
 			count = dfs(x + dx[i], y + dy[i]);
 			
-		
-        return count;
+		 return count;
 	}
 	
 	static void applyGravity(int start, int column) {

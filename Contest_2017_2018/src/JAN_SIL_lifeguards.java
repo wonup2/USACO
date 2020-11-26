@@ -4,44 +4,39 @@ public class JAN_SIL_lifeguards {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("lifeguards.in"));
 		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("lifeguards.out")));
-		TreeSet<Integer> set = new TreeSet<Integer>();
+		Set<Integer> set = new HashSet<Integer>();
 		int n = Integer.parseInt(br.readLine());
 		
 		State[] l = new State[2*n];
-		
+		StringTokenizer st;
 		for(int i = 0; i < n; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
+			st = new StringTokenizer(br.readLine());
 			int start = Integer.parseInt(st.nextToken());
 			int end = Integer.parseInt(st.nextToken());
 			l[2*i] = new State(start, i);
 			l[2*i+1] = new State(end, i);
 		}
-		
 		Arrays.sort(l);
-		
-		int actualCover = 0;
+
+		int totalCover = 0;
 		int[] alone = new int[n];
-		int checkedTime = 0;
+		int pre = 0;
 		
-		for(State out: l) {
-			if(set.size() == 1)	
-				alone[set.first()] += out.time - checkedTime;
+		for(State cur: l) {
+			if(set.size() == 1)	alone[set.hashCode()] += cur.time - pre;
 			
-			if(!set.isEmpty()) 
-				actualCover += out.time - checkedTime;
+			if(!set.isEmpty()) totalCover += cur.time - pre;
 			
-			if(set.contains(out.index)) 
-				set.remove(out.index);			
-			else 
-				set.add(out.index);
+			if(set.contains(cur.index)) set.remove(cur.index);			
+			else set.add(cur.index);
 			
-			checkedTime = out.time;
+			pre = cur.time;
 		}
-		int ret = 0;
-		for(int out: alone) {
-			ret = Math.max(ret, actualCover - out);
-		}
-		pw.println(ret);
+		
+		Arrays.sort(alone);
+		int ans = totalCover - alone[0];
+		
+		pw.println(ans);
 		pw.close();
 	}
 	
@@ -53,6 +48,10 @@ public class JAN_SIL_lifeguards {
 		}
 		public int compareTo(State s) {
 			return time - s.time;
+		}
+		
+		public String toString() {
+			return time+" "+index;
 		}
 	}	
 }

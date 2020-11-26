@@ -6,7 +6,7 @@ public class JAN_SIL_perimeter {
 	static int n;
 	static int result = 0;
 	static int biggest = 0;
-	static String[][] map;
+	static char[][] map;
 	static int resultp = 0;
 	static int biggestp = 0;
 	
@@ -17,22 +17,20 @@ public class JAN_SIL_perimeter {
 		
 		n = Integer.parseInt(in.readLine());
 		
-		map = new String[n][n];
+		map = new char[n][];
 		
 		for(int r = 0; r < n; r++) {
 			String plot = in.readLine();
-			for(int c = 0; c < n; c++) {
-				map[r][c]=plot.charAt(c)+"";
-			}
+			map[r]=plot.toCharArray();
 		}
 		
 		for(int r = 0; r < n; r++) {
 			for(int c = 0; c < n; c++) {
-				if(map[r][c].equals("#")) {
+				if(map[r][c]=='#') {
 					biggest = 0;
 					biggestp = 0;
 					countCells(r, c);
-					
+					//printBoard(map);
 					if(result==biggest){
 						resultp = Math.min(resultp, biggestp);
 					}
@@ -53,25 +51,24 @@ public class JAN_SIL_perimeter {
 	
 	public static void countCells (int x, int y) {
         if( ! ( y >= 0 && n > y && x >=0 && n > x)) {
-            biggestp++;
+            biggestp++; //System.out.println(1);
             return;
         }
-        if(map[x][y].equals(".")) {
-            biggestp++;
+        if(map[x][y]=='.') {
+            biggestp++;//System.out.println(2);
             return;
         }
-        if(map[x][y].equals("$")) {
+        if(map[x][y]=='$') {//System.out.println(3);
             return;
         }
+        
+        map[x][y]='$';
 
-        map[x][y]="$";
-
-        biggest++;
+        biggest++;   
         countCells(x, y+1);
         countCells(x, y-1);
         countCells(x+1, y);
         countCells(x-1, y);
-
         return ;
     }
 	
@@ -81,7 +78,7 @@ public class JAN_SIL_perimeter {
 		    for (int j = 0; j < grid[i].length; j++) {
 		        System.out.print(grid[i][j] + " ");
 		    }
-		    System.out.println();
+		     System.out.println();
 		}
 	}	
 }

@@ -26,31 +26,48 @@ public class DEC_SIL_haybales {
 	}
 	
 	public static void solve() throws IOException {
-	//	System.out.println(lower(4));
+
 		StringBuilder sb = new StringBuilder();
 		for(int i=0; i<q; i++) {
 			st = new StringTokenizer(in.readLine());
 			int s = Integer.parseInt(st.nextToken());
 			int e = Integer.parseInt(st.nextToken());
-			int ans = lower(e) - lower(s-1);
+
+			int ans = count(s,e);
 			sb.append(ans).append("\n");
 		}
 		out.print(sb.toString());
 	}
+	
+	public static int count(int s, int e) {
+		s = Arrays.binarySearch(a, s);
+		e = Arrays.binarySearch(a, e);
+
+		if(s<0) s = s*(-1) -1;
+
+		if(e<0) e = e*(-1) -1;
+		else if(e>=0) e++;
+
+		return e-s;
+	}
+	
+	
+	/*
 	public static int lower(int n) {
-		if(n<a[0]) return 0;
-		int low = 0;
+		if(n<a[1]) return 0;
+		int low = 1;
 	    int high = a.length-1;
 	    while (low <= high) {
 	        int mid = (low + high) / 2;
-	        if(n==a[mid]) return mid+1;
+	        if(n==a[mid]) return mid;
 	        else if (n < a[mid]) {
 	            high = mid - 1;
 	        } else {
 	            low = mid + 1;
 	        }
 	    }
-	    return low;
+	    return high;
 	}
+	*/
 
 }

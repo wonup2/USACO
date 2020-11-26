@@ -9,27 +9,29 @@ public class US_BR_lostcow {
 		int x = stdin.nextInt();
 		int y = stdin.nextInt();
 
-		int total = 0, curx = x, mult = 1;
+		int total = 0, start = x, mult = 1, end=0;
 
 		// Simulate.
 		while (true) {
 
 			// Go to the new x.
-			int newx = x + mult;
-			int min = Math.min(curx,newx);
-			int max = Math.max(curx,newx);
-			int travel = max-min;
+			int current = start;
+			int next = x + mult;
+			int min = Math.min(current,next);
+			int max = Math.max(current,next);
 
 			// We made it, get out.
 			if (inbetween(min, y, max)) {
-				total += Math.abs(y-curx);
+				total += Math.abs(y-current);
 				break;
 			}
 
 			// Go to next iteration.
-			mult *= (-2);
+			int travel = max-min;
 			total += travel;
-			curx = newx;
+			mult *= (-2);
+			start = next;
+			
 		}
 
 		// Ta da!

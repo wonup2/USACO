@@ -42,6 +42,6 @@ public class US_BR_factory {
 				cnt++;
 			}			
 		}
-		out.println(cnt==1?ans:-1);
+		System.out.println(cnt==1?ans:-1);
 	}
 }

@@ -1,39 +1,53 @@
-import java.util.*;
 import java.io.*;
-
+import java.util.*;
 public class DEC_SIL_citystate {
-
-	public static void main(String[] args) throws Exception {
-
-		// Stores how many of each comb happens first index is city, second state.
-		int[][] freq = new int[676][676];
-
-		// Open file.
-		BufferedReader stdin = new BufferedReader(new FileReader("citystate.in"));
-		int n = Integer.parseInt(stdin.readLine().trim());
-
-		// Read in city,states
-		for (int i=0; i<n; i++) {
-			StringTokenizer tok = new StringTokenizer(stdin.readLine());
-			String city = tok.nextToken();
-			String state = tok.nextToken();
-			freq[convert(city)][convert(state)]++;
-		}
-
-		long res = 0;
-
-		// Codes must be distinct, so just do this!
-		for (int i=0; i<676; i++)
-			for (int j=i+1; j<676; j++)
-				res += ((long)freq[i][j]*freq[j][i]);
-
-		PrintWriter out = new PrintWriter(new FileWriter("citystate.out"));
-		out.println(res);
+	
+	static BufferedReader in;
+	static PrintWriter out;
+	static int n;
+	static Map<String, Long> a;
+	
+	public static void main(String[] args) throws IOException {
+		in = new BufferedReader(new FileReader("citystate.in"));
+		out = new PrintWriter(new BufferedWriter(new FileWriter("citystate.out")));
+		
+		init();
+		solve();
+		
+		in.close();
 		out.close();
-		stdin.close();
 	}
-
-	public static int convert(String s) {
-		return 26*(s.charAt(0)-'A') + s.charAt(1) - 'A';
+	
+	static void init() throws NumberFormatException, IOException {
+		
+		n = Integer.parseInt(in.readLine());
+		a = new HashMap<String, Long>();
+		for(int i = 0; i < n; i++) {
+			StringTokenizer st = new StringTokenizer(in.readLine());
+			String city = st.nextToken();
+			String state = st.nextToken();
+			
+			if(!city.substring(0, 2).equals(state)) {
+				String key = city.substring(0, 2) + state;
+				if(!a.containsKey(key)) {
+					a.put(key, 0L);
+				}
+				a.put(key, a.get(key) + 1);
+			}
+		}
+		System.out.println(a);
 	}
+	
+	static void solve() {
+		long ret = 0;
+		for(String key: a.keySet()) {
+			String otherKey = key.substring(2) + key.substring(0, 2);
+			System.out.println(otherKey);
+			if(a.containsKey(otherKey)) {
+				ret += a.get(key) * a.get(otherKey);
+			}
+		}
+		
+		out.println(ret / 2);
+	}	
 }

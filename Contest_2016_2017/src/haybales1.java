@@ -25,15 +25,17 @@ public class haybales1 {
 		TreeMap<Integer,Integer> map = new TreeMap<Integer,Integer>();
 		for (int i=0; i<=n; i++)
 			map.put(vals[i], i);
-
+		
+		System.out.println(map);
+		
 		// Process each query.
 		StringBuilder sb = new StringBuilder();
-		for (int i=0; i<numQ; i++) {
+		for (int i=0; i<1; i++) {
 
 			// Get query find lower bounds in map and just subtract corresponding indexes.
 			tok = new StringTokenizer(stdin.readLine());
-			int low = map.floorKey(Integer.parseInt(tok.nextToken())-1);
-			int high = map.floorKey(Integer.parseInt(tok.nextToken()));
+			int low = map.floorKey(Integer.parseInt(tok.nextToken())-1); System.out.println(low);
+			int high = map.floorKey(Integer.parseInt(tok.nextToken())); System.out.println(high);
 			int res = map.get(high) - map.get(low);
 
 			// For speed.

@@ -11,53 +11,54 @@ public class friday {
 	static Scanner in;
 	static PrintWriter out;
 	static int N;
-	static String result = "";
 
-	static int[] list;
-	static int[] dates = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	static int date = 13;
+	static int[] a;
+	static int[] d = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	static int day = 13;
 
-	public static void main(String[] args) {
-
-		try {
+	public static void main(String[] args) throws IOException {
 
 			in = new Scanner(new File("friday.in"));
 			out = new PrintWriter(new File("friday.out"));
 
 			init();
-			result = solve();
-
-			out.println(result);
+			solve();		
 
 			out.close();
 			in.close();
-
-		} catch (Exception e) {	e.printStackTrace(); }
-
 	}
 
-	private static void init() {
+	static void init() {
 		N = in.nextInt() + 1900;
-		list = new int[7]; // SUN - SAT.
+		a = new int[7]; // SUN - SAT.
 	}
 
-	private static String solve() {
-		for (int i = 1900; i < N; i++) {			
-			for (int j = 1; j <= 12; j++) {
+	static void solve() {
+		
+		for(int year = 1900; year < N; year++) {
+			for(int month = 0; month < 12; month++) {
 				
-				list[date%7]++;				
-
-				if(j == 2 && isLeaf(i))	date++;	 
+				int date = day % 7;
 				
-				date += dates[j];					
-			}
-		}		
-		result = ""+list[6];
-		for(int i=0; i<6; i++) result +=" "+list[i];
-		return result;
+				a[date]++;
+				
+				day += d[month];
+				
+				if(month==1 && isLeap(year))
+					day++;				
+			}			
+		}
+		
+		out.print(a[6]);
+		
+		for(int i=0; i < 6; i++)
+			out.print(" " + a[i]);
+		
+		out.println();
 	}
-
-	private static boolean isLeaf(int y) {
-		return y % 4 == 0 && ( y % 400 == 0 || y % 100 != 0);
+	
+	static boolean isLeap(int n) {
+	
+		return n%4==0 && (n%100!=0 || n%400==0);
 	}	
 }

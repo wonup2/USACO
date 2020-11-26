@@ -3,41 +3,41 @@ import java.io.*;
  
 public class DEC_SIL_convention2 {
 	
-	static Scanner in;
+	static BufferedReader in;
 	static PrintWriter out;
-	static int n, time, wait;
-	static List<group> gr;
-	static PriorityQueue<group> q;
+	static int N, time, wait;
+	static List<group> a;
+	static PriorityQueue<group> pq;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		in = in=new BufferedReader(new FileReader("convention2.in"));
+		out=new PrintWriter(new FileWriter("convention2.out"));
 		init();
 		solve();
+		in.close();
+		out.close();
 	}
 
-	static void init() {		
-		try {
-			in=new Scanner(new FileReader("convention2.in"));
-			out=new PrintWriter(new FileWriter("convention2.out"));
-			n=in.nextInt();
-			gr=new LinkedList<group>();
-			q=new PriorityQueue<group>();
-		
-			for(int i=0; i<n; i++)
-				gr.add(new group(i, in.nextInt(), in.nextInt()));			
-			
-			in.close();
-		} catch (NumberFormatException | IOException e) {
-			e.printStackTrace();
+	static void init() throws IOException {		
+		N=Integer.parseInt(in.readLine());
+		a=new LinkedList<group>();
+		pq=new PriorityQueue<group>();
+		StringTokenizer st;
+		for(int i=0; i<N; i++) {
+			st = new StringTokenizer(in.readLine());
+			a.add(new group(i, Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken())));		
 		}
-		
-		Collections.sort(gr, new Comparator<group>() {
+						
+		Collections.sort(a, new Comparator<group>() {
+
 			@Override
-			public int compare(group o1, group o2) {
-				return o1.a-o2.a;
+			public int compare(group arg0, group arg1) {
+				
+				return arg0.a - arg1.a;
 			}			
 		});
 		
-		
+		//System.out.println(a);
 	}
 	
 	static void solve() {
@@ -45,13 +45,13 @@ public class DEC_SIL_convention2 {
 		int max=0;
 		reset();
 		
-		while(!gr.isEmpty()) {
+		while(!a.isEmpty()) {
 			
-			while(!gr.isEmpty() && gr.get(0).a<=time) q.add(gr.remove(0));		
+			while(!a.isEmpty() && a.get(0).a<=time) pq.add(a.remove(0));		
 		
-			if(q.isEmpty())	reset();
+			if(pq.isEmpty()) reset();
 			else{
-				group now=q.poll();
+				group now=pq.poll();
 				wait = time-now.a;
 				time+=now.t;				
 			}
@@ -63,22 +63,22 @@ public class DEC_SIL_convention2 {
 	}
 	
 	static void reset() {
-		time = gr.get(0).a+gr.get(0).t;
-		gr.remove(0);
+		time = a.get(0).a + a.get(0).t;
+		a.remove(0);
 		wait=0;
 	}
 }
 
 class group implements Comparable<group>{
-	int p, a, t;
-	group(int p, int a, int t){
-		this.p=p; this.a=a; this.t=t;
+	int s, a, t;
+	group(int s, int a, int t){
+		this.s=s; this.a=a; this.t=t;
 	}
 	@Override
 	public int compareTo(group that) {
-		return this.p-that.p;
+		return this.s-that.s;
 	}
 	public String toString() {
-		return p+" "+a+" "+t;
+		return s+" "+a+" "+t;
 	}
 }

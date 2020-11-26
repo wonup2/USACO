@@ -50,8 +50,9 @@ public class DEC_SIL_homework {
 				eat.add(i);
 			}
 		}
+		System.out.println(max);
 		Collections.sort(eat);
 		for(int e: eat)
-			out.println(e);
+			System.out.println(e);
 	}
 }

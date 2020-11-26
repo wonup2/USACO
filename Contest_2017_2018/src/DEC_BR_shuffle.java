@@ -1,22 +1,34 @@
+import java.util.*;
+import java.io.*;
 
 public class DEC_BR_shuffle {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-/*
-#include<stdio.h>
-char S[121][10];
-int a[121];
-int main() {
-	int n, i;
-	scanf("%d", &n);
-	for (i = 1; i <= n; i++)scanf("%d", &a[i]);
-	for (i = 1; i <= n; i++)scanf("%s", S[i]);
-	for (i = 1; i <= n; i++)printf("%s\n", S[a[a[a[i]]]]);
-	return 0;
-}
- */
-
+	
+	static int n, r[], id[], ans[];
+	static Scanner in;
+	static PrintWriter out;
+	
+	public static void main(String[] args) throws IOException {
+		in = new Scanner(new File("shuffle.in"));
+		out = new PrintWriter(new File("shuffle.out"));
+		init();
+		solve();
+		in.close();
+		out.close();
 	}
-
+	static void init() {
+		n = in.nextInt();
+		r = new int[n];
+		for(int i=0; i<n; i++) r[in.nextInt()-1]=i;
+		id = new int[n];
+		for(int i=0; i<n; i++) id[i] = in.nextInt();
+	}
+	
+	static void solve() {
+		ans = new int[n];
+		
+		for(int i=0; i<n; i++) ans[r[r[r[i]]]] = id[i];
+		
+		for(int i=0; i<n; i++) out.println(ans[i]);
+		
+	}
 }

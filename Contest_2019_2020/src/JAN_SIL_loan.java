@@ -31,9 +31,9 @@ public class JAN_SIL_loan {
 		long low = 1, high = N;
 		while (low < high) {
 		    long mid = (low + high + 1)/2;
-		    if (ok(mid) <= K) low = mid;
+		    if (ok(mid) <= K) low = mid; 
 		    else high = mid-1;
-		}
+		}		
 		System.out.println(low);
 	}
 }

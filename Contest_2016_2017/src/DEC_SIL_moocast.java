@@ -18,7 +18,9 @@ public class DEC_SIL_moocast{
 		for (int i=0; i<n; i++)
 			for (int j=0; j<3; j++)
 				a[i][j] = stdin.nextInt();
-
+		
+		//System.out.println(Arrays.deepToString(a));
+		
 		// Try each starting vertex.
 		int res = 0;
 		for (int i=0; i<n; i++)

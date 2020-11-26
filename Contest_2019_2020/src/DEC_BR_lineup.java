@@ -25,6 +25,7 @@ public class DEC_BR_lineup {
 		p=new ArrayList<String>();
 		permute("01234567", ""); 
 		n = Integer.parseInt(in.readLine());		
+		//System.out.println(p.size());
 	}
 	
 	static void solve() throws IOException {

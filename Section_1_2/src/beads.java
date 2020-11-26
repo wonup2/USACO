@@ -1,3 +1,8 @@
+/*
+ID: wonup21
+LANG: JAVA
+TASK: beads
+*/
 import java.util.*;
 import java.io.*;
 
@@ -29,29 +34,34 @@ public class beads {
 	
 	private static void init() {
 		n = Integer.parseInt(in.nextLine());
-		b = in.nextLine();		
+		b = in.nextLine();	
+		b += b;
 	}
 
 	private static int solve() {
 		int max = 0;
-		b += b;
+
 		for(int i = 0; i < n; i++) {
-			int cur = i;
-			int key = b.charAt(cur);
-			int change = key=='w'? 0:1; 
-			int beads=0;
-			while(true) {
-				char c = b.charAt(cur);
+			
+			int key = b.charAt(i);
+			int color = key=='w'? 0:1; 
+			int collect=0;
+			
+			for(int j = i; j < i+n; j++) { 
+				
+				char c = b.charAt(j);
 
 				if(c != 'w' && c != key) {				
-					change++;
+					color++;
 					key = c;
 				}
-				beads++;
-				cur++;
-				if(change>2 || cur>i+n-1) break;
+				
+				if(color==3) break;
+				
+				collect++;
 			}
-			max = Math.max(max, beads);						
+			
+			max = Math.max(max, collect);						
 		}				
 		return max;		
 	}	

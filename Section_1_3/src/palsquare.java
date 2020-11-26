@@ -1,46 +1,60 @@
-
 /*
-ID: wonup21
+ID: roypark1
 LANG: JAVA
 TASK: palsquare
-*/
-import java.io.*;
+ */
 import java.util.*;
+import java.io.*;
 
 public class palsquare {
+	
 	static Scanner in;
 	static PrintWriter out;
-	static int b;
-
-	public static void main(String[] args) {
-		try {
-			in=new Scanner(new FileReader("palsquare.in"));
-			out=new PrintWriter(new BufferedWriter(new FileWriter("palsquare.out")));
-			init();
-			out.print(solve());
-			in.close();
-			out.close();
-
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	
+	static int base;
+	
+	public static void main(String[] args) throws IOException{
+		in = new Scanner(new File("palsquare.in"));
+		out = new PrintWriter(new File("palsquare.out"));
+		
+		init();
+		solve();
+		
+		in.close();
+		out.close();
 	}
-	static void init() {
-		b=in.nextInt();
+	public static void init() {
+		base = in.nextInt();
 	}
 	
-	static String solve() {	
-		int i=1;
-		StringBuilder sb = new StringBuilder();
-		while(i<=300) {
-			int squre = i*i;
-			String a = Integer.toString(i, b).toUpperCase();
-			String s = Integer.toString(squre, b).toUpperCase();
-			if(s.equals(new StringBuilder(s).reverse().toString()))
-				sb.append(a).append(" ").append(s).append("\n");
-			i++;
+	public static void solve() {
+		StringBuilder arr = new StringBuilder();
+
+		for(int i = 1;i<=300;i++) {
+			
+			String a = Integer.toString(i, base);
+			
+			if(base > 10) {
+				a = a.toUpperCase();
+			}
+			
+			String a1 = new StringBuilder(a).reverse().toString();
+			
+					
+			String b = Integer.toString(i*i, base);
+			
+			if(base > 10) {
+				b = b.toUpperCase();
+			}
+			
+			String b1 = new StringBuilder(b).reverse().toString();
+			
+
+			if( b.equals(b1)) {
+				arr.append(a).append(" ").append(b).append("\n");
+			}
+			
 		}
-	
-		return sb.toString();
+		System.out.print(arr.toString());
+
 	}
 }

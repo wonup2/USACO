@@ -13,15 +13,18 @@ public class FEB_BR_cowqueue {
 		
 		Collections.sort(cow);
 		
-		int arrives = cow.get(0).arrives;
-		int done = arrives + cow.get(0).time;
+		int arrive = 0;
+		int done = 0;
+		int answer = 0;
 		
-		for(int i=1; i<cow.size(); i++){
-			arrives = cow.get(i).arrives;
-			if(done > arrives)
-				done += cow.get(i).time;
+		for(int i=0; i<cow.size(); i++){
+			arrive = cow.get(i).arrive;
+			answer = cow.get(i).answer;
+			
+			if(done > arrive)
+				done += answer;
 			else 
-				done = arrives + cow.get(i).time;
+				done = arrive + answer;
 		}
 		
 		out.println(done);
@@ -31,17 +34,17 @@ public class FEB_BR_cowqueue {
 }
 class Pair1 implements Comparable<Pair1>{
 
-	int arrives;
-	int time;
+	int arrive;
+	int answer;
 	Pair1(int c, int t){
-		arrives = c;
-		time = t;
+		arrive = c;
+		answer = t;
 	}
 	@Override
 	public int compareTo(Pair1 that) {
-		return this.arrives - that.arrives;
+		return this.arrive - that.arrive;
 	}	
 	public String toString(){
-		return arrives+" "+time;
+		return arrive+" "+answer;
 	}
 }

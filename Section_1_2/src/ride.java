@@ -11,43 +11,31 @@ public class ride {
 
 	static Scanner in;
 	static PrintWriter out;
-	static String input[];
+	static String s1, s2;
 	
-	public static void main(String[] args) {
-
-		try {
-			
-			in = new Scanner(new File("ride.in"));
-			out = new PrintWriter(new File("ride.out"));
-			
-			init();
-			out.println(solve());
-			
-			in.close();
-			out.close();
+	public static void main(String[] args) throws IOException {
+		in = new Scanner(new File("ride.in"));
+		out = new PrintWriter(new File("ride.out"));
 		
-		} 
-		catch(Exception e) {
-			e.printStackTrace();
-		}		
+		init();
+		solve();
+			
+		in.close();
+		out.close();
 	}
 	
-
 	static void init(){
-		input = new String[2];
-		input[0] = in.nextLine();
-		input[1] = in.nextLine();
+		s1 = in.nextLine();
+		s2 = in.nextLine();
+		
+		//System.out.println(s1+" " + s2);
 	}
 	
-	static String solve() {
+	static void solve() {
 		
-		//step 1 - convert input string to integer
-		int n1 = convert(input[0]);
-		int n2 = convert(input[1]);
+		if(convert(s1)==convert(s2)) out.println("GO");
+		else out.println("STAY");
 		
-		//step 2 - compare first input with input
-		if(n1==n2) return "GO";
-		else return "STAY";	
 	}
 	
 	static int convert(String s) {

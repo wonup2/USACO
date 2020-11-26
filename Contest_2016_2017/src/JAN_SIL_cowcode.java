@@ -13,7 +13,7 @@ public class JAN_SIL_cowcode {
 		out = new PrintWriter(new BufferedWriter(new FileWriter("cowcode.out")));
 		try {
 			init();
-			System.out.println(solve());
+			out.println(solve());
 			in.close();
 			out.close();
 		}
@@ -25,27 +25,40 @@ public class JAN_SIL_cowcode {
 	public static void init() throws IOException {
 		StringTokenizer br = new StringTokenizer(in.readLine());
 		word = br.nextToken();
-		n = Long.parseLong(br.nextToken()) - 1;
+		n = Long.parseLong(br.nextToken());
 		list = new ArrayList<Long>();
-		list.add((long)word.length());
+		//list.add((long)word.length()+1);
 	}
 	
 	public static char solve() {
-		long temp = word.length();
-		while (temp * 2 < n) {
-			temp *= 2;
+		long temp = word.length()+1;
+		list.add(temp);
+		int i = 1;
+		while (temp < n) {
+			temp += word.length()*i;
 			list.add(temp);
+			i++;
 		}
+		//System.out.println(list);
 		Collections.reverse(list);
-		while (n >= word.length()) {
+		//System.out.println(list);
+		//System.out.println(n);
+		if(n==list.get(0)) {list.remove(0); n--;}
+		//System.out.println(list);
+		//System.out.println(n);
+		
+		while (n > word.length()) {
+			//System.out.println(n);
 			if (list.get(0) < n)
-				n = n - list.remove(0) - 1;
+				n = n - list.remove(0);
 			else if (list.get(0) == n)
 				n -= 1;
 			else
 				list.remove(0);
 		}
-		
+		n--;
+		//System.out.println(n);
+
 		return word.charAt(Integer.parseInt(n+""));		
 	}
 }

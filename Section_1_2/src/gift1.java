@@ -1,5 +1,5 @@
 /*
-ID: raychun2
+ID: wonup21
 LANG: JAVA
 TASK: gift1
 */
@@ -10,70 +10,53 @@ public class gift1 {
 	
 	static Scanner in;
 	static PrintWriter out;
-	static String result = "";
-
-	// Input Variables	
-	static LinkedHashMap<String, Integer> list;
-	static int N;
-
-	public static void main(String[] args) {
-		
-		try {			
-			in = new Scanner(new File("gift1.in"));
-			out = new PrintWriter(new File("gift1.out"));
-			
-			init();
-			out.print(solve());
-			
-			in.close();
-			out.close();
-			
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-
+	static int NP;
+	static LinkedHashMap<String, Integer> group;
+	
+	public static void main(String[] args) throws IOException {
+		in = new Scanner(new File("gift1.in"));
+		out = new PrintWriter(new File("gift1.out"));
+		init();
+		solve();
+		in.close();
+		out.close();
 	}
 	
-	private static void init() {
+	static void init() {
+		group = new LinkedHashMap<String, Integer>();
 		
-		N = Integer.parseInt(in.nextLine());
-		list = new LinkedHashMap<String, Integer>();
-		for(int i = 0; i < N; i++) {
-			list.put(in.nextLine(), 0);
-		}		
+		NP = in.nextInt(); in.nextLine();
+		for(int i=0; i<NP; i++) {
+			group.put(in.next(), 0);
+		}
+		
+		//System.out.println(group);
 	}
-
-	private static String solve() {
+	
+	static void solve() {
 		
-		for(int i = 0; i < N; i++) {
-			String giver = in.nextLine();
-			String [] temp = in.nextLine().split(" ");
-			int totalMoney = Integer.parseInt(temp[0]);
-			int numbPeop = Integer.parseInt(temp[1]);
+		for(int i=0; i<NP; i++) {
 			
-			if(numbPeop == 0) continue; 
+			String giver = in.next();
+			int money = in.nextInt();
+			int num = in.nextInt();
 			
-			int money = totalMoney / numbPeop;
-			int left = totalMoney - (money * numbPeop);
+			if(num==0) continue;
 			
-			list.put(giver, list.get(giver)-totalMoney + left);
+			int gift = money / num;
+			int rem = money % num;
 			
-			for(int j = 0; j < numbPeop; j++) {
-				String receiver = in.nextLine();
-				list.put(receiver, list.get(receiver)+money);
+			for(int j=0; j<num; j++) {
+				String rec = in.next();
+				group.put(rec, group.get(rec) + gift);
 			}
+			
+			group.put(giver, group.get(giver)-money+rem);
 		}
 		
-		
-		
-		StringBuilder sb = new StringBuilder();
-		for(String s: list.keySet()) {
-			sb.append(s).append(" ").append(list.get(s)).append("\n");
-		}
-		
-		return sb.toString();
-		
-		
-	}
+		//output
+		for(String key:group.keySet()) {
+			out.println(key + " " + group.get(key));
+		}		
+	}	
 }

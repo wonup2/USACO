@@ -17,13 +17,13 @@ public class US_SIL_lemonade {
 		}
 		
 		Arrays.sort(a);
-		System.out.println(Arrays.toString(a));
+		//System.out.println(Arrays.toString(a));
 		
 		int ans=0;
 		for(int i=n-1; i>=0; i--){
 			if(a[i]<ans) break;
 			ans++;
-			System.out.print(ans+" ");
+			//System.out.print(ans+" ");
 		}
 		
 		out.println(ans);

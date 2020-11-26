@@ -1,32 +1,36 @@
-
+import java.io.*;
+import java.util.*;
 public class DEC_SIL_shuffle {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-}
-/*
-#include<stdio.h>
-int is_gone[121212], ck[121212], a[121212];
-int main() {
-	int n, i, t = 1, ans = 0;
-	scanf("%d", &n);
-	for (i = 1; i <= n; i++)scanf("%d", &a[i]);
-	for (i = 1; i <= n; i++) {
-		if (is_gone[i])continue;
-		int now = i;
-		while (1) {
-			ck[now] = i, is_gone[now] = t++;
-			if (ck[a[now]] != 0) {
-				if (ck[a[now]] == i) ans += t - is_gone[a[now]];
-				break;
-			}
-			now = a[now];
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader("shuffle.in"));
+		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("shuffle.out")));
+		int n = Integer.parseInt(br.readLine());
+		int[] d = new int[n];
+		int[] v = new int[n];
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for(int i = 0; i < n; i++) {
+			d[i] = Integer.parseInt(st.nextToken())-1;
+			v[d[i]]++;
 		}
+		
+		int ans = n;
+		Queue<Integer> q = new LinkedList<Integer>();
+		for(int i = 0; i < n; i++) {
+			if(v[i] == 0) {
+				q.add(i);
+				ans--;
+			}
+		}
+		
+		while(!q.isEmpty()) {
+			int curr = q.poll();
+			v[d[curr]]--;
+			if(v[d[curr]] == 0) {
+				q.add(d[curr]);
+				ans--;
+			}
+		}
+		pw.println(ans);
+		pw.close();
 	}
-	printf("%d", ans);
-	return 0;
 }
-*/
