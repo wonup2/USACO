@@ -61,7 +61,6 @@ public class convention {
 		for(int i=0; i<N; i++){
 			int wait = a[i]-start;
 			cow++;
-			System.out.println(m+" "+start+" "+wait+" "+cow + " "+bus);
 
 			if(wait>m || cow>C){
 				bus++;

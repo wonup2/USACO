@@ -60,7 +60,7 @@ public class DEC_SIL_measurement_1{
 			if(milk.lastEntry().getValue() != cowBoard || max!= milkBoard) {
 				ans++; 	milkBoard = max;
 			}
-		}		
+		}
 		pw.println(ans);
 		in.close();
 		pw.close();

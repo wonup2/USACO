@@ -25,7 +25,6 @@ public class DEC_BR_lineup {
 		p=new ArrayList<String>();
 		permute("01234567", ""); 
 		n = Integer.parseInt(in.readLine());		
-		//System.out.println(p.size());
 	}
 	
 	static void solve() throws IOException {
@@ -35,6 +34,7 @@ public class DEC_BR_lineup {
 			pairs.add(x.get(cow[0]) + "" + x.get(cow[5]));
 			pairs.add(x.get(cow[5]) + "" + x.get(cow[0]));
 		}
+		System.out.println(pairs);
 		
 		ArrayList<String> list = new ArrayList<String>();
 		boolean ok = true;
@@ -42,7 +42,6 @@ public class DEC_BR_lineup {
 			for(int i=0; i<pairs.size(); i++) {
 				String p1 = pairs.get(i++);
 				String p2 = pairs.get(i);
-
 				if(!s.contains(p1)&&!s.contains(p2)) {ok=false; break;}
 			}
 			if(ok) list.add(s); 
@@ -51,7 +50,7 @@ public class DEC_BR_lineup {
 		
 		Collections.sort(list);
 
-		String order = list.get(0); //System.out.println(order);
+		String order = list.get(0); 
 		StringBuilder ans = new StringBuilder();
 		for(int i=0; i<order.length(); i++)
 			ans.append(y[order.charAt(i)-'0']).append("\n");

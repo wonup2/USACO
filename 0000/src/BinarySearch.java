@@ -11,6 +11,7 @@ public class BinarySearch {
 		
 		int ub = 0;
 		int lb = 0;
+		
 		//upperBound
 		if(index<0) {
 			ub = numbers[index*-1-1];

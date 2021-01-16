@@ -6,34 +6,37 @@ public class JAN_SIL_loan {
 	static PrintWriter out;
 	static long N,M,K;
 	
-	static long cdiv(long a, long b) {
-		return (a+b-1)/b;
-	}
-	
-	static long ok(long mid) {
-		long res = 0;
-		long lef = N;
-		while (lef!=0) {
-			long dif = lef/mid;
-		    if (dif <= M) return res+cdiv(lef,M);
-		    long need = lef/dif-mid+1;
-		    res += need; lef -= dif*need;
-		  }
-		  return res;
-		}
-	
 	public static void main(String[] args) throws IOException {
 		Scanner in = new Scanner(new File("loan.in"));
 		PrintWriter out = new PrintWriter(new File("loan.out"));
 	    N = in.nextLong();
 	    K = in.nextLong();
 	    M = in.nextLong();
-		long low = 1, high = N;
-		while (low < high) {
-		    long mid = (low + high + 1)/2;
-		    if (ok(mid) <= K) low = mid; 
+		long low = 1, high = N, ans = 0;
+		while (low <= high) {
+		    long mid = (low + high)/2;
+		    if (check(mid)) {
+		    	ans = mid;
+		    	low = mid + 1; 
+		    }
 		    else high = mid-1;
 		}		
-		System.out.println(low);
+		out.println(ans);
+		out.close();
+	}
+	
+	static boolean check(long x) {
+		long days = K;
+		long left = N;
+		while (left > 0 && days >0) {
+			long y = left/x;
+		    if (y <= M) return M * days >= left; // y 는 계속 작아질테니까... 남은날 * M 이 left 보다 크면 ok
+
+		    //long endPoint = y*x;
+		    long passDays = (left % x)/y + 1;  // left = 28, x = 11, y = 2 --->  reduce 2 during 4 days 
+		    days -= passDays;
+		    left -= y*passDays;
+		}
+		return left <= 0;
 	}
 }

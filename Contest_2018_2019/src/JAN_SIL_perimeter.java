@@ -3,73 +3,69 @@ import java.util.*;
 
 public class JAN_SIL_perimeter {
 	
+	static BufferedReader in;
+	static PrintWriter out;
 	static int n;
-	static int result = 0;
-	static int biggest = 0;
-	static char[][] map;
-	static int resultp = 0;
-	static int biggestp = 0;
+	static int cnt, Mcnt, per, Mper;
+	static char[][] a;
 	
 	public static void main(String[] args) throws IOException{
 		
-		BufferedReader in = new BufferedReader(new FileReader("perimeter.in"));
-		PrintWriter out = new PrintWriter(new FileWriter("perimeter.out"));
+		in = new BufferedReader(new FileReader("perimeter.in"));
+		out = new PrintWriter(new FileWriter("perimeter.out"));
+		init();
+		solve();
+	}
+	
+	static void init() throws IOException {
 		
-		n = Integer.parseInt(in.readLine());
+		n = Integer.parseInt(in.readLine());		
+		a = new char[n][];
 		
-		map = new char[n][];
-		
-		for(int r = 0; r < n; r++) {
-			String plot = in.readLine();
-			map[r]=plot.toCharArray();
-		}
+		for(int r = 0; r < n; r++) 
+			a[r]=in.readLine().toCharArray();				
+	}
+	
+	static void solve() {
 		
 		for(int r = 0; r < n; r++) {
 			for(int c = 0; c < n; c++) {
-				if(map[r][c]=='#') {
-					biggest = 0;
-					biggestp = 0;
-					countCells(r, c);
-					//printBoard(map);
-					if(result==biggest){
-						resultp = Math.min(resultp, biggestp);
-					}
-					else{
-						resultp = Math.max(resultp, biggestp);
-					}
-					result = Math.max(result, biggest);
+				if(a[r][c]=='#') {
+					cnt = 0;
+					per = 0;
+					ff(r, c);
 
+					if(Mcnt==cnt)	Mper = Math.min(Mper, per);
+					else Mper = Math.max(Mper, per);
+					
+					Mcnt = Math.max(Mcnt, cnt);
 				}
 			}
 		}
 		
-		out.println(result + " " + resultp);
+		out.println(Mcnt + " " + Mper);
 		out.close();
 	}
 	
-
 	
-	public static void countCells (int x, int y) {
-        if( ! ( y >= 0 && n > y && x >=0 && n > x)) {
-            biggestp++; //System.out.println(1);
+	public static void ff (int x, int y) {
+        if(x < 0 || x >= n || y < 0 || y >= n) {
+        	per++; 
             return;
         }
-        if(map[x][y]=='.') {
-            biggestp++;//System.out.println(2);
+        if(a[x][y]=='.') {
+        	per++;
             return;
         }
-        if(map[x][y]=='$') {//System.out.println(3);
-            return;
-        }
+        if(a[x][y]=='$') return;
+            
+        a[x][y]='$';
+        cnt++;   
         
-        map[x][y]='$';
-
-        biggest++;   
-        countCells(x, y+1);
-        countCells(x, y-1);
-        countCells(x+1, y);
-        countCells(x-1, y);
-        return ;
+        ff(x, y+1);
+        ff(x, y-1);
+        ff(x+1, y);
+        ff(x-1, y);        
     }
 	
 	

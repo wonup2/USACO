@@ -42,7 +42,7 @@ class Pair1 implements Comparable<Pair1>{
 	}
 	@Override
 	public int compareTo(Pair1 that) {
-		return this.arrive - that.arrive;
+		return this.arrive - that.arrive;  //if(this.arrive<that.arrive) return -1;
 	}	
 	public String toString(){
 		return arrive+" "+answer;

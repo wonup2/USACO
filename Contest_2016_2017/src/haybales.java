@@ -1,50 +1,39 @@
-import java.util.*;
-import java.io.*;
-public class haybales {
-    static BufferedReader br;
-    static PrintWriter pw;
-    static int n, q;
-    static int[] nums;
-    static int[][] queries;
-    public static void main(String[] args) {
-        try {
-            br = new BufferedReader(new FileReader(new File("haybales.in")));
-            pw = new PrintWriter(new File("haybales.out"));
-            init();
-            pw.print(solve());
-            pw.close();
-            br.close();
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    private static void init() throws IOException {
-    	StringTokenizer st = new StringTokenizer(br.readLine());
-    	n = Integer.parseInt(st.nextToken());
-    	q = Integer.parseInt(st.nextToken());
-    	nums = new int[n];
-    	st = new StringTokenizer(br.readLine());
-    	for(int i = 0; i < n; i++)
-    		nums[i] = Integer.parseInt(st.nextToken());
-    	Arrays.sort(nums);
-    	//System.out.println(Arrays.toString(nums));
-    }
-    private static String solve() throws IOException {
-    	StringBuilder result = new StringBuilder();
-    	StringTokenizer st;
-    	//System.out.println(q);
-    	for(int i = 0; i < q; i++) {
-    		st = new StringTokenizer(br.readLine());
-    		int index1 = Arrays.binarySearch(nums, Integer.parseInt(st.nextToken()));
-    		int index2 = Arrays.binarySearch(nums, Integer.parseInt(st.nextToken())+ 1);
-    		//System.out.println(i+" "+index1+" "+index2);
-    		if(index1 < 0)
-    			index1 = Math.abs(index1 + 1);
-    		if(index2 < 0)
-    			index2 = Math.abs(index2 + 1);
-    		result.append(index2 - index1).append("\n");
-    	}
-        return result.toString();
-    }
+import java.io.*; 
+import java.util.*; 
+
+public class haybales{
+   public static void main(String[] args) throws IOException
+   {
+      BufferedReader br = new BufferedReader(new FileReader(new File("haybales.in")));
+      PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("haybales.out")));
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      int N = Integer.parseInt(st.nextToken());
+      int Q = Integer.parseInt(st.nextToken());
+      int[] arr = new int[N];
+      st = new StringTokenizer(br.readLine());
+      for(int i = 0; i < N; i++){
+         arr[i] = Integer.parseInt(st.nextToken());
+      }
+      Arrays.sort(arr);
+      for(int i = 0; i < Q; i++){
+         st = new StringTokenizer(br.readLine());
+         int low = Integer.parseInt(st.nextToken());
+         int high = Integer.parseInt(st.nextToken());
+         System.out.println(low+" "+high);
+         int bi = Arrays.binarySearch(arr, low);
+         System.out.print(bi + " ");
+         if(bi < 0){
+            bi = Math.abs(bi+1);
+         }
+         
+         int ti = Arrays.binarySearch(arr, high);          
+
+         if(ti < 0){
+            ti = Math.abs(ti+2);
+         }
+
+         out.println(ti-bi+1);
+      }
+      out.close();
+   }
 }

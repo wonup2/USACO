@@ -22,16 +22,16 @@ public class JAN_BR_photo {
 
 	static void init() throws NumberFormatException, IOException {
 		
-		n=Integer.parseInt(in.readLine());
-		a=new int[n];
+		n=Integer.parseInt(in.readLine());  //5
+		a=new int[n-1]; 					//4 6 7 6
 		m = new TreeMap<Integer, Integer>();
 		
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		for(int i=0; i<n-1; i++) a[i] = Integer.parseInt(st.nextToken());
 		
-		for(int i=1; i<n; i++) {
+		for(int i=1; i<a[0]; i++) {
 			int j = a[0]-i;						
-			if(i!=j && j>0 && i+j==a[0]) m.put(i,j);
+			if(i!=j) m.put(i,j);
 		}
 		//System.out.println(m);
 	}

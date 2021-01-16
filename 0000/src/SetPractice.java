@@ -3,9 +3,15 @@ public class SetPractice {
 
 	public static void main(String[] args) {
 
-		HashSet<Integer> s = new HashSet<Integer>();
+		TreeSet<Integer> s = new TreeSet<Integer>();
+		
 		s.add(1);
 		s.add(2);
+		s.add(2);
+		
+		System.out.println(s);
+		System.out.println(Math.abs(s.first() - s.last()));
+		
 		HashSet<Integer> a = new HashSet<Integer>();
 		
 		a.addAll(s);
@@ -13,8 +19,8 @@ public class SetPractice {
 		
 		a.clear();
 		a.addAll(s);
-		System.out.println(a);
-		System.out.println(s);
+//		System.out.println(a);
+//		System.out.println(s);
 	
 
 	}

@@ -1,4 +1,3 @@
-
 // Solution to 2016 December USACO Silver Problem: Moocast
 
 import java.util.*;
@@ -9,55 +8,49 @@ public class DEC_SIL_moocast{
 	public static int n;
 	public static int[][] a;
 	public static boolean[] v;
+	
 	public static void main(String[] args) throws Exception {
 
-		// Read in the points and range.
-		Scanner stdin = new Scanner(new File("moocast.in"));
-		n = stdin.nextInt();
+		Scanner in = new Scanner(new File("moocast.in"));
+		PrintWriter out = new PrintWriter(new FileWriter("moocast.out"));
+		//input
+		n = in.nextInt();
 		a = new int[n][3];
 		for (int i=0; i<n; i++)
 			for (int j=0; j<3; j++)
-				a[i][j] = stdin.nextInt();
-		
-		//System.out.println(Arrays.deepToString(a));
-		
-		// Try each starting vertex.
+				a[i][j] = in.nextInt();
+				
+		//processing
 		int res = 0;
-		for (int i=0; i<n; i++)
-			res = Math.max(res, reach(i));
+		for (int i=0; i<n; i++)	res = Math.max(res, reach(i));
 
-		// Write out the answer.
-		PrintWriter out = new PrintWriter(new FileWriter("moocast.out"));
+		//output
 		out.println(res);
 		out.close();
-		stdin.close();
+		in.close();
 	}
 
-	// Returns the number of cows reached from cow v.
 	public static int reach(int s) {
 
-		// Run flood fill.
-		v = new boolean[n];  
-		floodfill(s);  
-		// Count # of reached cows.
-		int res = 0;
-		for (int i=0; i<n; i++)	if (v[i])res++;
+		v = new boolean[n]; 
+
+		dfs(s);  
+		
+		int res = 0; 		// Count # of reached cows.
+		for (int i=0; i<n; i++)	if(v[i]) res++;
 		
 		return res;
 	}
 
-	// Run a flood fill from v. used stores nodes already visited in the fill.
-	public static void floodfill(int s) {
+	public static void dfs(int s) {
 		v[s] = true;
 
-		// Try each neighbor.
 		for (int i=0; i<n; i++) {
 			if (v[i]) continue;
 
-			// We can do the transmission from v to i.
-			if ((a[i][0]-a[s][0])*(a[i][0]-a[s][0]) 
-			  + (a[i][1]-a[s][1])*(a[i][1]-a[s][1]) <= (long)a[s][2]*a[s][2])
-				floodfill(i);
+			long dist = (a[s][0] - a[i][0])*(a[s][0] - a[i][0]) + (a[s][1] - a[i][1])*(a[s][1] - a[i][1]);
+			long pow = a[s][2]*a[s][2];
+			if (dist <= pow) dfs(i);
 		}
 	}
 }

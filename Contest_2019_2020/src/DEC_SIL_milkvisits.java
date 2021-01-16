@@ -35,7 +35,9 @@ public class DEC_SIL_milkvisits{
 		}
 					
 		dfs(1,1);
-		
+		System.out.println(Arrays.toString(p));
+		System.out.println(Arrays.toString(T));
+
 		StringBuilder ans=new StringBuilder();
 		
 		for(int i=0;i<M;i++) {
@@ -68,3 +70,8 @@ public class DEC_SIL_milkvisits{
 			if(!V[i]) dfs(parent,i);
 	}
 }
+
+
+
+
+
