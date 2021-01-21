@@ -20,6 +20,7 @@ public class _tempFloodFill {
 		solve();
 		in.close();
 	}
+	
 	static void init() throws IOException {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 	    n = Integer.parseInt(st.nextToken());
@@ -42,7 +43,6 @@ public class _tempFloodFill {
 	            if(!v[i][j]){
 	            	cnt=0;  
 	                floodfill(i, j, a[i][j]);
-	                System.out.println(a[i][j]+": "+cnt);
 	                ans++;
 	            }
 	        }
@@ -54,7 +54,7 @@ public class _tempFloodFill {
 	static void floodfill(int x, int y, int color){
 		
 	    if(x < 0 || x >= n || y < 0 || y >= m) return; 	// if outside grid
-	    if(a[x][y] != color) return; 					// wrong color
+	    if(a[x][y] =='.') return; 						// wrong color
 	    if(v[x][y]) return; 							// already visited this square
 	    
 	    
@@ -68,12 +68,12 @@ public class _tempFloodFill {
 	    floodfill(x+1, y, color);
 	}
 	
-	public static void printBoard(String[][] grid) {
+	public static void print2D(String[][] grid) {
 		for (int i = 0; i < grid.length; i++) {
 		    for (int j = 0; j < grid[i].length; j++) {
 		        System.out.print(grid[i][j] + " ");
 		    }
-		     System.out.println();
+		    System.out.println();
 		}
 	}	
 }

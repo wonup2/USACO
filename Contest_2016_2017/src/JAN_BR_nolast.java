@@ -29,6 +29,7 @@ public class JAN_BR_nolast {
 		cow.put("Elsie", 0);
 
 		int n = Integer.parseInt(in.readLine());
+		
 		for(int i = 0; i < n; i++){
 			StringTokenizer st = new StringTokenizer(in.readLine());
 			String name = st.nextToken();

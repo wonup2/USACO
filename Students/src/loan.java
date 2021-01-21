@@ -4,7 +4,7 @@ import java.io.*;
 public class loan {
 	static BufferedReader in;
 	static PrintWriter out;
-	static long N, K1, M;
+	static long N, K, M;
 	
 	public static void main(String[] args) throws IOException {		
 		in = new BufferedReader(new FileReader("loan.in"));	
@@ -19,7 +19,7 @@ public class loan {
 		
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		N = Long.parseLong(st.nextToken());
-		K1 = Long.parseLong(st.nextToken());
+		K = Long.parseLong(st.nextToken());
 		M = Long.parseLong(st.nextToken());
 	}
 	
@@ -43,24 +43,17 @@ public class loan {
 	}
 
 	static boolean check(long x) {
-		  long g = 0;
-		  long K = K1;
-	        while(K>0 && g<N) {
-	            long y = (N-g) /x;
-	            if (y<M) {
-	                long dayLeft = (N-g+M-1)/M;
-	                if(dayLeft <=K) return true;
-	                else return false;
-	            }
-	            long z = N-x*y;
-	            long numD = (z-g)/y +1;
-	            if(numD > K) {
-	                numD = K;
-	            }
-	            g+= y * numD;
-	            K-= numD;
-	        }
-	        if(K<0 || g<N) return false;
-	        return true;
+		long left = N;
+		long days = K;
+	    while(left > 0 && days > 0) {
+	        long y = left / x;  
+	        if (y<=M) return y*days >= left; 
+	        
+	        long pass = left % y + 1;
+	        left -= y*pass;
+	        days -= pass;
+	    }
+	    
+	    return left <= 0; 
 	}
 }

@@ -2,10 +2,10 @@ import java.util.*;
 import java.io.*;
 
 public class DEC_SIL_mooyomooyo {
-	static int n;
+	static int n, count;
 	static int k;
 	static char[][] a;
-	static boolean changed = true;
+	static boolean changed = true, v[][];
 	static Scanner in;
 	static PrintWriter out;
 	
@@ -32,11 +32,14 @@ public class DEC_SIL_mooyomooyo {
 		while (changed) {
 			
 			changed = false;
-			boolean[][] visited = new boolean[n][10];
+			v = new boolean[n][10];
 			
 			for (int x = 0; x < n; x ++) 
 				for (int y = 0; y < 10; y ++) 					
-					if (a[x][y] != '0') floodFill(x, y, visited, 0, a[x][y]); 				
+					if (a[x][y] != '0') {
+						count = 0;
+						floodFill(x, y, a[x][y]); 				
+					}
 				       
 		
 			for (int x = n - 1; x > 0; x--) 
@@ -49,27 +52,23 @@ public class DEC_SIL_mooyomooyo {
 	} 	
 
 	
-	static int floodFill(int x, int y, boolean[][] visited, int count, char c) { 	
+	static void floodFill(int x, int y, char c) { 	
 		
-		if (x >= n || y >= 10 || x < 0 || y < 0 || a[x][y] != c) return count; 
+		if (x >= n || y >= 10 || x < 0 || y < 0 || a[x][y] != c) return ; 
 		
-		System.out.println(x+" "+y+" "+a[x][y] + " "+count);
-
 		if (count >= k ) {
 			a[x][y] = '0';
 			changed = true;
 		} 
-		else if (visited[x][y]) return count;		
+		else if (v[x][y]) return ;		
 		
-        if (!visited[x][y]) count ++;        
-		visited[x][y] = true;
+        if (!v[x][y]) count ++;        
+		v[x][y] = true;
 		
-		count = floodFill(x + 1, y, visited, count, c);
-		count = floodFill(x - 1, y, visited, count, c);
-		count = floodFill(x, y + 1, visited, count, c);
-		count = floodFill(x, y - 1, visited, count, c);
-		
-        return count;
+		floodFill(x + 1, y,  c);
+		floodFill(x - 1, y,  c);
+		floodFill(x, y + 1,  c);
+		floodFill(x, y - 1,  c);		
 	}
 	
 	static void gravity(int start, int j) {

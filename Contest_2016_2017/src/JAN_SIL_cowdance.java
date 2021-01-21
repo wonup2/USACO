@@ -53,7 +53,7 @@ public class JAN_SIL_cowdance {
 				low = mid + 1;
 			}
 		}
-		System.out.println(ans);
+		out.println(ans);
 	}
 	
 	public static boolean check (int mid) {

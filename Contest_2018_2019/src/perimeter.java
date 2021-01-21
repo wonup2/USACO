@@ -4,89 +4,94 @@ public class perimeter {
 	
 	static BufferedReader in;
 	static PrintWriter out;
-	static int N, max, count, per, ansper;
-	static String[][] a;
-	static int[] dx = {-1, 1, 0, 0};
-	static int[] dy = {0, 0, -1, 1};
-	static int nx, ny;
-
-	public static void main(String[] args) {
-		
+	static int n, ans, cnt, per, Mans, Mper;
+	static char[][] a;
+	static boolean v[][];
+	static String prob = "perimeter";
+	
+	public static void main(String[] args) throws IOException{
 		try {
-			in = new BufferedReader(new FileReader("perimeter.in"));
-			out = new PrintWriter(new File("perimeter.out"));
+			st=new StreamTokenizer(in=new BufferedReader(new FileReader(prob + ".in")));
+			out = new PrintWriter(new File(prob+ ".out"));
+			
 			
 			init();
 			solve();
 			
-			in.close();
-			out.close();
+			
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		in.close();
+		out.close();
 	}
 	
-	private static void init() throws NumberFormatException, IOException {
-		N = Integer.parseInt(in.readLine());
-		//System.out.println(N);
-		a = new String[N][N];
-		max = 0;
-		count = 0;
+	static void init() throws IOException{
 		
-		for(int i =0; i < N; i++) {
-			String temp = in.readLine();
-			for(int j =0; j < N; j++) {
-				a[i][j] = "" + temp.charAt(j);
-			}
+		n = readInt();
+		in.readLine();
+		a = new char[n][n];
+		
+		
+		for(int i =0; i < n; i++) {
+			a[i] = in.readLine().toCharArray();
 		}
+		
+		//print2D(a);
 	}
 	
-	private static void solve() {
-		for(int i =0; i < N ; i++) {
-			for(int j =0; j < N; j++) {
-				if(a[i][j].equals("#")){
-					dfs(i, j);
-					if(count > max) {
-						max = count;
-						ansper = per;
-					}else if(count == max) {
-						ansper = Math.min(ansper, per);
-					}
-					count= 0;
-					per =0;
+	static void solve() {
+		ans = 0;  Mans =0; Mper=0;
+		for(int i =0; i < n; i++) {
+			for(int j =0; j < n; j++) {
+				//System.out.println(a[i][j]);
+				if(a[i][j] == '#') {
+					cnt =0;per =0;
+					floodfill(i , j);
+					
+					if(cnt == ans) Mper = Math.min(Mper, per);
+					else Mper = Math.max(Mper, per);
+					ans = Math.max(ans, cnt);
 				}
 			}
 		}
-		out.println(max + " " + ansper);
-		
+		out.println(ans + " " + Mper);
 	}
 	
-	private static void dfs(int x, int y) {
-		if(!isValid(x,y)) {
-    	   per++; 
-    	   return;
-       }       
-      //stop point
-       
-       
-       if( a[x][y].equals(".") ) {
-    	   per++; return;
-       }
-       if( a[x][y].equals("*") ) return;
-         
-      a[x][y]="*"; 
-      count++;
-      dfs(x, y+1);
-      dfs(x, y-1);
-      dfs(x+1, y);
-      dfs(x-1, y);
-         
-         return;
-         
-         
-    }
-    private static boolean isValid(int x, int y){
-       return x>=0 && x<N && y>=0 && y<N;
-     
-    } 
+	static void floodfill(int x, int y) {
+		if(x<0||x>=n|y<0||y>=n) {per++; return;}		// if outside grid
+		if(a[x][y] == '.') {per++; return;}				// wrong color
+		if(a[x][y] == '@') return;						// already visited this square
+		
+		a[x][y] = '@';
+		cnt++;
+		
+		// recursively call floodfill for neighboring squares
+		floodfill(x, y+1);
+		floodfill(x, y-1);
+		floodfill(x-1, y);
+		floodfill(x+1, y);
+	}
+	
+	public static void print2D(char[][] grid) {
+		for(int i =0; i < grid.length; i++) {
+			for(int j =0; j < grid[i].length; j++) {
+				System.out.print(grid[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+	static StreamTokenizer st;
+	static int readInt() throws IOException {
+		st.nextToken();
+		return (int)st.nval;
+	}
+	
 }
+/*
+3 4
+1 1 2 1
+2 3 2 1
+1 3 3 3
+*/

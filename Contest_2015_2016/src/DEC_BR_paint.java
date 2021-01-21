@@ -25,8 +25,8 @@ public class DEC_BR_paint {
 		f = new int[101];
 	}
 	static void solve() {
-		for(int i=a; i<b; i++)f[i]=1;
-		for(int i=c; i<d; i++)f[i]=1;
+		for(int i=a; i<b; i++) f[i]=1;
+		for(int i=c; i<d; i++) f[i]=1;
 		
 		int cnt = 0;
 		for(int i=0; i<101; i++) if(f[i]==1) cnt++;

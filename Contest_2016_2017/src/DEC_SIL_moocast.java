@@ -5,7 +5,7 @@ import java.io.*;
 
 public class DEC_SIL_moocast{
 
-	public static int n;
+	public static int n, cnt;
 	public static int[][] a;
 	public static boolean[] v;
 	
@@ -22,7 +22,16 @@ public class DEC_SIL_moocast{
 				
 		//processing
 		int res = 0;
-		for (int i=0; i<n; i++)	res = Math.max(res, reach(i));
+		for (int i=0; i<n; i++) {
+			
+			v = new boolean[n]; 
+			cnt=1;
+			
+			dfs(i);
+			
+			res = Math.max(res, cnt);
+			
+		}
 
 		//output
 		out.println(res);
@@ -50,7 +59,8 @@ public class DEC_SIL_moocast{
 
 			long dist = (a[s][0] - a[i][0])*(a[s][0] - a[i][0]) + (a[s][1] - a[i][1])*(a[s][1] - a[i][1]);
 			long pow = a[s][2]*a[s][2];
-			if (dist <= pow) dfs(i);
+			
+			if (dist <= pow) { dfs(i); cnt++;}
 		}
 	}
 }

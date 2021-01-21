@@ -5,8 +5,9 @@ public class _tempUSACO {
 
 	static Scanner in;
 	static PrintWriter out;
-	static int N;
-	static int ans;
+	static int a, b, c, d, ans;
+
+	
 	public static void main(String[] args) throws IOException {
 
 		in = new Scanner(new File("xxx.in"));
@@ -18,16 +19,19 @@ public class _tempUSACO {
 	}
 
 	static void init() throws IOException {
-		//Initializing variables and read data
 		
-		N = in.nextInt();  //in.nextLine() is needed sometimes
-		ans = 0;
+		a = in.nextInt();
+		b = in.nextInt();
+		c = in.nextInt();
+		d = in.nextInt();
 		
+		System.out.printf("%d %d %d %d", a, b, c, d);
+		ans = 0;		
 	}
+	
 	static void solve() {
-		//processing
-				
-		//output
+		
+		
 		out.println(ans);
 	}	
 }

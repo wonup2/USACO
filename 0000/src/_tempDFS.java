@@ -8,7 +8,7 @@ public class _tempDFS {
 	static StringTokenizer st;
 	
 	static int n, m, ans;
-	static LinkedList<Integer>[] a;
+	static LinkedList<Integer> a[];
 	static boolean v[];
 	
 	public static void main(String[] args) throws IOException {
@@ -22,10 +22,10 @@ public class _tempDFS {
 	
 	static void init() throws IOException {
 			
-		st = new StringTokenizer(in.readLine());
-		
-		n = Integer.parseInt(st.nextToken());
-		
+		st = new StringTokenizer(in.readLine());		
+		n = Integer.parseInt(st.nextToken());				
+		m = Integer.parseInt(st.nextToken());		
+
 		a = new LinkedList[n];
 		
 		for(int i = 0; i < n; i++) a[i] = new LinkedList<Integer>();	
@@ -42,9 +42,8 @@ public class _tempDFS {
 	static void solve() throws IOException {
 		
 		for(int i=0; i<n; i++)
-			if(!v[i]) {
-				dfs(i);
-				ans++;
+			if(!v[i]) {	
+				dfs(i);							
 			}	
 	}
 	
@@ -52,8 +51,8 @@ public class _tempDFS {
 		v[i] = true;
 		
 		for(int e:a[i]) {
-			if(!v[e]) {
-				dfs(e);
+			if(!v[e]) {				
+				dfs(e);			
 			}
 		}
 	}		

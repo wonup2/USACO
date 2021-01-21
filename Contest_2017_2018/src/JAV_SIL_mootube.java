@@ -29,7 +29,6 @@ public class JAV_SIL_mootube {
 		
 		a = new LinkedList[n];
 		for(int i = 0; i < n; i++) a[i] = new LinkedList<Edge>();		
-
 				
 		for(int i = 1; i < n; i++) {
 			st = new StringTokenizer(in.readLine());

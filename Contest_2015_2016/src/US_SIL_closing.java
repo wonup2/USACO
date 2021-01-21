@@ -1,94 +1,66 @@
-import java.util.*;
 import java.io.*;
-
+import java.util.*;
 public class US_SIL_closing {
-
-	static Scanner in;
-	static PrintWriter out;
-	static int N, M, dist[];
-	static ArrayList<Integer> a[];
-	static boolean closed[];
-
-	public static void main(String[] args) throws IOException {
-		
-		in = new Scanner(new File("closing.in"));
-		out = new PrintWriter(new BufferedWriter(new FileWriter("closing.out")));
-		init();
-		solve();
-		in.close();
-		out.close();
-	}
 	
-	static void init() {
-		N = in.nextInt();
-		M = in.nextInt();
-		
-		a = new ArrayList[N+1];
-		
-		for(int i=0; i<=N; i++) a[i] = new ArrayList<Integer>();
-				
-	    for(int i=0; i<M; i++){
-	        int x = in.nextInt();
-	        int y = in.nextInt();
-	        a[x].add(y);
-	        a[y].add(x);
-	    }
-	    
-	    closed = new boolean[N+1];
-	    dist = new int[N*M];
-	    Arrays.fill(dist, -1);
-	}
+	static boolean v[], closed[];
+	static LinkedList<Integer> nodes;
+	static ArrayList<LinkedList<Integer>> a;
+	static int cnt;
 	
-	static void solve() {
-		
-	    if (dfs(1)) System.out.println("YES");
-
-	    for(int i=0; i<=N-2; i++) {
-	    	int closedB = in.nextInt();
-            closed[closedB] = true;
-
-	        int start = 1;
-	        
-	        for(int j=1; j<=N - 1; j++) {
-	           if (! closed[j]) {
-	                start = j;
-	                break;
-	            }
-	        }
-
-	        if (dfs(start)) System.out.println("YES");
-	        else System.out.println("NO");
-	    }
-
-	}
-	
-
-	static boolean dfs(int start){
-	    // fill distance array with -1's
-		
-	    Stack <Integer> st = new Stack<Integer>();
-	    dist[start] = 0;
-
-	    st.push(start);
-	    
-	    while(!st.empty()){
-	        int node = st.pop();
-
-	        for(int next : a[node]){
-	            if(dist[next] == -1 && (! closed[next])) {
-	                dist[next] = dist[node] + 1;
-	                st.push(next);
-	            }
-	        }
-	    }
-
-	    for(int i=1; i<N; i++) {
-	        if (dist[i] == -1 && (! closed[i])) {
-	            return false;
-	        }
-	    }
-	    return true;
-	}
+    public static void main (String [] args) throws IOException {
+    	
+        BufferedReader in = new BufferedReader(new FileReader("closing.in"));
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("closing.out")));
+        StringTokenizer st = new StringTokenizer(in.readLine());    
+        int N = Integer.parseInt(st.nextToken()); 
+        int M = Integer.parseInt(st.nextToken()); 
+        
+        a = new ArrayList<LinkedList<Integer>>(); 
+        closed = new boolean[N]; 
+        nodes = new LinkedList<Integer>(); 
+       
+        for(int i = 0; i <N; i++) {
+            a.add(new LinkedList<Integer>()); 
+            nodes.add(i);
+        }
+        
+        for(int i = 0; i < M; i++){ 
+            StringTokenizer tempSt = new StringTokenizer(in.readLine());
+            int i1 = Integer.parseInt(tempSt.nextToken())-1;
+            int i2 = Integer.parseInt(tempSt.nextToken())-1;
+            a.get(i1).add(i2);
+            a.get(i2).add(i1);
+        }       
+        
+        cnt=1;
+        v = new boolean[N];
+        dfs(1);
+        if(cnt == N) out.println("YES");
+        else out.println("NO");
+        
+        for(int i = 0; i < N - 1; i++){
+            int num = Integer.parseInt(in.readLine())-1;
+            closed[num] = true; 
+            nodes.remove(nodes.indexOf(num)); 
+            
+            cnt=1;
+            v = new boolean[N];
+            dfs(nodes.get(0));
+            
+            if(cnt == N - (i + 1)) out.println("YES");
+            else out.println("NO");
+        }
+        out.close();
+    }
+    
+    static void dfs(int i){
+         v[i] = true; 
+            
+         for(int w : a.get(i)){ 
+          	 if(!v[w] && !closed[w]){ 
+                 cnt++;
+                 dfs(w);
+             }
+         }   
+    }
 }
-
-
