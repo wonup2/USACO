@@ -9,15 +9,16 @@ public class DEC_SIL_moobuzz {
 		
 		int[] a = {14, 1, 2, 4, 7, 8, 11, 13};
 		int n = in.nextInt();
-
 		int ans = 0;
-	    int mult = n / 8;
-	    int mod = n % 8;
+		
+		int mult = n / 8;
+		int mod = n % 8;
+		
+		if(mod==0) mult--;	  
 	    
-	    if(mod==0) mult--;	  
-	    
-	    ans = (mult * 15) + a[mod];
+		ans = (mult * 15) + a[mod];
 	    out.println(ans);
+	    
 		out.close();
 		in.close();
 	}
