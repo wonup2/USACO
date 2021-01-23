@@ -22,12 +22,9 @@ public class JAN_BR_stalling {
 		b = new int[n];
 		c = new int[n];
 		
-		for(int i=0; i<n; i++) {
-			a[i] = in.nextInt();
-		}
-		for(int i=0; i<n; i++) {
-			b[i] = in.nextInt();
-		}
+		for(int i=0; i<n; i++) a[i] = in.nextInt();
+		
+		for(int i=0; i<n; i++) b[i] = in.nextInt();		
 	}
 	
 	static void solve() {
@@ -41,12 +38,8 @@ public class JAN_BR_stalling {
 		}
 		
 		long ans = c[n-1];
-		for(int i=n-2; i>=0; i--) {
-			//if(c[i]==0) continue;
-			ans *= c[i]-(n-1-i);
-		}
-		
-		//System.out.println(Arrays.toString(c));
+		for(int i=n-2; i>=0; i--) ans *= c[i]-(n-1-i);
+				
 		System.out.println(ans);
 	}	
 }

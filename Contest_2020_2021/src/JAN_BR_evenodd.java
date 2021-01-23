@@ -33,7 +33,7 @@ public class JAN_BR_evenodd {
 		else if(e>o) ans = o*2 + 1;
 		else {
 			ans = e*2;
-			int x = (o-e);
+			int x = o-e;
 			int y = x/3;
 			
 			if(x%3==1) ans += y*2-1;
