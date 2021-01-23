@@ -17,7 +17,7 @@ public class DEC_SIL_moobuzz {
 		if(mod==0) mult--;	  
 	    
 		ans = (mult * 15) + a[mod];
-	    out.println(ans);
+		out.println(ans);
 	    
 		out.close();
 		in.close();
