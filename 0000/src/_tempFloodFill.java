@@ -54,7 +54,7 @@ public class _tempFloodFill {
 	static void floodfill(int x, int y, int color){
 		
 	    if(x < 0 || x >= n || y < 0 || y >= m) return; 	// if outside grid
-	    if(a[x][y] =='.') return; 						// wrong color
+	    if(a[x][y] != color) return; 						// wrong color
 	    if(v[x][y]) return; 							// already visited this square
 	    
 	    

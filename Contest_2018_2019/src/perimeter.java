@@ -8,10 +8,11 @@ public class perimeter {
 	static char[][] a;
 	static boolean v[][];
 	static String prob = "perimeter";
-	
+	static StreamTokenizer st;
+
 	public static void main(String[] args) throws IOException{
-		try {
-			st=new StreamTokenizer(in=new BufferedReader(new FileReader(prob + ".in")));
+		in=new BufferedReader(new FileReader(prob + ".in"));
+			st=new StreamTokenizer(in);
 			out = new PrintWriter(new File(prob+ ".out"));
 			
 			
@@ -19,10 +20,7 @@ public class perimeter {
 			solve();
 			
 			
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		
 		in.close();
 		out.close();
 	}
@@ -30,7 +28,7 @@ public class perimeter {
 	static void init() throws IOException{
 		
 		n = readInt();
-		in.readLine();
+		//in.readLine();
 		a = new char[n][n];
 		
 		
@@ -82,7 +80,6 @@ public class perimeter {
 			System.out.println();
 		}
 	}
-	static StreamTokenizer st;
 	static int readInt() throws IOException {
 		st.nextToken();
 		return (int)st.nval;

@@ -1,36 +1,37 @@
 import java.util.*;
 import java.io.*;
 
-public class _tempUSACO {
+public class _tempUSACO_practice {
 
 	static Scanner in;
-	static int a[], b, c, d, ans;
+	static PrintWriter out;
+	static int a, b, c, d, ans;
 
 	
 	public static void main(String[] args) throws IOException {
 
-		in = new Scanner(System.in);
+		in = new Scanner(new File("xxx.in"));
+		out = new PrintWriter(new File("xxx.out"));
 		init();
 		solve();
 		in.close();
+		out.close();
 	}
 
 	static void init() throws IOException {
 		
+		a = in.nextInt();
 		b = in.nextInt();
 		c = in.nextInt();
 		d = in.nextInt();
 		
-		a = new int[b];
-
-		System.out.printf("%d %d %d %d", b, c, d);
-		System.out.println(Arrays.toString(a));
+		System.out.printf("%d %d %d %d", a, b, c, d);
 		ans = 0;		
 	}
 	
 	static void solve() {
 		
 		
-		System.out.println(ans);
+		out.println(ans);
 	}	
 }

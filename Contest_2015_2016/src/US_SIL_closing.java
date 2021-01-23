@@ -47,7 +47,7 @@ public class US_SIL_closing {
             v = new boolean[N];
             dfs(nodes.get(0));
             
-            if(cnt == N - (i + 1)) out.println("YES");
+            if(cnt == nodes.size()) out.println("YES");
             else out.println("NO");
         }
         out.close();
