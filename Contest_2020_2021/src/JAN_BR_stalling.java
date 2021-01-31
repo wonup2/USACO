@@ -36,9 +36,9 @@ public class JAN_BR_stalling {
 				if(a[i]<=b[j]) c[i]++;
 			}
 		}
-		
-		long ans = c[n-1];
-		for(int i=n-2; i>=0; i--) ans *= c[i]-(n-1-i);
+				
+		long ans = 1;
+		for(int i=0; i<n; i--) ans *= c[i]-i;
 				
 		System.out.println(ans);
 	}	

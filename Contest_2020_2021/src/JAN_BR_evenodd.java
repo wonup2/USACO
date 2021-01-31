@@ -29,18 +29,21 @@ public class JAN_BR_evenodd {
 	
 	static void solve() {
 		ans = 0;
-		if(e==o) ans = e + o;
-		else if(e>o) ans = o*2 + 1;
-		else {
-			ans = e*2;
-			int x = o-e;
-			int y = x/3;
-			
-			if(x%3==1) ans += y*2-1;
-			else if(x%3==2) ans += (y+1)*2-1;
-			else ans += y*2;
+		while(o>e) {
+			o-=2;
+			e++;
 		}
-		if(ans<0) ans = 1;
+
+		if(e == o) ans = o + e;  
+		else ans = o * 2 + 1;
+		
 		System.out.println(ans);
 	}	
 }
+
+
+/*
+1. e > o ---> o*2 + 1
+2. e < o ---> problems.... 왜냐하면 이건 꼭 e 로 끝나야 돼.
+   make e >= o 만들자 --> while
+*/
