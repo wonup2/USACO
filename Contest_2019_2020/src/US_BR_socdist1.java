@@ -23,8 +23,11 @@ public class US_BR_socdist1{
 		for(int i=0; i<n; i++) {
 			if(s.charAt(i)=='1') a.add(i);
 		}		
+		
+		System.out.println(a);
+
 	}
-	
+		
 	static public void solve() {
 		
 		if(a.size()==0) { out.println(n-1); return; }
@@ -36,7 +39,7 @@ public class US_BR_socdist1{
 		for(int i=1; i<a.size(); i++) {
 			high = Math.min(high, a.get(i)-a.get(i-1));
 		}
-		
+		System.out.println(high);
 		int ans = -1;
 		while(low<=high) {
 			int mid = (low+high)/2;
@@ -60,4 +63,5 @@ public class US_BR_socdist1{
 		return cow>=2;
 		
 	}
+	
 }

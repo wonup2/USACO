@@ -28,20 +28,25 @@ public class DEC_SIL_shuffle {
 			a[i] = Integer.parseInt(st.nextToken())-1;
 			b[a[i]]++;
 		}
+		
+		System.out.println(Arrays.toString(a));
+		System.out.println(Arrays.toString(b));
+
 	}
 	
 	static void solve() {
 		
 		Queue<Integer> q = new LinkedList<Integer>();
 		ans = n;
-		
 		for(int i=0; i<n; i++) {
 			if(b[i]==0) {
 				q.add(i);		
 				ans--;
 			}
 		}
-		
+		System.out.println(q);
+		System.out.println(ans);
+
 		while(!q.isEmpty()) {
 			int t = q.poll();
 			if(--b[a[t]]==0) {

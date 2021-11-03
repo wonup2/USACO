@@ -11,6 +11,7 @@ public class DEC_SIL_cowntagion {
 		in = new BufferedReader(new InputStreamReader(System.in));
 		init();
 		solve();
+		in.close();
 	}
 	
 	static void init() throws NumberFormatException, IOException {
@@ -27,18 +28,12 @@ public class DEC_SIL_cowntagion {
 	
 	static void solve() {
 		
-    	int ans = n-1;  //total path 
+		int ans = n-1;  //total path 
     	ans += (int)(Math.ceil(Math.log(a[0]+1) / Math.log(2)));  // total Cowid-19 of farm 1  cow 1 + children
     	
     	for(int i=1;i<n;i++) 
     		ans += (int)(Math.ceil(Math.log(a[i]) / Math.log(2))); //자식만큼만 있으면 됨
-    		
+    	
     	System.out.println(ans);
 	}
 }
-
-
-
-
-
-

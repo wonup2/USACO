@@ -26,6 +26,7 @@ public class US_BR_evolution {
 		    	set.add(s);     
 		    }	   
 		}  
+		
 		for(String temp: set) a.add(temp);
 		
 		int M = a.size();
@@ -43,7 +44,7 @@ public class US_BR_evolution {
  
 	static boolean check(int x, int y){
 	  int X=0, Y=0, XY=0;
-	  
+
 	  for (int i=0; i<N; i++) {
 	    boolean has_x = false, has_y = false;
 	    for (String s: c[i]) {	    	

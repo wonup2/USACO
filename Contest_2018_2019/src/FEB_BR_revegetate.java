@@ -1,51 +1,57 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
+
 public class FEB_BR_revegetate {
 
 	static Scanner in;
 	static PrintWriter out;
-	static StringTokenizer st;
 	static int n, m;
-	static ArrayList<Integer> a[];
-	static ArrayList<String> b[];
-
+	static String ans;
+	static ArrayList<Integer>a[];
+	static ArrayList<String>f[];
+	
 	
 	public static void main(String[] args) throws IOException {
-		try {
-			init();
-			solve();			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	
-	}
-	
-	static void init() throws IOException {
-		in = new Scanner(new FileReader("revegetate.in"));
 
+		in = new Scanner(new FileReader("revegetate.in"));
+		out = new PrintWriter(new FileWriter("revegetate.out"));
+		init();
+		solve();
+		in.close();
+		out.close();		
+	}
+	static void init() throws NumberFormatException, IOException {
 		n = in.nextInt();
 		m = in.nextInt();
 		
+		f = new ArrayList[n];
 		a = new ArrayList[n];
-		b = new ArrayList[n];
-	
+
 		for(int i=0; i<n; i++) {
+			f[i] = new ArrayList<String>();
+			f[i].add("1");f[i].add("2");f[i].add("3");f[i].add("4");
 			a[i] = new ArrayList<Integer>();
-			b[i] = new ArrayList<String>();
-			for(int j=1;j<=4; j++)	b[i].add(j+"");
 		}
-				
+		
 		for(int i=0; i<m; i++) {
 			int x = in.nextInt()-1;
 			int y = in.nextInt()-1;
 			a[x].add(y);
 			a[y].add(x);
+		}		
+	}
+	
+	static void solve() {
+		
+		ans = "";
+		
+		for(int i=0; i<n; i++) {
+			String cur = f[i].get(0);
+			ans+=cur;
+			
+			for(int k: a[i]) f[k].remove(cur);			
 		}
 		
-		System.out.println(Arrays.toString(a));
-		System.out.println(Arrays.toString(b));
-
-	}
-	static void solve() throws IOException {
-		
+		out.println(ans);
 	}
 }

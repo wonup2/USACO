@@ -28,16 +28,41 @@ public class JAN_BR_evenodd {
 	}
 	
 	static void solve() {
+		
+		long e=1;
+		long o=100000000000l;
 		ans = 0;
+        
+		long startTime = System.nanoTime();
+		
 		while(o>e) {
 			o-=2;
 			e++;
 		}
-
-		if(e == o) ans = o + e;  
-		else ans = o * 2 + 1;
 		
-		System.out.println(ans);
+		long endTime = System.nanoTime();
+        long timeElapsed = endTime - startTime;
+
+		System.out.println(timeElapsed);
+		
+		
+		startTime = System.nanoTime();
+		if(o>e) {
+			int t = (int)(Math.ceil((o-e)/3.0));
+			o-=t*2;
+			e+=t;
+		}
+		
+		endTime = System.nanoTime();
+        timeElapsed = endTime - startTime;
+
+		System.out.println(timeElapsed);
+//		
+//		if(e == o) ans = o + e;  
+//		else ans = o * 2 + 1;
+//		
+//		System.out.println(ans);
+		
 	}	
 }
 

@@ -17,29 +17,6 @@ public class DEC_BR_daisy {
 		for(int i=0; i<n; i++) a[i] = in.nextInt();		
 	}
 	
-	/*
-	 static void solve() {
-		ArrayList<Double> b = new ArrayList<Double>();
-		for(int i=0; i<n; i++) {
-			for(int j=i; j<n; j++) {
-				double sum = 0;
-				for(int k=i; k<=j; k++) {
-					sum+=a[k];
-					b.add(a[k]*1.0);
-				}
-				double ave = sum/b.size();
-				if(b.contains(ave)) ans++;
-				b.clear();
-			}
-		}		
-		System.out.println(ans);
-	}
-	 */
-	
-	
-	
-	
-	
 	static void solve() {
 	
 		for(int i=0; i<n; i++) {

@@ -32,16 +32,10 @@ public class US_BR_factory {
 	}
 	
 	static void solve() {
-		int ans = -1;
-		boolean ok = false;
-		int cnt=0;
-		for(int i = 1; i<=n; i++) {
-			if(a[i]==0 && b[i]>=1) {
-				if(!ok) ans=i; 
-				ok = true; 
-				cnt++;
-			}			
+		int ans = 0;
+		for(int i = 0; i<n; i++) {
+			if(a[i]==0) ans++;						
 		}
-		System.out.println(cnt==1?ans:-1);
+		out.println(ans==1?ans:-1);
 	}
 }

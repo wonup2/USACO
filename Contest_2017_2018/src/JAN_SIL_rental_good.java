@@ -3,7 +3,7 @@
 import java.io.*;
 import java.util.*;
 
-public class rental {
+public class JAN_SIL_rental_good {
 	
 	static BufferedReader in;
 	static PrintWriter out;

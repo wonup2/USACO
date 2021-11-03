@@ -1,57 +1,52 @@
 import java.util.*;
 import java.io.*;
-public class cowcode {
 
-	static BufferedReader in;
+public class cowcode {
+	static Scanner in;
 	static PrintWriter out;
 	static String word;
-	static Long n;
-	static ArrayList<Long> list;
+	static long length, num;
+	static ArrayList <Long> start;
 	
-	public static void main(String[] args) throws IOException {
-		in = new BufferedReader(new FileReader(new File("cowcode.in")));
-		out = new PrintWriter(new BufferedWriter(new FileWriter("cowcode.out")));
+	public static void main(String [] args) {
 		try {
 			init();
-			System.out.println(solve());
+			solve();
 			in.close();
 			out.close();
-		}
-		catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public static void init() throws IOException {
-		StringTokenizer br = new StringTokenizer(in.readLine());
-		word = br.nextToken();
-		n = Long.parseLong(br.nextToken())-1;
-		list = new ArrayList<Long>();
-		list.add((long)word.length());
+		in = new Scanner(new File("cowcode.in"));
+		out = new PrintWriter(new File("cowcode.out"));
+		
+		word = in.next();
+		length = word.length();
+		num = in.nextLong() - 1;
+		start = new ArrayList<Long>();
 	}
 	
-	public static char solve() {
-		long temp = word.length();
-		while (temp * 2 < n) {
+	public static void solve() throws IOException {
+		start.add(length);
+		long temp = length;
+		while(temp * 2 < num) {
 			temp *= 2;
-			list.add(temp);
+			start.add(temp);
 		}
-		System.out.println(list);
-		Collections.reverse(list);
-		System.out.println(list);
-		System.out.println(n);
-
-		while (n >= word.length()) {
-			System.out.println(n);
-			if (list.get(0) < n)
-				n = n - list.remove(0) - 1;
-			else if (list.get(0) == n)
-				n -= 1;
-			else
-				list.remove(0);
+		Collections.reverse(start);
+		
+		while(num >= length) {
+			if(start.get(0) < num) {
+				num = num - start.remove(0) - 1;
+			} else if(start.get(0) == num) {
+				num--;
+			} else {
+				start.remove(0);
+			}
 		}
-		System.out.println(n);
-
-		return word.charAt(Integer.parseInt(n+""));		
+		out.println(word.charAt((int) num));
 	}
 }

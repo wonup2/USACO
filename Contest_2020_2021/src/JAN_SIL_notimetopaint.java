@@ -33,7 +33,7 @@ public class JAN_SIL_notimetopaint {
 	
 	static void solve() throws IOException {
 
-		char pre = 'A'; char cur = s.charAt(0);
+		char cur = s.charAt(0);
 		
 		for(int i=1; i<=n; i++) {
 			cur = s.charAt(i-1);
@@ -48,12 +48,11 @@ public class JAN_SIL_notimetopaint {
 			if(hasLighter) prefix[i]++;
 			
 			a.put(cur, i);
-			pre = cur;
 		}
 		
+		System.out.println(Arrays.toString(prefix));
 		for(int i='A'; i<='Z'; i++) a.put((char)i, n);
 		
-		pre = 'Z'; cur = s.charAt(n-1);
 		for(int i=n-1; i>=0; i--) {
 			cur = s.charAt(i);
 			suffix[i] = suffix[i+1];			
@@ -67,9 +66,9 @@ public class JAN_SIL_notimetopaint {
 			if(hasLighter) suffix[i]++;
 			
 			a.put(cur, i);
-			pre = cur;
 		}
-		
+		System.out.println(Arrays.toString(suffix));
+
 		StringBuilder sb = new StringBuilder();
 		for(int i=0; i<m; i++) {
 			st = new StringTokenizer(in.readLine());

@@ -30,7 +30,7 @@ public class DEC_BR_mixmilk {
 	
 	private static void solve() throws IOException {
 		
-		for(int i =0; i<1; i++) {
+		for(int i =0; i<33; i++) {
 			//c1->c2
 			int space = c2-m2;
 			if(m1 <= space) {
@@ -77,7 +77,7 @@ public class DEC_BR_mixmilk {
 		}
 		
 		out = new PrintWriter(new File("mixmilk.out"));
-		out.printf("%d\n%d\n%d\n", m1, m2, m3);
+		System.out.printf("%d\n%d\n%d\n", m1, m2, m3);
 		out.close();
 	}
 }

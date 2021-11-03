@@ -27,8 +27,8 @@ public class US_BR_cownomics {
 		for(int i=0; i<n; i++) s[i]=in.readLine().toCharArray();
 		for(int i=0; i<n; i++) p[i]=in.readLine().toCharArray();
 
-//		System.out.println(Arrays.deepToString(s));
-//		System.out.println(Arrays.deepToString(p));
+		System.out.println(Arrays.deepToString(s));
+		System.out.println(Arrays.deepToString(p));
 	}
 	static void solve() {
 		int ans = 0;

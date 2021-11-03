@@ -1,39 +1,44 @@
-import java.io.*;
+//2016 January Contest, Silver Problem 2. Subsequences Summing to Sevens
+
 import java.util.*;
+import java.io.*;
+
 public class JAN_SIL_div7 {
+
+	static BufferedReader in;
+	static PrintWriter out;
+	static StringTokenizer st;
+	static int n, ans, position[], div[];
+	
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("div7.in"));
-		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("div7.out")));
-		
-		int n = Integer.parseInt(br.readLine());
-		int[] first = new int[7];
-		int[] last = new int[7];
-		Arrays.fill(first, Integer.MAX_VALUE);
-		first[0] = 0;
-		int currPref = 0;
-		for(int i = 1; i <= n; i++) {
-			currPref += Integer.parseInt(br.readLine());
-			System.out.print(currPref + " ");
-			currPref %= 7;
-			System.out.println(currPref + " ");
 
-			first[currPref] = Math.min(first[currPref], i);
-			last[currPref] = i;
+		in = new BufferedReader(new FileReader("div7.in"));
+		out = new PrintWriter(new File("div7.out"));
+		
+		init();
+		solve();
+		
+		in.close();
+		out.close();
+	}
+	
+	static void init() throws NumberFormatException, IOException {
+		n = Integer.parseInt(in.readLine());
+		position = new int[n+1];
+		div = new int[n+1];
+		ans = 0;
+	}
+
+	static void solve() throws NumberFormatException, IOException {
+		
+		for(int i=1; i<=n; i++) {
+						
+			div[i] = (div[i-1] + Integer.parseInt(in.readLine())) % 7;
 			
-			System.out.println(Arrays.toString(first));
-			System.out.println(Arrays.toString(last));
+			if(position[div[i]] == 0) position[div[i]] = i;
+			else ans = Math.max(ans, i-position[div[i]]);
 		}
 		
-		System.out.println(Arrays.toString(first));
-		System.out.println(Arrays.toString(last));
-
-		int ret = 0;
-		for(int i = 0; i < 7; i++) {
-			if(first[i] <= n) {
-				ret = Math.max(ret, last[i] - first[i]);
-			}
-		}
-		pw.println(ret);
-		pw.close();
+		out.println(ans);
 	}
 }

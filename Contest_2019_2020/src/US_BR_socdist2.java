@@ -33,8 +33,8 @@ public class US_BR_socdist2 {
 			Pair pre = a.get(i-1);
 			Pair cur = a.get(i);
 			Pair nxt = a.get(i+1);
-			if(pre.s && !cur.s) r = Math.min(cur.x-pre.x-1, r);
-			if(!cur.s && nxt.s) r = Math.min(nxt.x-cur.x-1, r);		
+			if(pre.s && !cur.s) r = Math.min(cur.x-pre.x, r);
+			if(!cur.s && nxt.s) r = Math.min(nxt.x-cur.x, r);		
 		}
 
 		//System.out.println(r);
@@ -51,7 +51,7 @@ public class US_BR_socdist2 {
 			}
 			
 			// If you are a new group, you count, or if you are too far from the last cow.
-			if (!flag || a.get(i).x - a.get(i-1).x > r) {
+			if (!flag || a.get(i).x - a.get(i-1).x >= r) {
 				res++;
 				flag = true;
 			}
