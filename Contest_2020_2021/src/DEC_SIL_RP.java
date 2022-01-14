@@ -14,37 +14,39 @@ public class DEC_SIL_RP{
 		N = in.nextInt();
 		a = new int[N+1][N+1];
 	  
-		for (int i=1; i<=N; i++) {
+		for (int i=0; i<N; i++) {
 		    int x = in.nextInt();
 		    int y = in.nextInt();
 		    xp.put(x, i);
 		    yp.put(y, i);
 		}
-//		System.out.println(xp);
-//		System.out.println(yp);
+		System.out.println(xp);
+		System.out.println(yp);
 
 		int x[] = new int[N];
 		int y[] = new int[N];
 		
 		int rank=1;
 		for(int i:xp.values())
-			x[i-1]=rank++;
+			x[i]=rank++;
+		
 		rank=1;
 		for(int i:yp.values())
-			y[i-1]=rank++;
+			y[i]=rank++;
 		
-//		System.out.println(Arrays.toString(x));
-//		System.out.println(Arrays.toString(y));
+		System.out.println(Arrays.toString(x));
+		System.out.println(Arrays.toString(y));
 		
 		for (int i=0; i<N; i++) 
 			a[x[i]][y[i]]++;
-		//print(a);
+		print(a);
 
 		for (int i=1; i<=N; i++)
 		    for (int j=1; j<=N; j++)
 		      a[i][j] += a[i-1][j] + a[i][j-1] - a[i-1][j-1];
-		  
-		//print(a);
+
+		print(a);
+		
 		long ans = N+1;
 		for (int i = 0; i < N; i++) {
             for (int  j= i + 1; j < N; j++) {

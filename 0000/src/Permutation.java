@@ -5,19 +5,20 @@ public class Permutation {
 	
 	public static void main(String[] a) {		
 		p=new ArrayList<String>();
-		permute("1234", "");
-		System.out.println(p);		
+		permute("12345678", "");
+		System.out.println(p.size());		
 	}
 	
-	private static void permute(String string, String result) {
-	    if(string.length() == 0) {
-	    	p.add(result);
+	static void permute(String left, String right) {
+	    if(left.length() == 0) {
+	    	p.add(right); 
 	    	return;
 	    }
-	    for(int i = 0; i < string.length(); i++) {
-	    	char c = string.charAt(i);
-	    	String s = string.substring(0, i) + string.substring(i + 1);
-	    	permute(s, result + c);
+	    for(int i = 0; i < left.length(); i++) {
+	    	char c = left.charAt(i);
+	    	String l = left.substring(0, i) + left.substring(i + 1);
+	    	String r = right + c;
+	    	permute(l, r); 
 	    }
 	}
 }

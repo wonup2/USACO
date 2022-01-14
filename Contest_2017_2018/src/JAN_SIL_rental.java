@@ -14,19 +14,19 @@ public class JAN_SIL_rental {
 		for(int i = 0; i < n; i++) {
 			cow[i] = Integer.parseInt(br.readLine());
 		}
-		sort(cow);   //System.out.println("milkProduced "+ Arrays.toString(milkProduced));  //
+		sort(cow);   System.out.println("milkProduced "+ Arrays.toString(cow));  //
 		
 		Shop[] mart = new Shop[m];
 		for(int i = 0; i < m; i++) {
 			st = new StringTokenizer(br.readLine());
 			mart[i] = new Shop(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 		}
-		Arrays.sort(mart); //System.out.println("shops "+ Arrays.toString(shops));  //
+		Arrays.sort(mart); System.out.println("shops "+ Arrays.toString(mart));  //
 		int[] rental = new int[r];
 		for(int i = 0; i <r; i++) {
 			rental[i] = Integer.parseInt(br.readLine());
 		}
-		Arrays.sort(rental);
+		Arrays.sort(rental);	System.out.println("rental "+ Arrays.toString(rental));
 		
 		int[] milking = new int[n];
 		long[] maxProfit = new long[n];

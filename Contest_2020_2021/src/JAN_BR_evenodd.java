@@ -28,6 +28,9 @@ public class JAN_BR_evenodd {
 	}
 	
 	static void solve() {
+		//e = 1
+		//o = 6
+		
 		ans = 0;
 		while(o>e) {
 			o-=2;
@@ -44,6 +47,6 @@ public class JAN_BR_evenodd {
 
 /*
 1. e > o ---> o*2 + 1
-2. e < o ---> problems.... 왜냐하면 이건 꼭 e 로 끝나야 돼.
-   make e >= o 만들자 --> while
+2. e < o ---> problems.... ì™œëƒ�í•˜ë©´ ì�´ê±´ ê¼­ e ë¡œ ë��ë‚˜ì•¼ ë�¼.
+   make e >= o ë§Œë“¤ìž� --> while
 */

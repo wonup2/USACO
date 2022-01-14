@@ -20,7 +20,7 @@ public class FEB_BR_triangles {
     }
     
     
-    int ret = 0;
+    int area = 0;
     
     setX = new TreeSet<Integer>();
     setY = new TreeSet<Integer>();
@@ -29,11 +29,11 @@ public class FEB_BR_triangles {
       for(int j = i+1; j < n-1; j++) { 
         for(int k = j+1; k < n; k++) {         	
         	if(ok(i, j, k)) 
-        		ret = Math.max(ret, Math.abs(setX.first()-setX.last()) * Math.abs(setY.first()-setY.last()));      
+        		area = Math.max(area, Math.abs(setX.first()-setX.last()) * Math.abs(setY.first()-setY.last()));      
         }
       }
     }
-    pw.println(ret);
+    pw.println(area);
     pw.close();
   }
   

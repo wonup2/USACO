@@ -35,7 +35,7 @@ public class DEC_BR_badmilk {
 			a[i] = new tri(in.nextInt()-1, -1, in.nextInt());
 		
 		Arrays.sort(a);
-		
+		System.out.println(Arrays.toString(a));
 		b = new boolean[M];
 		c = new boolean[N][M];
 		Arrays.fill(b, true);	
@@ -62,26 +62,27 @@ public class DEC_BR_badmilk {
         }		
 		out.println(ans);
 	}
-}
-class tri implements Comparable<tri>{
+	
+	static class tri implements Comparable<tri>{
 
-    public int id;
-    public int milk;
-    public int time;
+	    int id;
+	    int milk;
+	    int time;
 
-    tri(int a, int b, int c) {
-        id = a;
-        milk = b;
-        time = c;
-    }   
-    
-    public String toString() {
-    	return time+" "+id+" "+milk;
-    }
+	    tri(int a, int b, int c) {
+	        id = a;
+	        milk = b;
+	        time = c;
+	    }   
+	    
+	    public String toString() {
+	    	return time+" "+id+" "+milk;
+	    }
 
-	@Override
-	public int compareTo(tri that) {
-		if(this.time==that.time) return this.milk - that.milk;
-		else return this.time - that.time;  //ascending
+		@Override
+		public int compareTo(tri that) {
+			if(this.time==that.time) return this.milk - that.milk;
+			else return this.time - that.time;  //ascending
+		}
 	}
 }

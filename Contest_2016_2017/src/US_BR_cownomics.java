@@ -26,9 +26,6 @@ public class US_BR_cownomics {
 		p = new char[n][];
 		for(int i=0; i<n; i++) s[i]=in.readLine().toCharArray();
 		for(int i=0; i<n; i++) p[i]=in.readLine().toCharArray();
-
-//		System.out.println(Arrays.deepToString(s));
-//		System.out.println(Arrays.deepToString(p));
 	}
 	static void solve() {
 		int ans = 0;
@@ -51,6 +48,7 @@ public class US_BR_cownomics {
 			if(p[i][j]=='G') hasGene[1][2] = true;
 			if(p[i][j]=='T') hasGene[1][3] = true;
 		}
+		System.out.println(Arrays.deepToString(hasGene));
 		for(int i=0; i<4; i++) {
 			if(hasGene[0][i] && hasGene[1][i]) return false;
 		}

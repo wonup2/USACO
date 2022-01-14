@@ -29,16 +29,18 @@ public class JAN_BR_stalling {
 	
 	static void solve() {
 		
-		Arrays.sort(a);
+		Arrays.sort(b);
+
+		long ans = 1l;
 		
 		for(int i=0; i<n; i++) {
+			long fit = 0;
 			for(int j = 0; j<n; j++) {
-				if(a[i]<=b[j]) c[i]++;
+				if(b[i]>=a[j]) fit++;
 			}
+			fit	-=i;
+			ans *= fit;
 		}
-				
-		long ans = 1;
-		for(int i=0; i<n; i--) ans *= c[i]-i;
 				
 		System.out.println(ans);
 	}	
