@@ -5,8 +5,8 @@ public class Permutation {
 	
 	public static void main(String[] a) {		
 		p=new ArrayList<String>();
-		permute("12345678", "");
-		System.out.println(p.size());		
+		permute("123", "");
+		System.out.println(p);		
 	}
 	
 	static void permute(String left, String right) {
