@@ -5,15 +5,13 @@ public class AngryCow_B {
 	
 	static Scanner in;
 	static PrintWriter out;
-	static int n;
-	static boolean a[];
-	static HashSet<Integer> e;
+	static int n, cnt, a[];
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
-		in = new Scanner(new File("angry.in"));
-		out = new PrintWriter(new File("angry.out"));
+		in = new Scanner(new File("test.in"));
+		out = new PrintWriter(new File("test.out"));
 
 		init();
 		solve();
@@ -25,53 +23,50 @@ public class AngryCow_B {
 	static void init() {
 		
 		n = in.nextInt();
-		a = new boolean[100];
-		for(int i=0; i<n; i++)a[in.nextInt()] = true;
-		e = new HashSet<Integer>();
-
+		a = new int[n];
+		for(int i=0; i<n; i++) a[i] = in.nextInt();
+		Arrays.sort(a);
+		System.out.println(Arrays.toString(a));
 	}
 	
 	static void solve() {
+		
 		int ans = 0;
+		
+		for(int i=0; i<n; i++) {
+			System.out.println("Start: "+a[i]);
 
-
-		for(int i=0; i<100; i++) {
+			int cnt = cntCow(i, true) + cntCow(i, false) + 1;
 			
-			if(a[i]) {
-				left(i); 
-				right(i);
-				ans = Math.max(ans, e.size());
-				e = new HashSet<Integer>();
-
-			}
-
+			ans = Math.max(ans, cnt);
 		}
-		out.println(ans);
+		
+		System.out.println(ans);
+		
 	}
 	
-	static void left(int p) {
-		int x = 1;
-		while(true) {
-			int target = p-x; //System.out.println("target :" + target);
-
-			for(int i=target; i>=target; i--) if(i>=0&&a[i]) e.add(i+1);
-			if(target<0||target>100||!a[target]) break;
+	static int cntCow(int cur, boolean left) {
+		
+		int t = 1;
+		int cnt = 0;
+		int d = left? -1:1;
+		while(cur>=0 && cur < n) {
 			
-			p = target;
-			x++;
-		}			
-	}
-	
-	static void right(int p) {
-		int x = 1;
-		while(true) {
-			int target = p+x; //System.out.println("target :" + target);
-
-			for(int i=p; i<=target; i++) if(target<=target&&a[i]) e.add(i+1);
-			if(target<0||target>100||!a[target]) break;
+			int next = cur;
 			
-			p = target;
-			x++;
-		}			
+			while(true) {
+				if(next+d<0 || next+d>=n) break;
+				if(Math.abs(a[cur]-a[next+d]) > t) break;
+				
+				next+=d; System.out.print(a[next]+" ");
+				cnt++;
+			}
+			
+			if(cur==next) break;
+			t++;
+			cur = next;
+		}
+		System.out.println();
+		return cnt;
 	}
 }
