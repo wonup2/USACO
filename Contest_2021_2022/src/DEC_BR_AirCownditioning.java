@@ -23,13 +23,16 @@ public class DEC_BR_AirCownditioning {
         	a[i] = a[i]-in.nextInt();
         
         ans = 0;
+        
+        System.out.println(Arrays.toString(a));
     }
     
     static void solve() {
 
-        for(int i = 0; i <= n; i++) 
+        for(int i = 0; i <= n; i++) {
         	ans+= Math.abs(a[i]-a[i+1]);
-        
+        	System.out.println(Math.abs(a[i]-a[i+1])+" ");
+        }
         
         System.out.println(ans/2);
     }

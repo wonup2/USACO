@@ -27,7 +27,7 @@ public class DEC_BR_AirCownditioning1 {
         	}
         	else if(t<0) {
         		pos.add(0);
-        		neg.add(t);
+        		neg.add(t*-1);
         	}
         	else {
         		pos.add(0);
@@ -36,13 +36,19 @@ public class DEC_BR_AirCownditioning1 {
         }
 
         ans = 0;
-        posSolve(pos);        
-        negSolve(neg);
+        
+        System.out.println(pos);
+        System.out.println(neg);
+
+        solve(pos);        
+        solve(neg);
         System.out.println(ans);
     }
     
     
-    static void posSolve(ArrayList<Integer> pos) {
+    static void solve(ArrayList<Integer> pos) {
+    	
+    	System.out.println(pos);
     	//step 0
     	if(pos.size()==0) return;
     	
@@ -58,12 +64,12 @@ public class DEC_BR_AirCownditioning1 {
     	
     	//step 4
     	 ArrayList<Integer> temp = new ArrayList<Integer>();
-         boolean flag = false;
+         boolean flag = false;  //<---  시간 절약
          
          for(int i=0; i<pos.size(); i++) {
          	
          	if(pos.get(i)==0 && flag) {
-         		posSolve(temp);
+         		solve(temp);
          		flag = false;
          		temp = new ArrayList<Integer>();
          	}
@@ -72,32 +78,6 @@ public class DEC_BR_AirCownditioning1 {
          		flag = true;
          	}
          }
-         posSolve(temp);
-    } 
-    
-    static void negSolve(ArrayList<Integer> neg) {
-    	if(neg.size()==0) return;
-    	
-    	int max = neg.get(0);    	
-    	for(int i=0; i<neg.size(); i++) max = Math.max(max, neg.get(i));
-    	
-    	ans+=Math.abs(max);
-    	
-    	for(int i=0; i<neg.size(); i++) neg.set(i, neg.get(i)-max);
-    	
-    	 ArrayList<Integer> temp = new ArrayList<Integer>();
-         boolean flag = false;
-         for(int i=0; i<neg.size(); i++) {         	
-         	if(neg.get(i)==0 && flag) {
-         		negSolve(temp);
-         		flag = false;
-         		temp = new ArrayList<Integer>();
-         	}
-         	if(neg.get(i)!=0) {
-         		temp.add(neg.get(i));    
-         		flag = true;
-         	}
-         }
-         negSolve(temp);
-    } 
+         solve(temp);
+    }     
 }
