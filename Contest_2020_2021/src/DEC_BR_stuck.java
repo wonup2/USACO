@@ -48,7 +48,7 @@ public class DEC_BR_stuck {
 			
 			if(d[i]=='N') {
 				if(x[i] < x[j] || y[i] > y[j]) continue;			
-				if(dx < dy && check(j) >= dx) min = Math.min(min, dy);
+				if(dx < dy && check(j) >= dx) min = Math.min(min, dy); 
 			}	
 			else {
 				if(x[i] > x[j] || y[i] < y[j]) continue;			

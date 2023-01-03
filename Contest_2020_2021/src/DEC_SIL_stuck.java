@@ -28,6 +28,8 @@ public class DEC_SIL_stuck {
         }
         E.sort(Comparator.comparingInt(i -> y[i]));
         N.sort(Comparator.comparingInt(i -> x[i]));
+        
+        System.out.println(E);
         isStuck = new boolean[n];
         cnt = new int[n];        
 	}
@@ -37,16 +39,18 @@ public class DEC_SIL_stuck {
 		for (int e : E) {
             for (int n : N) {
                 if (isStuck[e] || isStuck[n] || x[n] <= x[e] || y[e] <= y[n]) continue;
-                   if (x[n] - x[e] > y[e] - y[n]) {
-                	   isStuck[e] = true;
-                       cnt[n] += 1 + cnt[e];
-                   } 
-                   else if (y[e] - y[n] > x[n] - x[e]) {
-                       	isStuck[n] = true;
-                       	cnt[e] += 1 + cnt[n];
-                   }
-                   System.out.println(Arrays.toString(cnt));
-                
+                   
+                if (x[n] - x[e] > y[e] - y[n]) {
+                	isStuck[e] = true;
+                    cnt[n] += 1 + cnt[e];                   
+                } 
+                   
+                else if (y[e] - y[n] > x[n] - x[e]) {
+                    isStuck[n] = true;
+                    cnt[e] += 1 + cnt[n];                   
+                }
+                   
+                //System.out.println(Arrays.toString(cnt));                
             }
 		}
        

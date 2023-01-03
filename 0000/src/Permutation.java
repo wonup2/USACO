@@ -5,8 +5,11 @@ public class Permutation {
 	
 	public static void main(String[] a) {		
 		p=new ArrayList<String>();
-		permute("123", "");
-		System.out.println(p);		
+		//permute("123", "");
+		permutation("");
+		System.out.println(p);	
+		
+		
 	}
 	
 	static void permute(String left, String right) {
@@ -20,5 +23,15 @@ public class Permutation {
 	    	String r = right + c;
 	    	permute(l, r); 
 	    }
+	}
+	
+	static void permutation(String s) {
+		if(s.length()==8) {
+			p.add(s); 		
+		}
+		
+		for(int i=0; i<8; i++) {			
+			if(!s.contains(i+"")) permutation(s+i);
+		}
 	}
 }

@@ -36,6 +36,7 @@ public class JAN_BR_race {
 			}
 		}
 		
+		System.out.println(sb);
 		out.print(sb.toString());
 		in.close();
 		out.close();
