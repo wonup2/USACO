@@ -20,7 +20,7 @@ public class FEB_BR_revegetate {
 	}
 	
 	static void init() throws IOException {
-		in = new Scanner(new FileReader("revegetate.in"));
+		in = new Scanner(System.in);
 
 		n = in.nextInt();
 		m = in.nextInt();
@@ -47,5 +47,16 @@ public class FEB_BR_revegetate {
 	}
 	static void solve() throws IOException {
 		
+		String ans = "";
+		
+		for(int i=0; i<n; i++) {
+			String seed = b[i].get(0);
+			ans += seed;
+			for(int j:a[i]) {
+				b[j].remove(seed);
+			}			
+		}
+		
+		System.out.println(ans);
 	}
 }

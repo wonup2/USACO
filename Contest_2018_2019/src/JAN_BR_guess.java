@@ -17,7 +17,6 @@ public class JAN_BR_guess {
 		out.close();
 	}
 	
-	@SuppressWarnings("unchecked")
 	static void init() {
 		n=in.nextInt();
 		a=new HashSet[n];

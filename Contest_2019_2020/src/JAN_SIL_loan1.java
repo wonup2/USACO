@@ -14,7 +14,7 @@ public class JAN_SIL_loan1 {
 	    N = in.nextLong();
 	    K = in.nextLong();
 	    M = in.nextLong();
-		long low = 1, high = 1000000000000l;
+		long low = 1, high = N;
 		long ans = 0l;
 		while (low <= high) {
 		    long mid = (low + high)/2;
@@ -30,15 +30,18 @@ public class JAN_SIL_loan1 {
 	}
 	
 	static boolean check(long x) {
-		long g = 0;
-		for(int i=0; i<K; i++) {
-			long y = (N-g)/x;  
-		    if (y <= M) { 
-		    	g+=(K-i)*M; 
-		    	break;
-		    }
-		    g+=y;		    
+		
+		long remain = N; 
+		long day = K;
+		while(day > 0 && remain >0) {
+			
+			long y = remain/x;  
+		    if (y <= M) return M * day >= remain;
+		    
+		    long same = ;
+		    day -= same;
+		    remain -= same*y;		    
 		}
-		return g>= N ;
+		return remain <=0;  //day<=0
 	}
 }

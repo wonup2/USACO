@@ -6,21 +6,16 @@ public class JAN_BR_shell {
 	static Scanner in;
 	static PrintWriter out;
 	static int a[], b[], g[], n;
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		in=new Scanner(new File("shell.in"));
+		out=new PrintWriter(new File("shell.out"));
 		init();
 		solve();
 		in.close();
 		out.close();
 	}
 	
-	static void init() {
-		try {
-			in=new Scanner(new File("shell.in"));
-			out=new PrintWriter(new File("shell.out"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
+	static void init() throws IOException {				
 		n=in.nextInt();
 		a=new int[n]; b=new int[n]; g=new int[n];
 		

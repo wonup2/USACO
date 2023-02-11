@@ -50,6 +50,8 @@ public class DEC_BR_Feedcows {
     			output[lastH] = 'H';
     			cnt++;    					
     		} 
+    		
+    		//System.out.println(lastG+" "+lastH);
     	}
 
     	

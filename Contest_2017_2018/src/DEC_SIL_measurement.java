@@ -52,8 +52,7 @@ public class DEC_SIL_measurement {
 			//check if the current cow was originally on the board
 			if(bMilk==curMilk) bMilk+=curChange;  
 			
-			
-			
+					
 			//after work
 			curMilk+=curChange;
 			

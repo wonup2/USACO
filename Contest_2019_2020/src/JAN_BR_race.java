@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 public class JAN_BR_race {
 	
-	static int t, n, x, num, total, count;
+	static int k, n, x, num, total, count, speedSet;
 	static boolean f;
 	
 	public static void main(String[] args) throws IOException {
@@ -10,33 +10,38 @@ public class JAN_BR_race {
 		Scanner in = new Scanner(new File("race.in"));
 		PrintWriter out = new PrintWriter(new File("race.out"));
 		
-		t=in.nextInt(); 
+		k=in.nextInt(); 
 		n=in.nextInt();
 		StringBuilder sb = new StringBuilder();
 		
 		for(int i=0; i<n; i++) {
 			x = in.nextInt();
-			num=(int) Math.round(Math.sqrt(t*2));
-			if(num <= x) { sb.append(num).append("\n");	continue; }
-
 			total=0; 		
 			count=0;			
-			f=false;
+			speedSet=0;
 			num=1;
+			
+			// if x is 3 and k is 20 make speed lists such as 1, 2, 3, 3, 4, 4, 5 .....	
+			// Bessie can replace the speed numbers such as 1, 2, 3, 4, 5, 4, 3
 			
 			while(true) {
 				total+=num;
 				count++;
-				if(total>=t) { sb.append(count).append("\n");	break;	}
+				if(total>=k) { 
+					sb.append(count).append("\n");	
+					break;	
+				}
 				
-				if(num<x) num++;
-				else if(f) num++;
+				if(num<x) num++;    
+				else speedSet++;
 				
-				f = !f;
+				if(speedSet==2) { 	 
+					num++; 
+					speedSet=0;
+				}
 			}
 		}
 		
-		System.out.println(sb);
 		out.print(sb.toString());
 		in.close();
 		out.close();

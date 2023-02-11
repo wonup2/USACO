@@ -15,6 +15,7 @@ public class US_BR_evolution {
 		N = Integer.parseInt(in.readLine());
 
 		HashSet<String> set = new HashSet<String>();
+		
 		for (int i=0; i<N; i++) {
 			StringTokenizer st = new StringTokenizer(in.readLine());
 		    int K = Integer.parseInt(st.nextToken());
@@ -26,10 +27,15 @@ public class US_BR_evolution {
 		    	set.add(s);     
 		    }	   
 		}  
+		
+		System.out.println(Arrays.toString(c));
+		System.out.println(set);
+		
 		for(String temp: set) a.add(temp);
 		
 		int M = a.size();
 		boolean ok = true;
+		
 		for (int a=0; a<M-1; a++) 
 		    for (int b=a+1; b<M; b++) 
 		      if (check(a, b)) ok = false;		    		  

@@ -20,10 +20,8 @@ public class US_SIL_sort {
 	     int moo = 0; 
 	     double num = 0.1;
 	     for(int i=0; i<A.length; i++){	   
-	    	// System.out.println(Arrays.toString(B));
 
 	    	 int index = Arrays.binarySearch(B, A[i]);
-	    	// System.out.println(index);
 	    	 moo = Math.max(moo, i-index);
 	    	// A[i] = A[i]-0.1;
 	    	 if(index<B.length-1 && B[index]==B[index+1]) B[index] = B[index]-num;
