@@ -23,6 +23,18 @@ public class PrintFormat {
 		//03:45
 		System.out.printf("%02d:%02d\n", h, m);
 		
+		d = 123.456789;		
+		System.out.printf("The number is %f\n", d);  //123.456789
+		System.out.printf("The number is %.2f\n", d); //123.46		
+		
+		d=123.5;
+		System.out.printf("The number is %.2f\n", d); //123.50
+
+		
+		d=1.3;
+		System.out.printf("The number is %5.2f\n", d); //1.30
+		System.out.printf("The number is %5.1f\n", d); //01.30
+		
 	}
 
 }

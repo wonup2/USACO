@@ -41,9 +41,9 @@ public class Permutation {
 		
 		int dec = (int)Math.pow(2, num);
 		
-		for(int i=0; i<dec; i++) {
+		for(int k=0; k<dec; k++) {
     		
-    		String bin = Integer.toBinaryString(i);
+    		String bin = Integer.toBinaryString(k);
     		for(int j=bin.length(); j<num; j++) bin = "0"+bin;
     		
     		System.out.println(bin);
