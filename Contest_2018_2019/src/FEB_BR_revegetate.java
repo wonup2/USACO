@@ -11,16 +11,14 @@ public class FEB_BR_revegetate {
 
 	
 	public static void main(String[] args) throws IOException {
-		try {
-			init();
-			solve();			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	
+		
+		in = new Scanner(System.in);
+
+		init();
+		solve();		
 	}
 	
 	static void init() throws IOException {
-		in = new Scanner(System.in);
 
 		n = in.nextInt();
 		m = in.nextInt();
@@ -40,21 +38,18 @@ public class FEB_BR_revegetate {
 			a[x].add(y);
 			a[y].add(x);
 		}
-		
-		System.out.println(Arrays.toString(a));
-		System.out.println(Arrays.toString(b));
-
 	}
+	
 	static void solve() throws IOException {
 		
 		String ans = "";
 		
 		for(int i=0; i<n; i++) {
+			
 			String seed = b[i].get(0);
 			ans += seed;
-			for(int j:a[i]) {
-				b[j].remove(seed);
-			}			
+			
+			for(int j:a[i]) b[j].remove(seed);						
 		}
 		
 		System.out.println(ans);

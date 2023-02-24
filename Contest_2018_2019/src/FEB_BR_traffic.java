@@ -14,14 +14,8 @@ public class FEB_BR_traffic {
 		in.close();
 		out.close();		
 	}
-	/*
-	4
-on 1 1
-none 10 14
-none 11 15
-off 2 3
-	 */
-	private static void init() throws IOException {
+
+	static void init() throws IOException {
 		in = new BufferedReader(new FileReader("traffic.in"));
 		out = new PrintWriter(new BufferedWriter(new FileWriter("traffic.out")));
 		N = Integer.parseInt(in.readLine());
@@ -38,20 +32,43 @@ off 2 3
 	}
 
 	private static void solve() {
+		
 		a = -999999999; b = 999999999;
+		
 		for(int i=N-1; i>=0; i--) {
-			 if (T[i].equals("none")) { a = Math.max(a, A[i]); b = Math.min(b, B[i]);}
-			 if (T[i].equals("off")) { a += A[i]; b += B[i];}
-			 if (T[i].equals("on")) { a -= B[i]; b -= A[i]; a = Math.max(0,a);}
+			if (T[i].equals("none")) { 
+				a = Math.max(a, A[i]); 
+				b = Math.min(b, B[i]);
+			}
+			else if (T[i].equals("off")) { 
+				a += A[i]; 
+				b += B[i];
+			}
+			else if (T[i].equals("on")) { 
+				a -= B[i]; 
+				b -= A[i]; 
+				a = Math.max(0,a);
+			}
 		}
 		out.println(a+" "+b);
 		
+		
 		a = -999999999; b = 999999999;
+		
 		for(int i=0; i<N; i++) {
-			 if (T[i].equals("none")) { a = Math.max(a, A[i]); b = Math.min(b, B[i]); }
-			 if (T[i].equals("on")) { a += A[i]; b += B[i]; }
-			 if (T[i].equals("off")) { a -= B[i]; b -= A[i]; a = Math.max(0,a); }
-			 System.out.println(T[i]+" "+A[i]+" "+ B[i]+ " " +a+" "+b);
+			if (T[i].equals("none")) { 
+				a = Math.max(a, A[i]); 
+				b = Math.min(b, B[i]); 
+			}
+			else if (T[i].equals("on")) { 
+				a += A[i]; 
+				b += B[i]; 
+			}
+			else if (T[i].equals("off")) { 
+				a -= B[i]; 
+				b -= A[i]; 
+				a = Math.max(0,a); 
+			}
 		}
 		out.println(a+" "+b);
 	}
