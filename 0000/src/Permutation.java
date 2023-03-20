@@ -1,20 +1,21 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
+
 
 public class Permutation {
-	static ArrayList<String> p;
+	static HashSet<String> p;
 	static int mask[];
 	public static void main(String[] a) {		
-		p=new ArrayList<String>();
-		//permute("123", "");
+		p=new HashSet<String>();
+
+		permutation("");
+		System.out.println(p.size());
 		
-		System.out.println(p);	
-		mask = new int[5];
-		permutation(0);
-		System.out.println(Arrays.toString(mask));
+		//mask = new int[5];
+		//permutation(5);
+		//System.out.println(Arrays.toString(mask));
 	}
 	
-	static void permute(String left, String right) {
+	static void permutation(String left, String right) {
 	    if(left.length() == 0) {
 	    	p.add(right); 
 	    	return;
@@ -23,16 +24,16 @@ public class Permutation {
 	    	char c = left.charAt(i);
 	    	String l = left.substring(0, i) + left.substring(i + 1);
 	    	String r = right + c;
-	    	permute(l, r); 
+	    	permutation(l, r); 
 	    }
 	}
 	
 	static void permutation(String s) {
-		if(s.length()==8) {
+		if(s.length()==5) {
 			p.add(s); 		
 		}
 		
-		for(int i=0; i<8; i++) {			
+		for(int i=0; i<5; i++) {			
 			if(!s.contains(i+"")) permutation(s+i);
 		}
 	}
