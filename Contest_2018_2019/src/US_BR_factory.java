@@ -3,38 +3,33 @@ import java.util.*;
 
 public class US_BR_factory {
 
-	static BufferedReader in;
+	static Scanner in;
 	static PrintWriter out;
 	static StringTokenizer st;
-	static int n, a[], b[];
-	public static void main(String[] args) throws IOException {
+    static String filename = "factory";
 
-		in = new BufferedReader(new FileReader("factory.in"));
-		out = new PrintWriter(new FileWriter("factory.out"));
-		init();
-		solve();
-		in.close();
-		out.close();		
-	}
+	static int n, a[], b[];
+	
 	static void init() throws NumberFormatException, IOException {
-		n=Integer.parseInt(in.readLine());
+		n = in.nextInt();
 		a = new int[n+1];
 		b = new int[n+1];
 		for(int i=1; i<n; i++) {
-			st = new StringTokenizer(in.readLine());
-			a[Integer.parseInt(st.nextToken())]++;
-			b[Integer.parseInt(st.nextToken())]++;
+			a[in.nextInt()]++;
+			b[in.nextInt()]++;
 		}
 		
-		System.out.println(Arrays.toString(a));
-		System.out.println(Arrays.toString(b));
+		//System.out.println(Arrays.toString(a));
+		//System.out.println(Arrays.toString(b));
 
 	}
 	
 	static void solve() {
+		
 		int ans = -1;
 		boolean ok = false;
 		int cnt=0;
+		
 		for(int i = 1; i<=n; i++) {
 			if(a[i]==0 && b[i]>=1) {
 				if(!ok) ans=i; 
@@ -42,6 +37,16 @@ public class US_BR_factory {
 				cnt++;
 			}			
 		}
-		System.out.println(cnt==1?ans:-1);
+		
+		out.println(cnt==1? ans : -1);
+	}
+	
+	public static void main(String[] args) throws IOException {
+		in = new Scanner(new FileReader(filename+".in"));
+		out = new PrintWriter(new PrintWriter(filename+".out"));
+		init();
+		solve();	
+		in.close();
+		out.close();	
 	}
 }

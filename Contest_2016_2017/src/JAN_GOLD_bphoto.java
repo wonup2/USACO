@@ -2,8 +2,8 @@ import java.io.*;
 import java.util.*;
 public class JAN_GOLD_bphoto {
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("bphoto.in"));
-		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("bphoto.out")));
+		BufferedReader br = new BufferedReader(new FileReader("test.in"));
+		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("test.out")));
 		int n = Integer.parseInt(br.readLine());
 		State[] l = new State[n];
 		for(int i = 0; i < n; i++) {

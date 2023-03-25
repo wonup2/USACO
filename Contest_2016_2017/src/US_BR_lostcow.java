@@ -11,7 +11,6 @@ public class US_BR_lostcow {
 
 		int total = 0, start = x, mult = 1, end=0;
 
-		// Simulate.
 		while (true) {
 
 			// Go to the new x.
@@ -30,11 +29,9 @@ public class US_BR_lostcow {
 			int travel = max-min;
 			total += travel;
 			mult *= (-2);
-			start = next;
-			
+			start = next;			
 		}
 
-		// Ta da!
 		PrintWriter out = new PrintWriter(new FileWriter("lostcow.out"));
 		out.println(total);
 		out.close();

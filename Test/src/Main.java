@@ -1,65 +1,24 @@
-import java.util.*;
-public class Main {
-  static Scanner in;
-  static int n, m, a[], ans, low, high, mid;
-  
-  public static void main(String[] args) {
-    in=new Scanner(System.in);
-    init();
-    solve();
-    count();
-  }
-  static void init(){
-    n = in.nextInt();
-    m = in.nextInt();
-    a = new int[n];
-    for(int i=0; i<n; i++) {
-      a[i]=in.nextInt();
-      low=Math.max(low,a[i]);
-      high+=a[i];
-    }
-  }
-  
-  static void solve() {
+import java.util.Scanner;
 
-    while(low<=high) {
-      mid=(high+low)/2;
-      if(check(mid)) {
-        ans=mid;
-        high=mid-1; //<----
-      } else {
-        low=mid+1; //<---
-      }
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        int len = s.length();
+        int[] cnt = new int[len + 1]; // cnt[i]: s.substring(0, i)에서 bessie의 개수
+        for (int i = 0; i < len; i++) {
+            if (i >= 5 && s.substring(i - 5, i).equals("bessie")) {
+                cnt[i + 1] = cnt[i - 4] + 1;
+            } else {
+                cnt[i + 1] = cnt[i];
+            }
+        }
+        long ans = 0;
+        for (int i = 0; i < len; i++) {
+            for (int j = i + 1; j <= len; j++) {
+                ans += cnt[j] - cnt[i]; // i부터 j-1까지의 부분문자열에서 bessie의 개수를 더함
+            }
+        }
+        System.out.println(ans);
     }
-    System.out.println(ans);
-  }
-  
-  static boolean check(int mid) {
-    long total=0l;
-    int group=1;
-    for(int i=0;i<n;i++) {
-      if(total+a[i]<=mid) {
-        total+=a[i];
-      } else {
-        group++;
-        total=a[i];
-      }
-    }
-    return group<=m;
-  }
-  static void count() {
-    int count=0, sum=0;
-    for(int i=0;i<n;i++) {
-      if(sum+a[i]<=ans) {
-        count++;
-        sum+=a[i];
-        //System.out.println(count+" "+ a[i] +" "+sum);
-      } else {
-        System.out.print(count+" ");
-        count=1;
-        sum=a[i];
-      }
-    }
-    System.out.println(count);
-  } 
 }
