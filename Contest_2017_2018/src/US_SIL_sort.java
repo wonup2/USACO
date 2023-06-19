@@ -29,6 +29,7 @@ public class US_SIL_sort {
 
 	    	 num*=num;
 	    	// System.out.println(Arrays.toString(B));
+	    	 
 	     }    
 	     
 	     out.println(moo+1);

@@ -3,49 +3,53 @@ import java.util.*;
 import java.io.*;
 
 public class FEB_SIL_paintbarn {
-	
-	final public static int MAX = 1001;
+	static BufferedReader in;
+	static PrintWriter out;
+	static StringTokenizer st;
+	static int n, k, a[][];
 
-	public static int n;
-	public static int k;
-	public static int[][] a;
 	
 	public static void main(String[] args) throws Exception {
 	
-		// Get basic info.
-		BufferedReader stdin = new BufferedReader(new FileReader("paintbarn.in"));
-		StringTokenizer tok = new StringTokenizer(stdin.readLine());
-		n = Integer.parseInt(tok.nextToken());
-		k = Integer.parseInt(tok.nextToken());
+		in = new BufferedReader(new FileReader("paintbarn.in"));
+		out = new PrintWriter(new FileWriter("paintbarn.out"));
 		
-		// Store info for cumulative frequency array. (Currently it's not one.)
-		a = new int[MAX][MAX];
+		init();
+		solve();
+	
+		in.close();
+		out.close();
+	}
+	
+	static void init() throws IOException {
+		st = new StringTokenizer(in.readLine());
+		n = Integer.parseInt(st.nextToken());
+		k = Integer.parseInt(st.nextToken());
+		
+		a = new int[1001][1001];
 		for (int j=0; j<n; j++) {
-			tok = new StringTokenizer(stdin.readLine());
-			int x1 = Integer.parseInt(tok.nextToken());
-			int y1 = Integer.parseInt(tok.nextToken());
-			int x2 = Integer.parseInt(tok.nextToken());
-			int y2 = Integer.parseInt(tok.nextToken());
+			st = new StringTokenizer(in.readLine());
+			int x1 = Integer.parseInt(st.nextToken());
+			int y1 = Integer.parseInt(st.nextToken());
+			int x2 = Integer.parseInt(st.nextToken());
+			int y2 = Integer.parseInt(st.nextToken());
 			for(int i=x1; i<x2; i++) {
 				a[i][y1]++;
 				a[i][y2]--;
 			}
 		}
-
-		int res = 0;
-		
-		for(int i=0; i<MAX-1; i++) {
-			for(int j=0; j<MAX-1; j++) {
-				if(a[i][j]==k) res++;
-				a[i][j+1] += a[i][j];
-			}
-		}
-				
-		// Output results.
-		PrintWriter out = new PrintWriter(new FileWriter("paintbarn.out"));
-		out.println(res);
-		out.close();
-		stdin.close();	
 	}
 	
+	static void solve() {
+
+		int ans = 0;
+		
+		for(int i=0; i<1000; i++) {
+			for(int j=0; j<1000; j++) {
+				if(a[i][j]==k) ans++;
+				a[i][j+1] += a[i][j];
+			}
+		}					
+		out.println(ans);
+	}	
 }

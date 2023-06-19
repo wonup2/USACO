@@ -3,7 +3,7 @@ import java.util.*;
 public class FEB_BR_triangles {
 	
 	static TreeSet<Integer> setX, setY;
-    static int x[], y[], n;
+    static int x[], y[], n, m=1000000007;
 	
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("triangles.in"));
@@ -29,7 +29,8 @@ public class FEB_BR_triangles {
       for(int j = i+1; j < n-1; j++) { 
         for(int k = j+1; k < n; k++) {         	
         	if(ok(i, j, k)) 
-        		area = Math.max(area, Math.abs(setX.first()-setX.last()) * Math.abs(setY.first()-setY.last()));      
+        		area = area%m + ((setX.last()-setX.first())%m)   *  ( (setY.last()-setY.first()) %m );     
+        	
         }
       }
     }

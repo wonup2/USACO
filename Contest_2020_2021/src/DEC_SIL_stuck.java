@@ -30,6 +30,7 @@ public class DEC_SIL_stuck {
         N.sort(Comparator.comparingInt(i -> x[i]));
         
         System.out.println(E);
+        System.out.println(N);
         isStuck = new boolean[n];
         cnt = new int[n];        
 	}
@@ -50,7 +51,7 @@ public class DEC_SIL_stuck {
                     cnt[e] += 1 + cnt[n];                   
                 }
                    
-                //System.out.println(Arrays.toString(cnt));                
+                System.out.println(x[e]+" "+ y[e]+" "+x[n]+" "+y[n]+" "+ Arrays.toString(cnt));                
             }
 		}
        

@@ -42,16 +42,21 @@ public class barn1 {
 	}
 	
 	static int solve() {
+		System.out.println(Arrays.toString(a));
+
 		Arrays.sort(a);
-		for(int i=1; i<c; i++) gap.add(a[i]-a[i-1]-1);		
-	
+		for(int i=1; i<c; i++) gap.add(a[i]-a[i-1]-1);	
+		
+		System.out.println(gap);
 		Collections.sort(gap, Collections.reverseOrder());
-		
+		System.out.println(gap);
+
 		int result=a[c-1]-a[0]+1;
-		
+		System.out.println(result);
 		if(c<=m) return c;
 		for(int i=0; i<m-1; i++) result -= gap.get(i);
-		
+		System.out.println(result);
+
 		return result;
 	}
 }
