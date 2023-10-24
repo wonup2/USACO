@@ -15,10 +15,10 @@ public class SetPractice {
 		for(int n:s1)
 			System.out.println(n+" ");
 		
-		if (s1.contains(5)) System.out.println("yes");  //O(1)
+		if (s1.contains(5)) System.out.println("yes");  
 		
 		
-		//
+		
 		TreeSet<Integer> s2 = new TreeSet<Integer>();
 		s2.add(10);
 		s2.add(101);
@@ -29,7 +29,7 @@ public class SetPractice {
 		System.out.println(s2);
 		System.out.println(s2.first() +" "+ s2.last());
 		
-		//
+		
 		LinkedHashSet<Integer> s3 = new LinkedHashSet<Integer>();
 		s3.add(10);
 		s3.add(101);
