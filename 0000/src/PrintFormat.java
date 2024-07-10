@@ -36,5 +36,4 @@ public class PrintFormat {
 		System.out.printf("The number is %5.1f\n", d); //01.30
 		
 	}
-
 }
