@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="0000/src"/>
+	<classpathentry kind="src" path="Collections/src"/>
+	<classpathentry kind="src" path="Contest_2013_2014/src"/>
+	<classpathentry kind="src" path="contest_2014_2015/src"/>
+	<classpathentry kind="src" path="Contest_2015_2016/src"/>
+	<classpathentry kind="src" path="Contest_2016_2017/src"/>
+	<classpathentry kind="src" path="Contest_2017_2018/src"/>
+	<classpathentry kind="src" path="Contest_2018_2019/src"/>
+	<classpathentry kind="src" path="Contest_2019_2020/src"/>
+	<classpathentry kind="src" path="Contest_2020_2021/src"/>
+	<classpathentry kind="src" path="Contest_2021_2022/src"/>
+	<classpathentry kind="src" path="Contest_2022_2023/src"/>
+	<classpathentry kind="src" path="Contest_2023_2024/src"/>
+	<classpathentry kind="src" path="CSES/src"/>
+	<classpathentry kind="src" path="Section_1_2/src"/>
+	<classpathentry kind="src" path="Section_1_3/src"/>
+	<classpathentry kind="src" path="Section_1_4/src"/>
+	<classpathentry kind="src" path="Section_1_5/src"/>
+	<classpathentry kind="src" path="Section_1_6/src"/>
+	<classpathentry kind="src" path="Test/src"/>
+	<classpathentry kind="output" path="0000/bin"/>
+</classpath>

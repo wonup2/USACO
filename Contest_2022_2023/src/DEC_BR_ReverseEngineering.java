@@ -42,6 +42,8 @@ public class DEC_BR_ReverseEngineering {
 		a = new LinkedList<pair>();
 		for(int i = 0; i<m; i++) 
 			a.add(new pair(in.next(), in.next().charAt(0)));
+		
+		System.out.println(a);
 	
 	}
 	static void solve() {		
@@ -70,14 +72,20 @@ public class DEC_BR_ReverseEngineering {
 					}
 				}								
 
+				System.out.println(output0 +" "+ idx0);
+				System.out.println(output1 +" "+ idx1);
+				System.out.println();
+
 				if(output0.size()==1) 
 					for(int k=idx0.size()-1; k>=0; k--) a.remove((int)idx0.get(k));					
 				
 				else if(output1.size()==1) 
-					for(int k=idx1.size()-1; k>=0; k--) a.remove((int)idx1.get(k));							
+					for(int k=idx1.size()-1; k>=0; k--) a.remove((int)idx1.get(k));			
+				System.out.println("a : " + a);
+
 				
 			}
-			
+
 			int size2=a.size();
 
 			if(size1==size2) break;
@@ -87,3 +95,19 @@ public class DEC_BR_ReverseEngineering {
 		else System.out.println("LIE");
 	}
 }
+
+/*
+1 0 0 0 1   	0
+0 1 0 0 0   	1
+1 0 1 1 0 	0
+0 1 1 0 1	1
+0 1 0 0 1	1
+1 0 0 1 0 	0
+0 1 1 1 1	0
+1 0 0 0 0 	1
+1 0 1 0 0 	1
+1 1 0 0 1	0
+1 1 0 1 1 	0
+0 0 1 1 0 	0
+
+*/
