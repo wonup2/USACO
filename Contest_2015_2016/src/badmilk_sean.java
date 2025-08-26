@@ -61,7 +61,7 @@ public class badmilk_sean {
 		
 		out.println(maxCanGetSick);
     }	
-	private static boolean milkTypeCanBeBad(int milkType) {
+	public static boolean milkTypeCanBeBad(int milkType) {
 		for(int i = 0; i < personSick.length; i++) {
 			if(!personDrankMilkBefore(personSick[i], milkType, timeSick[i])) {
 				return false;

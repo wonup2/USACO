@@ -18,8 +18,8 @@ public class test {
 	public static void main (String [] args) throws IOException {
 		
 		in = new BufferedReader(new FileReader(file+".in"));
-		out = new PrintWriter(new File(file+".out"));
-		init();
+		init();		out = new PrintWriter(new File(file+".out"));
+
 		solve();
 		
 		in.close();
