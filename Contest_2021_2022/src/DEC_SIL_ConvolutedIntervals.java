@@ -1,50 +1,94 @@
 import java.util.*;
 import java.io.*;
- 
+
 public class DEC_SIL_ConvolutedIntervals {
+
 	static BufferedReader in;
 	static StringTokenizer st;
+	static PrintWriter out;
 	static int n, m;
-	static long a[], b[], p[];
-    public static void main(String[] args) throws IOException {
-        in = new BufferedReader(new InputStreamReader(System.in));
-        st = new StringTokenizer(in.readLine());
-        init();
-        solve();        
-    }
-    
-    static void init() throws IOException {
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
+	static pair a[];
+	static long k[];	
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		in = new BufferedReader(new InputStreamReader(System.in));
+		out = new PrintWriter(new File("out.out"));
+		init();
+		solve();
+		out.close();
+	}
+	
+	public static void init() throws NumberFormatException, IOException {
+		
+		st = new StringTokenizer(in.readLine());
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
+		a = new pair[n];
+		k = new long[m*2+2];
+		
+		for(int i=0; i<n; i++) {
+			st = new StringTokenizer(in.readLine());
+			a[i] = new pair(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+		}
+	}
+	
+	public static void solve() {
 
-        a = new long[m + 1];
-        b = new long[m + 1];
-        for (int j = 1; j <= n; j++) {
-            st = new StringTokenizer(in.readLine());
-            a[Integer.parseInt(st.nextToken())]++;
-            b[Integer.parseInt(st.nextToken())]++;
-        }
-    }
-    
-    static void solve() {
+		for(int i=0; i<n; i++) {
+			for(int j=i; j<n; j++) {
+				int s = a[i].a + a[j].a;
+				int e = a[i].b + a[j].b;
+				System.out.println(s + " " + e);
+				if(s<=e) {					
+					k[s]++;
+					k[e+1]--;
+					if(i!=j) {
+						k[s]++;
+						k[e+1]--;
+					}
+				}
+				System.out.println(Arrays.toString(k));
 
-        p = new long[(2 * m) + 2];
-        
-        for (int i = 0; i <= m; i++) {
-            for (int j = 0; j <= m; j++) {
-                p[i + j] += a[i] * a[j];
-                p[i + j + 1] -= (b[i] * b[j]);
-            }
-        }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(p[0]).append('\n');
-
-        for(int i=1; i<=m*2; i++) {
-        	p[i] += p[i-1];  //no need
-            sb.append(p[i]).append('\n');
-        }       
-        
-        System.out.print(sb.toString());
-    }
+			}
+		}
+		
+		
+		//System.out.println(Arrays.toString(k));
+		
+		for(int i=1; i<k.length; i++)
+			k[i] += k[i-1];
+		
+		StringBuilder sb = new StringBuilder();
+		for(int i=0; i<k.length-1; i++)
+			sb.append(k[i]).append("\n");
+		
+		out.print(sb.toString());
+	}
+	
+	
+	
+	static class pair{
+		int a, b;
+		pair(int c, int d){
+			a = c; 
+			b = d;
+		}
+		public String toString() {
+			return a+" "+b;
+		}
+	}
 }
+
+/*
+0
+0
+1
+3
+4
+4
+4
+3
+3
+1
+1
+*/
