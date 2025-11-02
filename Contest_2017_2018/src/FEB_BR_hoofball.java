@@ -22,7 +22,8 @@ public class FEB_BR_hoofball {
 			a[i] = in.nextInt();
 		
 		Arrays.sort(a);
-		
+		System.out.println(Arrays.toString(a));
+
 	}
 	
 	static void solve() {
@@ -44,6 +45,9 @@ public class FEB_BR_hoofball {
 				t[i]=i+1;
 			}
 		}
+
+		System.out.println(Arrays.toString(t));
+		System.out.println(Arrays.toString(p));
 
 		for(int i=0; i<n-1; i++) {
 			if(p[i]==0) ans++;

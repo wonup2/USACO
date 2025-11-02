@@ -30,6 +30,8 @@ public class ArrayListArray {
 			}
 			System.out.println();			
 		}
+		
+
 	}
 
 }

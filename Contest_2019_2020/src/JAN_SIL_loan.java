@@ -28,14 +28,15 @@ public class JAN_SIL_loan {
 	static boolean check(long x) {
 		long days = K;
 		long left = N;
-		while (left > 0 && days >0) {
+		while (true) {
 			long y = left/x;
-		    if (y <= M) return M * days >= left; // y 는 계속 작아질테니까... 남은날 * M 이 left 보다 크면 ok
+		    if (y <= M) return M * days >= left; // MATH: y 는 계속 작아질테니까... 남은날 * M 이 left 보다 크면 ok
 
-		    //long endPoint = y*x;
-		    long passDays = (left % x)/y + 1;  // left = 28, x = 11, y = 2 --->  reduce 2 during 4 days 
-		    days -= passDays;
-		    left -= y*passDays;
+		    long jump = (left % x)/y + 1;  // JUMP: left = 28, x = 11, y = 2 --->  reduce 2 during 4 days 
+		    days -= jump;
+		    left -= y*jump;
+		    
+		    if(days<=0) break;
 		}
 		return left <= 0;
 	}

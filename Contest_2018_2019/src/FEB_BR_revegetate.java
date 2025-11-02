@@ -36,8 +36,9 @@ public class FEB_BR_revegetate {
 		for(int i=0; i<m; i++) {
 			int x = in.nextInt()-1;
 			int y = in.nextInt()-1;
-			a[x].add(y);
-			a[y].add(x);
+			int min = Math.min(x, y);
+			int max = Math.max(x, y);
+			a[min].add(max);
 		}		
 	}
 	

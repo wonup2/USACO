@@ -43,6 +43,7 @@ off 2 3
 			 if (T[i].equals("none")) { a = Math.max(a, A[i]); b = Math.min(b, B[i]);}
 			 if (T[i].equals("off")) { a += A[i]; b += B[i];}
 			 if (T[i].equals("on")) { a -= B[i]; b -= A[i]; a = Math.max(0,a);}
+			 System.out.println(a+ " "+b);
 		}
 		out.println(a+" "+b);
 		

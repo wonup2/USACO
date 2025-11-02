@@ -1,115 +1,89 @@
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class JAN_SIL_wormsort {
-  
-	static BufferedReader in;
-    static PrintWriter out;
+	static int[] cows;
+	static ArrayList<Pair>[] adj;
+	static boolean[] vis;
 
-	static StringTokenizer st;
-	static int n, m;
-	static int[] loc, lhs, rhs, weight;
-	static LinkedList<Edge>[] a;
-	static int[] v;
-	  
-	public static void main(String[] args) throws IOException{
-		in = new BufferedReader(new FileReader("wormsort.in"));
-		out = new PrintWriter(new BufferedWriter(new FileWriter("wormsort.out")));
-		st = new StringTokenizer(in.readLine());
-		init();
-		solve();
-		in.close();
-		out.close();
-	}
-	
-	static void init() throws IOException {
-		
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader("wormsort.in"));
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("wormsort.out")));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int n, m;
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
+		cows = new int[n];
+		adj = new ArrayList[n];
+		vis = new boolean[n];
+		for (int i = 0; i < n; i++) {
+			adj[i] = new ArrayList<>();
+		}
+		st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < n; i++) {
+			cows[i] = Integer.parseInt(st.nextToken()) - 1;
+		}
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(br.readLine());
+			int a, b, w;
+			a = Integer.parseInt(st.nextToken()) - 1;
+			b = Integer.parseInt(st.nextToken()) - 1;
+			w = Integer.parseInt(st.nextToken());
+			adj[a].add(new Pair(b, w));
+			adj[b].add(new Pair(a, w));
+		}
 		
-		loc = new int[n];
-		v = new int[n];
-		a = new LinkedList[n];
-    
-		for(int i = 0; i < n; i++) a[i] = new LinkedList<>();
-    
-		lhs = new int[m];
-		rhs = new int[m];
-		weight = new int[m];
-		st = new StringTokenizer(in.readLine());
+		System.out.println(Arrays.toString(adj));
 		
-		for(int i = 0; i < n; i++) 
-			loc[i] = Integer.parseInt(st.nextToken())-1;
-		
-		for(int i = 0; i < m; i++) {
-			st = new StringTokenizer(in.readLine());
-			int x = Integer.parseInt(st.nextToken())-1;
-			int y = Integer.parseInt(st.nextToken())-1;
-			int w = Integer.parseInt(st.nextToken());
-			a[x].add(new Edge(y, w));
-			a[y].add(new Edge(x, w));
+		int lo = 0, hi = 10;
+		while (lo < hi) {
+			int mid = (lo + hi + 1) / 2;
+			if (check(mid)) {				
+				lo = mid;
+			} else {
+				hi = mid - 1;
+			}
+			
+			System.out.println(mid+" "+Arrays.toString(vis));
+			Arrays.fill(vis, false);
+		}
+		out.print((lo == (int) 1E9) ? -1 : lo);
+		out.close();
+		br.close();
+	}
+
+	static boolean check(int x) {
+		dfs(0, x);
+		for (int i = 0; i < vis.length; i++) {
+			if ((!vis[i] || !vis[cows[i]]) && i != cows[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	static void dfs(int n, int x) {
+		if (vis[n]) return;
+		vis[n] = true;
+		for (Pair p : adj[n]) {
+			if (p.width >= x) {
+				dfs(p.loc, x);
+			}
 		}
 	}
 	
-	static void solve() {
-		
-		int low = 0;
-		int high = 1000000001;
-		
-		while(low != high) {
-			int mid = (low + high + 1) / 2;
-			if(check(mid)) low = mid;
-			else high = mid-1;
+	static class Pair {
+		int loc, width;
+
+		public Pair(int loc, int width) {
+			this.loc = loc;
+			this.width = width;
 		}
 		
-		if(low > 1e9) low = -1;
-		out.println(low);
-  }
-  
-  static boolean check(int w) {
-	  
-    Arrays.fill(v, -1);
-    
-    int num = 0;
-    
-    for(int i = 0; i < v.length; i++) {
-    	
-      if(v[i] < 0) {
-    		System.out.println(i+" "+num+" "+ w);  
-
-        dfs(i, num++, w);
-      }
-      
-    }
-	System.out.println("hello " + Arrays.toString(v));  
-	System.out.println("hello " + Arrays.toString(loc));  
-
-    for(int i = 0; i < loc.length; i++) {
-      if(v[i] != v[loc[i]]) return false;
-    }
-    
-    return true;
-  }
-  
-
-  static void dfs(int curr, int label, int minW) {
-    if(v[curr] == label) return;
-	System.out.println(Arrays.toString(v));  
-
-	System.out.println("dfs: "+curr+" "+label+" "+ minW);  
-
-    v[curr] = label;
-    for(Edge child: a[curr]) 
-    	if(child.w >= minW) 
-    		dfs(child.d, label, minW);
-  }
-  
-  
-  static class Edge {
-    int d, w;
-    public Edge(int d, int w) {
-      this.d = d;
-      this.w = w;
-    }
-  }
+		public String toString() {
+			return loc+" "+width;
+		}
+	}
 }

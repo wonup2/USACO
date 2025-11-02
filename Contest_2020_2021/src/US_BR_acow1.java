@@ -7,6 +7,7 @@ public class US_BR_acow1 {
 	static StringTokenizer st;
 	static int n, l;
 	static ArrayList<Integer> a;
+	
     public static void main(String[] args) throws IOException {
         in = new BufferedReader(new InputStreamReader(System.in));
         init();
@@ -30,14 +31,15 @@ public class US_BR_acow1 {
         Collections.sort(a, Comparator.reverseOrder());
         
         int h = hIndex();
-       // System.out.println(h);
-        
-        if (h != n) {
-            for (int j = h; j >= 0 && j > h - l; j--) {
-                a.set(j, a.get(j)+1);
+
+        if (h != n && l != 0) {
+            for (int j = h; j >= 0; j--) {
+            	a.set(j, a.get(j)+1);
+                l--;
+                if(l==0) break;
             }
         }
-        //System.out.println(a);
+
         Collections.sort(a, Comparator.reverseOrder());
         System.out.println(hIndex());
     }

@@ -6,7 +6,7 @@ public class US_BR_acow3  {
     static char a[][];
     static int dx[]= {-1, 1, 0, 0};
     static int dy[]= {0, 0, -1, 1};
-    static HashMap<Integer, Integer> map;
+    static HashSet<ArrayList<String>> set;
     public static void main(String[] args) {
     	
     	init();
@@ -19,37 +19,43 @@ public class US_BR_acow3  {
      	m = in.nextInt(); in.nextLine(); 
      	cnt = 0;
      	a = new char[n][];
-     	map = new HashMap<Integer, Integer>();
+     	set = new HashSet<ArrayList<String>>();
      	
      	for(int i=0; i<n; i++) 
-     		a[i] = in.nextLine().toCharArray();
-     	
+     		a[i] = in.nextLine().toCharArray();     	
     }
     
     static void solve() {    	
-    	HashMap<Integer, Integer> temp;
+    	
     	for(int r=0; r<n; r++) {
     		for(int c=0; c<m; c++) {
-    			
+    			ArrayList<String> temp;
     			if(a[r][c]=='G') {
-    				System.out.print("G " + r +" " + c+" ");
 
-    				temp = new HashMap<Integer, Integer>();
+					temp = new ArrayList<String>();
     				for(int k=0; k<4; k++) {
     					int nr=r+dx[k];
     					int nc=c+dy[k];
+    					
     					if(nr<0||nr>=n||nc<0||nc>=m) continue;
-    					if(a[nr][nc]=='C') temp.put(nr, nc);
+    					if(a[nr][nc]=='C') {
+    						//System.out.println(nr+" "+nc);
+    						temp.add(nr+" "+nc);
+    					}
     				}
-    				System.out.println(temp);
+    				//System.out.println(r+" "+ c + " " +temp);
     				if(temp.size()>2) cnt++;
     				
-    				if(temp.size()==2) map.putAll(temp);
+    				if(temp.size()==2) {
+    					Collections.sort(temp);
+    					set.add(temp);
+    				}
     			}
     		}
     	}
-    	System.out.println(cnt);
-    	System.out.println(cnt+(map.size()+1)/2);
+    	
+    	//System.out.println(set);
+    	System.out.println(cnt+ set.size());
     }
     
     static class pair {

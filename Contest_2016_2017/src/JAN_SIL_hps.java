@@ -13,13 +13,10 @@ public class JAN_SIL_hps {
 			else if(s.equals("S")) l[i] = 2;
 			lReverse[l.length-1-i] = l[i];
 		}
-		
-		System.out.println(Arrays.toString(l));
-		System.out.println(Arrays.toString(lReverse));
 
 		int[][] matchPrefix = getMatch(l);
 		int[][] matchSuffix = getMatch(lReverse);
-		
+				
 		int ret = 0;
 		for(int a = 0; a <= n; a++) {
 			for(int i = 0; i < 3; i++) {

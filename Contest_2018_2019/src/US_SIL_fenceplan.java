@@ -67,15 +67,15 @@ public class US_SIL_fenceplan {
 		
 		if(v[i]) return;
 		
+		MX = Math.max(MX, x[i]);
+		mx = Math.min(mx, x[i]);
+		MY = Math.max(MY, y[i]);
+		my = Math.min(my, y[i]);
 		v[i] = true;
 		
 		for(int n: a[i]) {
 			if(v[n]) continue;
-			
-			MX = Math.max(MX, x[n]);
-			mx = Math.min(mx, x[n]);
-			MY = Math.max(MY, y[n]);
-			my = Math.min(my, y[n]);
+
 			dfs(n);
 		}
 	}

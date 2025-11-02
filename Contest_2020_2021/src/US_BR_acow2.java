@@ -12,7 +12,13 @@ public class US_BR_acow2 {
     	
     	in = new BufferedReader(new InputStreamReader(System.in));
         init();
-        solve();
+        while(k-->0)solve();
+        
+        StringBuilder out = new StringBuilder();
+        for (int a = 0; a < n; a++) 
+            out.append(ans[a]).append('\n');
+                
+        System.out.print(out);
     }
     
     static void init() throws IOException {
@@ -33,36 +39,30 @@ public class US_BR_acow2 {
         }
     }
     
-    static void solve() throws IOException {
-    	
-        for (int i = 0; i < k; i++) {
+    static void solve() throws IOException {    	
         	
-        	st = new StringTokenizer(in.readLine());
-            String[] name = new String[n];
+        st = new StringTokenizer(in.readLine());
+        String[] name = new String[n];
             
-            for (int j = 0; j < n; j++) 
-            	name[j] = st.nextToken();
+        for (int j = 0; j < n; j++) 
+            name[j] = st.nextToken();
                         
-            for (int x = 0; x < n; x++) {
-                boolean ckeck = true;
-                for (int y = x + 1; y < n; y++) {
-                    if (name[y - 1].compareTo(name[y]) > 0) ckeck = false;
-                    
-                    if (!ckeck) {
-                        int a = m.get(name[x]);
-                        int b = m.get(name[y]);
-                        ans[a][b] = '0';
-                        ans[b][a] = '1';
-                    }
-                }
-            }
-        }
-        
-        StringBuilder out = new StringBuilder();
-        for (int a = 0; a < n; a++) 
-            out.append(ans[a]).append('\n');
+        for (int x = 0; x < n; x++) {
+            boolean ckeck = true;
                 
-        System.out.print(out);
+            for (int y = x; y < n-1; y++) {
+                if (name[y].compareTo(name[y+1]) > 0) ckeck = false;
+
+                int a = m.get(name[x]);
+                int b = m.get(name[y+1]);
+                    
+                if (!ckeck && ans[a][b]=='?') {
+                       
+                    ans[a][b] = '0';
+                    ans[b][a] = '1';
+                }
+            }            
+        }        
     }
 }
 

@@ -8,6 +8,14 @@ public class DEC_SIL_RP{
 	
 	public static void main(String[] args) {
 		in = new Scanner(System.in);
+		
+		init();
+		solve();
+		
+		in.close();
+	}
+	
+	static void init() {
 		xp = new TreeMap<Integer, Integer>();
 		yp = new TreeMap<Integer, Integer>();
 		 
@@ -22,7 +30,12 @@ public class DEC_SIL_RP{
 		}
 //		System.out.println(xp);
 //		System.out.println(yp);
+		
+	}
+	
+	static void solve() {
 
+		//ignore useless space 10^9 * 10^9 ---> n*n
 		int x[] = new int[N];
 		int y[] = new int[N];
 		
@@ -33,18 +46,19 @@ public class DEC_SIL_RP{
 		for(int i:yp.values())
 			y[i-1]=rank++;
 		
-//		System.out.println(Arrays.toString(x));
-//		System.out.println(Arrays.toString(y));
+//		System.out.println("x: " + Arrays.toString(x));
+//		System.out.println("y: " + Arrays.toString(y));
 		
 		for (int i=0; i<N; i++) 
 			a[x[i]][y[i]]++;
-		//print(a);
+//		print(a);
 
 		for (int i=1; i<=N; i++)
 		    for (int j=1; j<=N; j++)
 		      a[i][j] += a[i-1][j] + a[i][j-1] - a[i-1][j-1];
 		  
-		//print(a);
+//		print(a);
+
 		long ans = N+1;
 		for (int i = 0; i < N; i++) {
             for (int  j= i + 1; j < N; j++) {
@@ -53,7 +67,8 @@ public class DEC_SIL_RP{
 		      int min_y = Math.min(y[i], y[j]);
 		      int max_y = Math.max(y[i], y[j]);
 		      ans += sum(min_x, max_x, 1, min_y) * sum(min_x, max_x, max_y, N);
-		    }	
+		      //System.out.println(ans);
+            }	
 		  }
 	  System.out.println(ans);		
 	}

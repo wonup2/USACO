@@ -22,6 +22,7 @@ public class FEB_BR_clockwise  {
     			else if(sub.equals("NE") || sub.equals("SW") || sub.equals("ES") || sub.equals("WN")) cw++;
     			
     		}
+    		System.out.println(ccw+" "+cw);
     		
     		if(cw > ccw) System.out.println("CW");
     		else System.out.println("CCW");

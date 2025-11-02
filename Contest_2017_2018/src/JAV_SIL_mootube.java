@@ -60,11 +60,9 @@ public class JAV_SIL_mootube {
 		v[i] = true;
 		
 		for(Edge e:a[i]) {
-			if(v[e.d]) continue;
-			if(e.w >= k) {
-				ans++;
-				dfs(e.d, k);
-			}
+			if(v[e.d] || e.w < k) continue;
+			ans++;
+			dfs(e.d, k);		
 		}
 	}
 	

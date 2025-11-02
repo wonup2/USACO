@@ -62,10 +62,6 @@ public class JAN_BR_billboard2 {
 				}
 			}
 		}		
-		
-		int ans = (maxX-minX+1) * (maxY-minY+1);
-		
-		if(flag) out.println(ans);
-		else out.println(0);
 	}
+		
 }

@@ -26,16 +26,21 @@ public class US_BR_factory {
 			b[Integer.parseInt(st.nextToken())]++;
 		}
 		
-		System.out.println(Arrays.toString(a));
-		System.out.println(Arrays.toString(b));
+		//System.out.println(Arrays.toString(a));
+		//System.out.println(Arrays.toString(b));
 
 	}
 	
 	static void solve() {
 		int ans = 0;
+		int station = 0;
 		for(int i = 0; i<n; i++) {
-			if(a[i]==0) ans++;						
+			if(a[i]==0&&b[i]!=0) {
+				if(ans==0) station = i;
+				ans++;	
+				
+			}
 		}
-		out.println(ans==1?ans:-1);
+		out.println(ans==1?station:-1);
 	}
 }
