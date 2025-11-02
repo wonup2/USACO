@@ -25,11 +25,13 @@ public class US_BR_lostcow {
 
 			total += max-min;
 			mult *= (-2);
-			start = next;
-			
+			start = next;			
 		}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27
 		PrintWriter out = new PrintWriter(new FileWriter("lostcow.out"));
 		out.println(total);
 		out.close();

@@ -2,8 +2,8 @@ import java.io.*;
 import java.util.*;
 public class JAN_SIL_hps {
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("hps.in"));
-		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("hps.out")));
+		BufferedReader br = new BufferedReader(new FileReader("test.in"));
+		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("test.out")));
 		int n = Integer.parseInt(br.readLine());
 		int[] l = new int[n];
 		int[] lReverse = new int[n];

@@ -1,9 +1,23 @@
+import java.util.Arrays;
 
 public class Upperbound_Lowerbound {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+		int a[] = {1, 3, 4, 6};
+		int n = Arrays.binarySearch(a,5);
+		
+		int upper = 0, lower = 0;
+		if(n<0) {
+			upper = a[n*-1-1];
+			lower = a[n*-1-2];
+		}
+		
+	
+		System.out.println(n);
+		System.out.println(upper+" "+lower);
+		
+		
 	}
 	public static int lowerBound(int[] array, int length, int value) {
 	    int low = 0;

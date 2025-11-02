@@ -9,11 +9,13 @@ public class US_BR_tracing {
 	public static int numShakes;
 	public static boolean[] infected;
 	public static shake[] list;
-	
+	static PrintWriter out;
 	public static void main(String[] args) throws Exception {
 		
 		// Get input - store all data.
 		Scanner stdin = new Scanner(new File("tracing.in"));
+		out = new PrintWriter(new FileWriter("tracing.out"));
+
 		n = stdin.nextInt();
 		numShakes = stdin.nextInt();
 		
@@ -33,10 +35,6 @@ public class US_BR_tracing {
 		}
 		Arrays.sort(list);
 		
-		System.out.println("infected: " + Arrays.toString(infected));
-		System.out.println("list: "+Arrays.toString(list));
-
-		
 		int numPos = 0, min=-1, max=-1;
 		
 		// Try each cow as cow zero.
@@ -47,7 +45,6 @@ public class US_BR_tracing {
 			
 			// Run it.
 			int[] tmp = sim(i);
-			System.out.println("tmp: " + Arrays.toString(tmp));
 
 			// Have a solution.
 			if (tmp[0] != NOSOL) {
@@ -58,9 +55,7 @@ public class US_BR_tracing {
 			
 		}
 		
-		// Output result.
-		PrintWriter out = new PrintWriter(new FileWriter("tracing.out"));
-		
+	
 		// Special case.
 		if (max == 250)
 			out.println(numPos+" "+min+" Infinity");
@@ -108,13 +103,11 @@ public class US_BR_tracing {
 					cur[list[i].u] = true;
 					counts[list[i].v]++;				
 				}		
-				System.out.println(u +" " + i + " "+ k);
-				System.out.println(Arrays.toString(cur));
-				System.out.println(Arrays.toString(counts));
+				out.println(u +" " + i + " "+ k);
+				out.println(Arrays.toString(cur));
+				out.println(Arrays.toString(counts));
 			}
 
-			//System.out.println(Arrays.toString(infected));
-			// See if this was consistent.
 			boolean ok = true;
 			for (int i=0; i<n; i++)
 				if (cur[i] != infected[i])
@@ -122,11 +115,17 @@ public class US_BR_tracing {
 					
 			// If so, store.
 			if (ok) {
+				out.println("----------");
+				out.println(Arrays.toString(cur));
+				out.println(Arrays.toString(counts));
+				out.println("----------");
+
 				mink = Math.min(mink, k);
 				maxk = Math.max(maxk, k);
 			}		
 		}
 
+		System.out.println(mink+" "+maxk);
 		// This is what we got.
 		return new int[]{mink, maxk};
 	}

@@ -32,6 +32,10 @@ public class FEB_BR_SwapitySwapSwap {
 	}
   
 	static void solve() {
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27
 	    int cycle = 0;
 	    ar = new int[n];
 	    for(int i = 0; i < n; i++) ar[i] = i;
@@ -42,12 +46,21 @@ public class FEB_BR_SwapitySwapSwap {
 	      reverse(a1, a2);
 	      reverse(b1, b2);
 	      sorted = true;
+<<<<<<< HEAD
 	      for(int i = 0; sorted && i < n; i++) {
 	    	  if(ar[i] != i) sorted = false;    	  
 	      }
 	      if(sorted) break;
 	    }
 	    System.out.println(cycle);
+=======
+	      for(int i = 0; sorted && i < n; i++) 
+	    	  if(ar[i] != i) sorted = false;    	  
+	     
+	      if(sorted) break;
+	    }
+	    
+>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27
 	    k %= cycle;
 	    
 	    for(int i = 0; i < n; i++) ar[i] = i+1;
@@ -59,8 +72,12 @@ public class FEB_BR_SwapitySwapSwap {
 	    
 	    StringBuilder sb = new StringBuilder();
 	    for(int v: ar) sb.append(v).append("\n");
+<<<<<<< HEAD
 	    out.print(sb.toString());
 	    
+=======
+	    out.print(sb.toString());	    
+>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27
 	}
 	
 	static void reverse(int a, int b) {

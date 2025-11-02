@@ -12,6 +12,17 @@ public class FEB_BR_revegetate {
 	
 	
 	public static void main(String[] args) throws IOException {
+<<<<<<< HEAD
+=======
+		
+		in = new Scanner(System.in);
+
+		init();
+		solve();		
+	}
+	
+	static void init() throws IOException {
+>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27
 
 		in = new Scanner(new FileReader("revegetate.in"));
 		out = new PrintWriter(new FileWriter("revegetate.out"));
@@ -52,7 +63,25 @@ public class FEB_BR_revegetate {
 			
 			for(int k: a[i]) f[k].remove(cur);			
 		}
+<<<<<<< HEAD
 		
 		out.println(ans);
+=======
+	}
+	
+	static void solve() throws IOException {
+		
+		String ans = "";
+		
+		for(int i=0; i<n; i++) {
+			
+			String seed = b[i].get(0);
+			ans += seed;
+			
+			for(int j:a[i]) b[j].remove(seed);						
+		}
+		
+		System.out.println(ans);
+>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27
 	}
 }

@@ -14,26 +14,27 @@ public class JAN_SIL_mountains {
 			set[i * 2] = Integer.parseInt(st.nextToken());
 			set[i * 2 + 1] = Integer.parseInt(st.nextToken());
 		}
-		//System.out.println(Arrays.toString(set));	
-		int ans = 0;
+		
+		int cnt = 0;
 		for (int i = 0; i < n; i++) {
 			int now = i << 1;  
 			int f = 1;
 			for (int j = 0; j < n; j++) {
 			
-				if (j == i)	continue;
+				//if (j == i)	continue;
 				int temp = j << 1;   
 				
 				int a = Math.abs(set[now] - set[temp]);
-				//System.out.println(set[now] + " " + set[temp] +" "+ a);
 				int b = set[temp + 1] - set[now + 1];  
-				//System.out.println(set[temp + 1] + " " + set[now + 1] +" "+ b);
 
-				if (a <= b) {f = 0;	break;}
+				if (a <= b&&i!=j) {
+					f=0;	
+					break;
+				}
 			}
-			ans += f;
+			cnt += f;
 		}
-		out.println(ans);
+		out.println(cnt);
 		out.close();
 	}
 }

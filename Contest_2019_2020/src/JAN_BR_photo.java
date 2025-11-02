@@ -11,8 +11,8 @@ public class JAN_BR_photo {
 	
 	public static void main(String[] args) throws IOException {
 
-		in = new BufferedReader(new FileReader("photo.in"));
-		out = new PrintWriter(new BufferedWriter(new FileWriter("photo.out")));
+		in = new BufferedReader(new FileReader("test.in"));
+		out = new PrintWriter(new BufferedWriter(new FileWriter("test.out")));
 		init();
 		solve();
 		in.close();
@@ -29,7 +29,7 @@ public class JAN_BR_photo {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		for(int i=0; i<n-1; i++) a[i] = Integer.parseInt(st.nextToken());
 		
-		for(int i=1; i<a[0]; i++) {
+		for(int i=1; i<a[0]; i++) { 		//1-3, 3-1 <--- combinations for making 4
 			int j = a[0]-i;						
 			if(i!=j) m.put(i,j);
 		}

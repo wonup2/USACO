@@ -35,14 +35,12 @@ public class DEC_SIL_citystate {
 				a.put(key, a.get(key) + 1);
 			}
 		}
-		System.out.println(a);
 	}
 	
 	static void solve() {
 		long ret = 0;
 		for(String key: a.keySet()) {
 			String otherKey = key.substring(2) + key.substring(0, 2);
-			System.out.println(otherKey);
 			if(a.containsKey(otherKey)) {
 				ret += a.get(key) * a.get(otherKey);
 			}

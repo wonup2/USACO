@@ -1,98 +1,108 @@
+
 import java.io.*;
 import java.util.*;
+
 public class JAN_SIL_rental {
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("rental.in"));
-		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("rental.out")));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+	
+	static BufferedReader in;
+	static PrintWriter out;
+	static int N, M, R;
+	static int [] profit;
+	static int [] rental;
+	static int [] gallons;
+	static price store [];
+
+	public static void main(String[] args) {
 		
-		int n = Integer.parseInt(st.nextToken());
-		int m = Integer.parseInt(st.nextToken());
-		int r = Integer.parseInt(st.nextToken());
+		try {
+			init();
+	        solve();
+	        out.close();
+	        in.close();
+	    }
+	    catch(Exception e) {
+	        System.out.println("Error");
+	        e.printStackTrace();
+	    }
+
+	}
+	
+	public static void init () throws IOException {
 		
-		int[] cow = new int[n];
-		for(int i = 0; i < n; i++) {
-			cow[i] = Integer.parseInt(br.readLine());
-		}
-		sort(cow);   //System.out.println("milkProduced "+ Arrays.toString(milkProduced));  //
+		in = new BufferedReader(new FileReader ("rental.in"));
+		out = new PrintWriter (new File ("rental.out"));
+		StringTokenizer st = new StringTokenizer (in.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		R = Integer.parseInt(st.nextToken());
+		rental = new int [R];
+		profit = new int [N];
+		gallons = new int [N];
+		int [] temp = new int [N];
+		for (int i = 0; i < N; i++) temp[i] = Integer.parseInt(in.readLine());
+	
+		store = new price[M];
 		
-		Shop[] mart = new Shop[m];
-		for(int i = 0; i < m; i++) {
-			st = new StringTokenizer(br.readLine());
-			mart[i] = new Shop(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+		for (int i = 0; i < M; i++) {
+			st = new StringTokenizer (in.readLine());
+			int g = Integer.parseInt(st.nextToken());
+			int c = Integer.parseInt(st.nextToken());
+			store[i] = new price (g, c);
 		}
-		Arrays.sort(mart); //System.out.println("shops "+ Arrays.toString(shops));  //
-		int[] rental = new int[r];
-		for(int i = 0; i <r; i++) {
-			rental[i] = Integer.parseInt(br.readLine());
-		}
+		
+		for (int i = 0; i < R; i++)	rental[i] = Integer.parseInt(in.readLine());
+		for (int i = N-1; i >= 0; i--) gallons [i] = temp[N-i-1];
+
 		Arrays.sort(rental);
+		Arrays.sort(temp);	
+		Arrays.sort(store);		
+	}
+	
+	static void solve () {
 		
-		int[] milking = new int[n];
-		long[] maxProfit = new long[n];
-		int index = 0;
-		
-		
-		for(int i = 0; i < n; i++) {
-			
-			while(index < m && cow[i] > 0) {
-				
-				int gal = Math.min(cow[i], mart[index].quantity);
-				maxProfit[i] += gal * (long)mart[index].price;
-				
-				cow[i] -= gal;
-				mart[index].quantity -= gal;
-				
-				if(mart[index].quantity == 0) index++;		
-				
+		int cur = 0;
+		for (int i = 0; i < N; i++) {
+			while (cur < M && gallons[i] > 0) {
+				int usedGal = Math.min(gallons[i], store[cur].gallon);
+				int price = store[cur].cents;
+				profit[i] += usedGal*price;
+				gallons[i] -= usedGal;
+				store[cur].gallon -= usedGal;
+				if (store[cur].gallon == 0) {
+					cur++;
+				}
 			}
-		}				
-		
-		
-		sort(maxProfit);
-		
-		for(int i = n-1, j = r-1; i >=0 && j >=0; i--, j--) {
-			maxProfit[i] = Math.max(maxProfit[i], rental[j]);
 		}
+		//System.out.println(Arrays.toString(profit));
+		for (int i = N-1, j = R-1; i >= 0 && j >= 0; i--, j--) 
+			profit [i] = Math.max(profit[i], rental[j]);
 		
-		long total = 0;
-		for(int i = 0; i<n; i++) {
-			total += maxProfit[i];
-		}
-
-		pw.println(total);
-		pw.close();
+		
+		long sum = 0;
+		for (int i = 0; i < N; i++) 
+			sum += profit[i];
+		
+		out.println(sum);
 	}
-
-	public static void sort(int[] l) {
-		Arrays.sort(l);
-		for(int i = 0; i < l.length-1-i; i++) {
-			l[i] ^= l[l.length-1-i];
-			l[l.length-1-i] ^= l[i];
-			l[i] ^= l[l.length-1-i];
-		}
-	}
-	public static void sort(long[] l) {
-		Arrays.sort(l);
-		for(int i = 0; i < l.length-1-i; i++) {
-			l[i] ^= l[l.length-1-i];
-			l[l.length-1-i] ^= l[i];
-			l[i] ^= l[l.length-1-i];
-		}
-	}
-	static class Shop implements Comparable<Shop> {
-		public int quantity, price;
-		public Shop(int a, int b) {
-			quantity=a;
-			price=b;
-		}
-		public int compareTo(Shop s) {
-			return s.price - price;
-		}
+	
+	static class price implements Comparable <price>{
 		
+		public int gallon;
+		public int cents;
+		
+		public price (int g, int c) {
+			gallon = g;
+			cents = c;
+		}
+		public int compareTo(price that) {
+			return that.cents - this.cents;
+		}
 		public String toString() {
-			return quantity+":"+price;
+			return gallon + " " + cents;
 		}
+		
 	}
 
 }
+
+

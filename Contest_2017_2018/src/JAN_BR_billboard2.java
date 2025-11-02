@@ -35,11 +35,18 @@ public class JAN_BR_billboard2 {
 		 x2 = in.nextInt() + 1000;
 		 y2 = in.nextInt() + 1000;
 		 
+<<<<<<< HEAD
 		for(int i=x1; i<x2; i++) {
 			for(int j=y1; j<y2; j++) {
 				a[i][j] = s;
 			}
 		}
+=======
+		for(int i=x1; i<x2; i++) 
+			for(int j=y1; j<y2; j++) 
+				a[i][j] = s;
+			
+>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27
 	}
 	
 	static void solve() {
@@ -61,7 +68,14 @@ public class JAN_BR_billboard2 {
 					flag = true;
 				}
 			}
+<<<<<<< HEAD
 		}		
+=======
+		}	
+				
+		if(flag) out.println((maxX-minX+1)*(maxY-minY+1));
+		else out.println(0);
+>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27
 	}
 		
 }

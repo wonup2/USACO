@@ -4,11 +4,12 @@ public class US_BR_buckets {
 
 	static BufferedReader in;
 	static PrintWriter out;
+    static String filename = "buckets";
 	static int bi, bj, ri, rj, li, lj;
 	
 	public static void main(String[] args) throws IOException {
-		in = new BufferedReader(new FileReader("buckets.in"));
-		out = new PrintWriter(new PrintWriter("buckets.out"));
+		in = new BufferedReader(new FileReader(filename+".in"));
+		out = new PrintWriter(new PrintWriter(filename+".out"));
 
 		init();
 		solve();	

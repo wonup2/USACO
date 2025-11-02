@@ -20,11 +20,12 @@ public class JAN_BR_sleepy {
 		a=new int[n];
 		for(int i=0; i<n; i++) a[i] = in.nextInt();
 	}
+	
 	static void solve() {
+		
 		int ans = 0;
-		for(int i=n-1; i>=1; i--) {
+		for(int i=n-1; i>=1; i--) 
 			if(a[i-1] > a[i]) { ans=i; break; }
-		}
 		
 		out.println(ans);
 	}

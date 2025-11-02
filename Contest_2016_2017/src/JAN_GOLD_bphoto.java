@@ -2,22 +2,31 @@ import java.io.*;
 import java.util.*;
 public class JAN_GOLD_bphoto {
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("bphoto.in"));
-		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("bphoto.out")));
+		BufferedReader br = new BufferedReader(new FileReader("test.in"));
+		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("test.out")));
 		int n = Integer.parseInt(br.readLine());
 		State[] l = new State[n];
 		for(int i = 0; i < n; i++) {
 			l[i] = new State(Integer.parseInt(br.readLine()), i);
 		}
+		
+		
 		Arrays.sort(l);
+		
+		
+		
 		System.out.println(Arrays.toString(l));
+		
+		
 		int ret = 0;
 		int seen = 0;
 		BIT bit = new BIT(n);
+		
+		
 		for(State curr: l) {
 			int lhs = bit.query(curr.index);
 			int rhs = seen - lhs;
-			System.out.println(curr+": " + "L " + lhs+" R "+rhs);
+			//System.out.println(curr+": " + "L " + lhs+" R "+rhs);
 			
 			if(Math.max(lhs, rhs) > 2 * Math.min(lhs, rhs)) {
 				ret++;

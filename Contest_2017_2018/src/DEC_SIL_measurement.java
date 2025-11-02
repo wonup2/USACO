@@ -41,7 +41,7 @@ public class DEC_SIL_measurement {
 		int curID=0, curMilk=0, curChange=0, maxMilk=0, maxCow=0, ans = 0;
 		
 		for(int i=0; i<n; i++) {
-			
+			//before work
 			curID = a[i].id;
 			curMilk = cowMap.containsKey(curID)? cowMap.get(curID):g;
 			curChange = a[i].change;
@@ -49,14 +49,20 @@ public class DEC_SIL_measurement {
 			milkMap.put(curMilk, milkMap.get(curMilk)-1);
 			if(milkMap.get(curMilk)==0) milkMap.remove(curMilk);
 						
-			if(bMilk==curMilk) bMilk+=curChange;
+			//check if the current cow was originally on the board
+			if(bMilk==curMilk) bMilk+=curChange;  
+			
+					
+			//after work
 			curMilk+=curChange;
 			
+			//renew milkMap and cowMap
 			if(milkMap.containsKey(curMilk))
 				milkMap.put(curMilk, milkMap.get(curMilk)+1);
 			else milkMap.put(curMilk, 1);
 			cowMap.put(curID, curMilk);			
 
+			//get 1st place cow's numbers and milk
 			maxMilk = milkMap.lastKey();
 			maxCow = milkMap.get(maxMilk);
 			

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<<< HEAD:Contest_2011_2012/.project
 	<name>Contest_2011_2012</name>
+========
+	<name>USACO</name>
+>>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27:.project
 	<comment></comment>
 	<projects>
 	</projects>

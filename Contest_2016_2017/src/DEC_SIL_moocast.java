@@ -39,6 +39,21 @@ public class DEC_SIL_moocast{
 		in.close();
 	}
 
+<<<<<<< HEAD
+=======
+//	public static int reach(int s) {
+//
+//		v = new boolean[n]; 
+//
+//		dfs(s);  
+//		
+//		int res = 0; 		// Count # of reached cows.
+//		for (int i=0; i<n; i++)	if(v[i]) res++;
+//		
+//		return res;
+//	}
+
+>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27
 	public static void dfs(int s) {
 		v[s] = true;
 

@@ -4,6 +4,7 @@ public class FEB_BR_hoofball {
 	static Scanner in;
 	static PrintWriter out;
 	static int a[], p[], t[], n, ans;
+	
 	public static void main(String[] args) throws IOException{
 		in = new Scanner(new FileReader("hoofball.in"));
         out = new PrintWriter(new BufferedWriter(new FileWriter("hoofball.out")));
@@ -18,12 +19,18 @@ public class FEB_BR_hoofball {
 		p = new int[n];
 		t = new int[n];
 		
+<<<<<<< HEAD
 		for(int i=0; i<n; i++)
 			a[i] = in.nextInt();
 		
 		Arrays.sort(a);
 		System.out.println(Arrays.toString(a));
 
+=======
+		for(int i=0; i<n; i++) a[i] = in.nextInt();
+		
+		Arrays.sort(a);		
+>>>>>>> 388f3d499ba7c96f308eccd4184b945931759f27
 	}
 	
 	static void solve() {
@@ -50,7 +57,9 @@ public class FEB_BR_hoofball {
 		System.out.println(Arrays.toString(p));
 
 		for(int i=0; i<n-1; i++) {
+			
 			if(p[i]==0) ans++;
+			
 			else if(p[i]==1 && p[i+1]==1) {
 				if(t[i]==i+1 && t[i+1]==i){
 					ans++;
@@ -58,7 +67,9 @@ public class FEB_BR_hoofball {
 				}
 			}
 		}
+		
 		if(p[n-1]==0) ans++;
+		
 		out.println(ans);
 	}
 	
