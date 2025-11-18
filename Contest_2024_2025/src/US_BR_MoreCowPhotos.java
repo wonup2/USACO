@@ -13,26 +13,22 @@ public class US_BR_MoreCowPhotos {
 
             StringTokenizer st = new StringTokenizer(br.readLine());
             int maxH = 0;
+
+            // Count frequencies & track maximum height
             for (int i = 0; i < N; i++) {
                 int h = Integer.parseInt(st.nextToken());
                 freq[h]++;
                 if (h > maxH) maxH = h;
             }
 
-            // prefixPairs[i] = (키 1..i 중) '최소 2번 등장'하는 키의 개수
-            int[] prefixPairs = new int[maxH + 1];
-            int running = 0;
-            for (int h = 1; h <= maxH; h++) {
-                if (freq[h] >= 2) running++;
-                prefixPairs[h] = running;
+            // Count how many distinct heights < maxH appear at least twice
+            int pairs = 0;
+            for (int h = 1; h < maxH; h++) {
+                if (freq[h] >= 2) pairs++;
             }
 
-            // 피크는 가장 큰 키 maxH로 선택 (해당 키가 최소 1번은 등장)
-            // 답 = 1(피크) + 2 * (#pairs below peak)
-            int pairsBelowPeak = (maxH >= 2) ? prefixPairs[maxH - 1] : 0;
-            int ans = 1 + 2 * pairsBelowPeak;
-
-            out.append(ans).append('\n');
+            int answer = 1 + 2 * pairs; // peak(1) + symmetric pairs
+            out.append(answer).append('\n');
         }
 
         System.out.print(out.toString());
