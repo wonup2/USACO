@@ -1,77 +1,92 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class US_BR_Mooin3 {
-
-	//static Scanner in;
+	
 	static BufferedReader in;
 	static StringTokenizer st;
-
+	static StringBuilder sb;
+	
 	static int n, q, l, r;
-	static String s;
-	static TreeSet<Integer>[] pos;
+	static long ans;
+	static String s; 
+	static TreeSet<Integer> a[];
+	
+	static void init() throws IOException{
+		st = new StringTokenizer(in.readLine());
+		l = Integer.parseInt(st.nextToken());
+		r = Integer.parseInt(st.nextToken());		
+	}
+	
+	static void solve() {
+		
+		Integer i=n+1, j=0, k=0;
+		
+		for(int x = 0; x<26; x++) {
+			
+			//i		
+			i=n+1;
+			for(int y=0; y<26; y++) {
+				if(a[y].size()==0) continue;				
+				if(x==y) continue;
+				
+				Integer t = a[y].ceiling(l);
+				if(t==null) continue;		
+				i = Math.min(i, t);
+			}
+			
+		
+			if(a[x].size()==0) continue;			
+
+			//k
+			k = a[x].floor(r);
+			if(k==null) continue;
+			if(k<i || k<l) continue;
+			
+			//j			
+			int mid = (i+k)/2;
+			j = a[x].floor(mid);			
+			
+			if(j!=null && i<j && j<k) {
+				long val = (long) (j - i) * (long) (k - j);
+				ans = Math.max(ans, val);
+			}
+			
+			j = a[x].ceiling(mid);			
+
+			if(j!=null && i<j && j<k) {
+				long val = (long) (j - i) * (long) (k - j);
+				ans = Math.max(ans, val);				
+			}			
+		}						
+		sb.append(ans).append("\n");
+	}
 	
 	public static void main(String[] args) throws IOException {
-
-		//in = new Scanner(System.in);
-		in = new BufferedReader(new InputStreamReader(System.in));
 		
-		init();
-		//solve();
-		in.close();
-	}
-
-	static void init()throws IOException {
+		in = new BufferedReader(new InputStreamReader(System.in));
+		sb = new StringBuilder();
 		st = new StringTokenizer(in.readLine());
-	
+		
 		n = Integer.parseInt(st.nextToken());
 		q = Integer.parseInt(st.nextToken());
 		s = in.readLine();
 		
-		pos = new TreeSet[26];
-		for(int i=0; i<26; i++) pos[i] = new TreeSet<Integer>();
+		a = new TreeSet[26];
+		for(int i=0; i<26; i++) a[i] = new TreeSet<Integer>();
+		
 		for(int i=0; i<n; i++) {
-			char c = s.charAt(i);
-			int idx = c-'a';
-			pos[idx].add(i+1);
+			int idx = s.charAt(i)-'a';			
+			a[idx].add(i+1);
 		}		
 		
-		StringBuilder sb = new StringBuilder();
-		for(int i=0; i<q; i++)	sb.append(solve()).append("\n");		
-		
-		System.out.print(sb.toString());
-	}
-	
-	static long solve() throws IOException {
-		//i, j, k
-	
-		st = new StringTokenizer(in.readLine());
-		l = Integer.parseInt(st.nextToken());
-		r = Integer.parseInt(st.nextToken());
-		
-		long ret = -1l;
-		
-		for(int c = 0; c<26; c++) {
-			
-			if(pos[c].size()==0) continue;
-			
-			//i: leftmost not c
-			
-			//k: rightmost c 
-						
-			//j: middle c
-			//j1, j2
-			
+		while(q -->0) {
+			ans = -1l;
+			init();
+			solve();
 		}
 		
-		
-		return ret;
+		System.out.print(sb.toString());
+        in.close();
 	}
 }
-
-/*
-12 1
-abcabbacabac
-4 8
-
-*/

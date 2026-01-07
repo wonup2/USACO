@@ -2,35 +2,57 @@ import java.io.*;
 import java.util.*;
 
 public class US_BR_MoreCowPhotos {
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder out = new StringBuilder();
+	
+	static BufferedReader in;
+	static StringTokenizer st;
+	static StringBuilder sb;
+	
+	static int t, n, maxHeight;
+	static HashMap<Integer, Integer> map;
+		
+	static void init() throws IOException{
+		
+		n = Integer.parseInt(in.readLine());
+		
+		map = new HashMap<Integer, Integer>();
+		
+		st = new StringTokenizer(in.readLine());
+		 
+		for(int i=0; i<n; i++) {
+			int h = Integer.parseInt(st.nextToken());
+			maxHeight = Math.max(h, maxHeight);
+			map.put(h, map.getOrDefault(h, 0)+1);
+		}	
+	}
+	
+	static void solve() {
+		
+		int ans = 0;
 
-        int T = Integer.parseInt(br.readLine().trim());
-        while (T-- > 0) {
-            int N = Integer.parseInt(br.readLine().trim());
-            int[] freq = new int[N + 1];
+		for(int value:map.values()) {
+			if(value>=2) ans+=2;
+		}
+		
+		if(map.get(maxHeight)>=2) ans--;
+		else ans++;
+		
+		sb.append(ans).append("\n");
+	}
+	
+	public static void main(String[] args) throws IOException {
+		in = new BufferedReader(new InputStreamReader(System.in));
 
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int maxH = 0;
-
-            // Count frequencies & track maximum height
-            for (int i = 0; i < N; i++) {
-                int h = Integer.parseInt(st.nextToken());
-                freq[h]++;
-                if (h > maxH) maxH = h;
-            }
-
-            // Count how many distinct heights < maxH appear at least twice
-            int pairs = 0;
-            for (int h = 1; h < maxH; h++) {
-                if (freq[h] >= 2) pairs++;
-            }
-
-            int answer = 1 + 2 * pairs; // peak(1) + symmetric pairs
-            out.append(answer).append('\n');
-        }
-
-        System.out.print(out.toString());
-    }
+		t = Integer.parseInt(in.readLine());
+		sb = new StringBuilder();
+		
+		while(t-->0) {
+			maxHeight = 0;
+			init();
+			solve();
+		}
+		
+		System.out.print(sb.toString());
+		
+        in.close();
+	}
 }
